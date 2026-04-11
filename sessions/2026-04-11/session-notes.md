@@ -31,7 +31,7 @@
 
 ## 作业状态
 - BERT情感分析作业
-- 期限: 剩余约9天
+- 期限: **剩余约5天**
 - 使用HuggingFace transformers库
 
 ## 下次继续
