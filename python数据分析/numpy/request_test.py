@@ -9,10 +9,14 @@ print(result)
 
 def get_url(url):
     response1=requests.get(url)
-    if response1 == 200:
+
+    if response1.status_code == 200:
+        data=response1.json()
+        text=response1.text
         print("ok")
+        return data
     else:
-        return
+        return None
 
 a=get_url("https://api.github.com")
 print(a)

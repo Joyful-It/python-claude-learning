@@ -17,7 +17,7 @@ print(data)
 # data2 = {'name': 'a'}   # 单引号
 
 # print(data1 == data2)   # True
-# Python 不区分单双引号，打印字典时默认用单引号显示。
+# Python 不区分单双引号，打印字典时默认用单引号显示。!!!!!!!!!
 
 recived='{"name":"wer","age":23}'
 # 那个单引号是 Python 的"包装纸"

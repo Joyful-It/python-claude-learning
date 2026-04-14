@@ -13,6 +13,6 @@ print(np.median(arr1))
 arry4=np.array([[13,12],[43,32]])
 A_arry=np.linalg.inv(arry4)
 print(A_arry)
-print(np.std(arry))
+print(np.std(arry))# std标准差
 arry5=np.array([43,21,56,54,32,45])
-print(np.dot(arry,arry5))
+print(np.dot(arry,arry5))#dot 内积

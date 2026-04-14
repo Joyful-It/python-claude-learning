@@ -1,6 +1,6 @@
 # Python 学习进度追踪表
 
-> **最后更新日期**：2026-04-03
+> **最后更新日期**：2026-04-13
 
 ---
 
@@ -10,10 +10,19 @@
 |-----|------|
 | 总考点数 | 39 |
 | 已掌握考点（≥80%） | 0 |
-| 学习中考点（1%-79%） | 4 |
-| 未开始考点（0%） | 35 |
-| **整体进度** | **12%** |
-| **学习天数** | **5天** |
+| 学习中考点（1%-79%） | 5 |
+| 未开始考点（0%） | 34 |
+| **整体进度** | **15%** |
+| **学习天数** | **9天** |
+
+---
+
+## 当前作业
+
+| 作业 | 分值 | 截止日期 | 状态 |
+|-----|-----|---------|-----|
+| Deep Learning Assignment | 100% | 约5天后 | 进行中 |
+| 选定模型：BERT + BiLSTM 对比 | - | - | 开始准备 |
 
 ---
 
@@ -34,7 +43,7 @@
 
 | 模块 | 权重 | 考点数 | 已掌握 | 学习中 | 未开始 | 进度 |
 |------|------|-------|-------|-------|-------|------|
-| A. Python 工程化基础 | 20% | 9 | 0 | 3 | 6 | 25% |
+| A. Python 工程化基础 | 20% | 9 | 0 | 4 | 5 | 30% |
 | B. 大模型推理工程与RAG开发 | 18% | 6 | 0 | 0 | 6 | 0% |
 | C. Agent智能体开发 | 16% | 5 | 0 | 0 | 5 | 0% |
 | D. 大模型微调实战 | 15% | 5 | 0 | 0 | 5 | 0% |
@@ -96,9 +105,18 @@
 | NumPy 矩阵运算 | 45% | 2026-04-02 | 逆矩阵、点积 |
 | NumPy 统计函数 | 45% | 2026-04-02 | max/min/mean/std/median |
 | NumPy 广播机制 | 55% | 2026-04-03 | 从右对齐，不够补1，深入理解一维vs二维 |
-| Pandas | 0% | - | 未开始 |
+| Pandas 创建DataFrame | 80% | 2026-04-13 | 已学：pd.DataFrame({}) |
+| Pandas 查看数据 | 85% | 2026-04-13 | info/describe/head |
+| Pandas 缺失值处理 | 75% | 2026-04-13 | fillna/dropna/isnull |
+| Pandas 重复值处理 | 75% | 2026-04-13 | duplicated/drop_duplicates |
+| Pandas 排序 | 75% | 2026-04-13 | sort_values/sort_index/rank |
+| Pandas 类型转换 | 70% | 2026-04-13 | astype (需先fillna) |
+| Pandas 批量处理 | 65% | 2026-04-13 | apply(lambda x: ...) |
+| Pandas 字符串处理 | 70% | 2026-04-13 | str.replace() |
+| Matplotlib | 0% | - | 明日学习 |
+| Seaborn | 0% | - | 明日学习 |
 
-**A.6 综合掌握度：15%**
+**A.6 综合掌握度：35%**（Pandas大幅提升）
 
 ---
 
@@ -238,11 +256,10 @@
 7. [ ] 确认智谱API正确路径，完成调用
 
 ### 明日计划
-- [ ] 巩固今天学习的 NumPy 内容
-- [ ] 用苏格拉底式补充 json.dump/load
-- [ ] 用苏格拉底式补充 NumPy 搜索函数
-- [ ] 安装 PyTorch，体验 GPU 加速
-- [ ] 确认智谱API正确路径
+- [ ] Matplotlib（折线图、柱状图、饼图、散点图）
+- [ ] Seaborn（bar/box/cat/dis/hist/line/violin 7种图表）
+- [ ] Pandas补充：fillna/drop_duplicates/astype/apply/str.replace
+- [ ] 开始BERT情感分析代码（Colab）
 
 ---
 
@@ -255,3 +272,5 @@
 | 2026-04-01 | [session-notes](../sessions/2026-04-01/session-notes.md) | NumPy + JSON + requests | 数据分析预习，API调用入门 |
 | 2026-04-02 | [session-notes](../sessions/2026-04-02/session-notes.md) | NumPy深入 + 大模型概念 | 广播机制、矩阵运算、梯度下降、GPU、大模型基础 |
 | 2026-04-03 | [session-notes](../sessions/2026-04-03/session-notes.md) | 广播深入 + 完整认知 | 一维vs二维区别、云算力、学习路线、用户配置分析 |
+| 2026-04-11 | [session-notes](../sessions/2026-04-11/session-notes.md) | BERT深入学习 | Encoder/Decoder、MLM/NSP、Multi-Head Attention |
+| 2026-04-13 | [session-notes](../sessions/2026-04-13/session-notes.md) | Pandas数据处理 + 作业规划 | fillna/dropna/rank/astype/apply/str + 作业确认为BERT+BiLSTM |
