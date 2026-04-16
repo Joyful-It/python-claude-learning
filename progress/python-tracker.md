@@ -1,6 +1,6 @@
 # Python 学习进度追踪表
 
-> **最后更新日期**：2026-04-13
+> **最后更新日期**：2026-04-16
 
 ---
 
@@ -21,8 +21,8 @@
 
 | 作业 | 分值 | 截止日期 | 状态 |
 |-----|-----|---------|-----|
-| Deep Learning Assignment | 100% | 约5天后 | 进行中 |
-| 选定模型：BERT + BiLSTM 对比 | - | - | 开始准备 |
+| Deep Learning Assignment | 100% | 已完成 | ✅ |
+| 作业选择：BERT + BiLSTM 对比 | - | - | 已完成 |
 
 ---
 
@@ -43,7 +43,7 @@
 
 | 模块 | 权重 | 考点数 | 已掌握 | 学习中 | 未开始 | 进度 |
 |------|------|-------|-------|-------|-------|------|
-| A. Python 工程化基础 | 20% | 9 | 0 | 4 | 5 | 30% |
+| A. Python 工程化基础 | 20% | 9 | 0 | 5 | 4 | 35% |
 | B. 大模型推理工程与RAG开发 | 18% | 6 | 0 | 0 | 6 | 0% |
 | C. Agent智能体开发 | 16% | 5 | 0 | 0 | 5 | 0% |
 | D. 大模型微调实战 | 15% | 5 | 0 | 0 | 5 | 0% |
@@ -153,7 +153,10 @@
 | status_code 状态码 | 45% | 2026-04-01 | 已学 |
 | API 调用流程 | 30% | 2026-04-01 | 大模型API调用尝试，路径待确认 |
 | response.json() | 50% | 2026-04-01 | 已学 |
-| FastAPI | 0% | - | 未开始 |
+| FastAPI 基础 | 65% | 2026-04-16 | @app.get/post、装饰器、三种参数 |
+| Pydantic BaseModel | 60% | 2026-04-16 | 数据验证 vs 普通类 |
+| 前后端分离架构 | 75% | 2026-04-16 | 完全理解 |
+| Path/Query/Body参数 | 65% | 2026-04-16 | 已实操练习 |
 
 **A.8 综合掌握度：20%**
 
@@ -274,3 +277,4 @@
 | 2026-04-03 | [session-notes](../sessions/2026-04-03/session-notes.md) | 广播深入 + 完整认知 | 一维vs二维区别、云算力、学习路线、用户配置分析 |
 | 2026-04-11 | [session-notes](../sessions/2026-04-11/session-notes.md) | BERT深入学习 | Encoder/Decoder、MLM/NSP、Multi-Head Attention |
 | 2026-04-13 | [session-notes](../sessions/2026-04-13/session-notes.md) | Pandas数据处理 + 作业规划 | fillna/dropna/rank/astype/apply/str + 作业确认为BERT+BiLSTM |
+| 2026-04-16 | [session-notes](../sessions/2026-04-16/session-notes.md) | FastAPI基础 + 前后端架构 | @装饰器、Path/Query/Body参数、Pydantic模型、前后端分离 |
