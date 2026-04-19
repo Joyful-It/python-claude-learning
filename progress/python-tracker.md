@@ -1,6 +1,6 @@
 # Python 学习进度追踪表
 
-> **最后更新日期**：2026-04-16
+> **最后更新日期**：2026-04-19
 
 ---
 
@@ -13,7 +13,7 @@
 | 学习中考点（1%-79%） | 5 |
 | 未开始考点（0%） | 34 |
 | **整体进度** | **15%** |
-| **学习天数** | **9天** |
+| **学习天数** | **13天** |
 
 ---
 
@@ -186,12 +186,26 @@
 | A.1 | 多态概念有点模糊 | 低 | 2026-03-31 | 跟进中 |
 | A.1 | 方法调用时有点慌 | 低 | 2026-03-31 | 需多练习 |
 | G.35 | json.dump/load 文件操作未深入 | 低 | 2026-04-01 | 待补充 |
-| A.6 | NumPy argmax/argmin/where 未苏格拉底式教学 | 低 | 2026-04-01 | 待补充 |
-| A.6 | NumPy 广播机制规则需巩固 | 低 | 2026-04-02 | 待补充 |
+| A.6 | drop_duplicates/dropna 区分不清 | 低 | 2026-04-19 | 新发现 |
+| A.6 | json.dumps/loads 区分不清 | 低 | 2026-04-19 | 新发现 |
 | A.8 | 大模型API调用路径未确认 | 低 | 2026-04-01 | 待确认 |
+| **缺失** | Matplotlib/Seaborn 还没学 | 高 | 2026-04-19 | 待补充 |
+| **缺失** | SQLAlchemy 还没学 | 高 | 2026-04-19 | 待补充 |
 
 **已解决的漏洞：**
-- ~~self 概念理解不够牢固~~ → ✅ 已改善（50%）
+- ~~self 概念理解不够牢固~~ → ✅ 已改善（60%）
+
+---
+
+## 课件进度
+
+| 课件 | 内容 | 状态 |
+|-----|------|------|
+| 01-14 | Python基础/Numpy/Pandas | ✅ 已学 |
+| 15 | Matplotlib/Seaborn | ❌ 未学 |
+| 16 | Git/MySQL | ✅ 已学 |
+| 17 | SQLAlchemy | ❌ 未学 |
+| 18 | FastAPI | ✅ 已学 |
 
 ---
 
@@ -278,3 +292,4 @@
 | 2026-04-11 | [session-notes](../sessions/2026-04-11/session-notes.md) | BERT深入学习 | Encoder/Decoder、MLM/NSP、Multi-Head Attention |
 | 2026-04-13 | [session-notes](../sessions/2026-04-13/session-notes.md) | Pandas数据处理 + 作业规划 | fillna/dropna/rank/astype/apply/str + 作业确认为BERT+BiLSTM |
 | 2026-04-16 | [session-notes](../sessions/2026-04-16/session-notes.md) | FastAPI基础 + 前后端架构 | @装饰器、Path/Query/Body参数、Pydantic模型、前后端分离 |
+| 2026-04-19 | [session-notes](../sessions/2026-04-19/session-notes.md) | 复习+查漏补缺 | 面向对象练习、命名规范、知识漏洞发现 |
