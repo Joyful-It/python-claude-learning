@@ -8,7 +8,11 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "WebSearch"
+      "WebSearch",
+      "Read(//d/Desktop/study/AI/课件/**)",
+      "WebFetch(domain:gitee.com)",
+      "Bash(git clone *)",
+      "Read(//tmp/**)"
     ]
   }
 }

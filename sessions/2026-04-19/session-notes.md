@@ -112,3 +112,56 @@ BERT 情感分析作业已完成 ✅
 - 面向对象基础：明显巩固
 - 发现遗忘点：drop_duplicates/dropna、json操作
 - 整体状态：积极复习中
+
+---
+
+# 复习内容 - 2026-04-19 下午追加
+
+## 复习主题
+知识漏洞复习：drop_duplicates/dropna、json.dumps/loads
+
+## 复习内容
+
+### 1. drop_duplicates vs dropna 区别
+- **drop_duplicates** = 删除重复的行
+- **dropna** = 删除含有空值（NaN）的行
+- 学员理解：✅ 正确
+
+### 2. json.dumps vs json.loads 区别
+| 方法 | 作用 | 方向 |
+|-----|------|------|
+| dumps | 打包成JSON字符串 | Python对象 → 字符串 |
+| loads | 解析JSON字符串 | 字符串 → Python对象 |
+
+**生活比喻：**
+- dumps = 把水果装进密封袋
+- loads = 把密封袋打开取出水果
+
+**记忆口诀：**
+- dump = 往文件里**倒**（写）
+- load = 从文件里**捞**（读）
+- s = **s**tring（字符串）
+
+**AI开发场景：**
+```python
+# 处理大模型API返回的JSON
+response = requests.get("https://api.example.com/llm")
+result = response.json()        # API返回的JSON字符串 → Python字典
+
+# 保存数据到文件
+with open("data.json", "w") as f:
+    json.dump(data, f)         # Python对象 → 写入文件
+
+# 从文件读取
+with open("data.json", "r") as f:
+    data = json.load(f)        # 从文件读取 → Python对象
+```
+
+## 检验问题
+**Q：大模型API返回JSON字符串，应该用 json.loads 还是 json.dumps？**
+**A：json.loads**（解析成Python对象才能在代码里操作）
+
+## 下次继续
+- 还需学习：Matplotlib/Seaborn（课件15）
+- 还需学习：SQLAlchemy（课件17）
+- 待继续复习：继承、重写、super()、封装、多态（OOP部分）

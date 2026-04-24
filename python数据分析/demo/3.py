@@ -4,7 +4,9 @@
 import numpy as np
 a1=np.ones((2,3))
 a2=np.zeros((2,3))
+a3=np.full((3,4),(1,3,4,5,6,7,8,5,3))
 a11=a1+5
 a22=a2*3
 print(a11)
 print(a22)
+print(a3)
