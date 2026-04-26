@@ -13,6 +13,9 @@
       "WebFetch(domain:gitee.com)",
       "Bash(git clone *)",
       "Read(//tmp/**)"
+    ],
+    "additionalDirectories": [
+      "c:\\Project\\python\\sessions"
     ]
   }
 }

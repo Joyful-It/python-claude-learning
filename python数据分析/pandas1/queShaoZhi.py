@@ -15,3 +15,7 @@ print('\n-------after------')
 data['age']=data['age'].fillna(data['age'].mean())
 data['age']=data['age'].astype(int)#!!!!!!!!!!!astype后加数据类型，
 print(data.dtypes)
+# 记住这个顺序：
+# Copy code to clipboard
+# 有NaN → 先 fillna() → 再 astype(int)
+# 不能跳过填充直接转类型。

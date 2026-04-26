@@ -8,6 +8,7 @@ var num2 =521.11
 console.log(num1)
 console.log(num2)
 let str1="I love you"
-console.log(str1)
+console.log(str1)//
 let cuo="false"
 console.log(cuo)
+console.log(typeof cuo)

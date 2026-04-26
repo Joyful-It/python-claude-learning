@@ -16,4 +16,5 @@ data['rank']=data['score'].rank(method='max',ascending=True)
 print(data)
 print('------Need----average-----rank-----')
 data['rank2']=data['score'].rank(method='average',ascending=False)
+#并列时取平均排名（如两个第1，平均后1.5）
 print(data)
