@@ -1,6 +1,6 @@
 # Python 学习进度追踪表
 
-> **最后更新日期**：2026-04-25
+> **最后更新日期**：2026-04-27
 
 ---
 
@@ -12,8 +12,8 @@
 | 已掌握考点（≥80%） | 0 |
 | 学习中考点（1%-79%） | 7 |
 | 未开始考点（0%） | 35 |
-| **整体进度** | **18%** |
-| **学习天数** | **18天** |
+| **整体进度** | **20%** |
+| **学习天数** | **20天** |
 
 ---
 
@@ -131,8 +131,24 @@
 | 神经网络层概念 | 50% | 2026-04-02 | 输入→矩阵乘法→输出 |
 | 本地vs云端vs算力 | 55% | 2026-04-03 | 云服务器vs算力服务器 |
 | PyTorch CPU模式 | 40% | 2026-04-03 | 学语法够用，Intel Arc不推荐 |
+| 归一化 Normalization | 60% | 2026-04-27 | 均值≈0、方差≈1，让训练更稳定 |
+| Layer Norm | 55% | 2026-04-27 | 单个词自己的512维向量归一化，Transformer专用 |
+| Batch Norm | 50% | 2026-04-27 | 对整个批次同一维度归一化，不适合NLP |
 
-**B.1 综合掌握度：20%**
+**B.1 综合掌握度：35%**（新增归一化、Layer Norm/Batch Norm、DeepSeek API）
+
+---
+
+### B.10 大模型API调用（DeepSeek/OpenAI）
+| 子考点 | 掌握度 | 更新日期 | 备注 |
+|-------|-------|---------|------|
+| OpenAI 库调用 DeepSeek | 65% | 2026-04-27 | openai库 + base_url |
+| API Key 配置 | 60% | 2026-04-27 | 已成功调用 |
+| temperature 参数 | 65% | 2026-04-27 | 控制随机程度 0-1 |
+| max_tokens 参数 | 60% | 2026-04-27 | 控制回答字数 |
+| 流式输出 stream | 55% | 2026-04-27 | 边回答边显示 |
+
+**B.10 综合掌握度：65%**
 
 ---
 
@@ -327,3 +343,4 @@
 | 2026-04-19 | [session-notes](../sessions/2026-04-19/session-notes.md) | 复习+查漏补缺 | 面向对象练习、命名规范、知识漏洞发现 |
 | 2026-04-21 | [session-notes](../sessions/2026-04-21/session-notes.md) | 前端三件套+FastAPI项目 | HTML/CSS/JS基础、SQLAlchemy初步、依赖注入 |
 | 2026-04-25 | [session-notes](../sessions/2026-04-25/session-notes.md) | Git复习+推送练习 | clone/add/commit/push、远程仓库、GitHub推送 |
+| 2026-04-27 | [session-notes](../sessions/2026-04-27/session-notes.md) | Attention论文+DeepSeek API | 归一化、Layer Norm、DeepSeek调用 |
