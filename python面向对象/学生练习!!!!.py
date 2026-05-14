@@ -5,6 +5,8 @@ class student:
         self.ic=ic
     def study(self):
         print(f"{self.name} is studying python model ")
+    def __str__(self):
+        return f"{self.name},{self.age}test"
 class colleague(student):
     def __init__(self, name, age,ic,major):
         self.major=major
@@ -28,3 +30,4 @@ zhangsi.study()
 # 多态：同一个函数，不同的对象，不同的结果
 do_study(lisan)
 do_study(zhangsi)
+print(lisan)

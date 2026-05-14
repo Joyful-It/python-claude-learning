@@ -1,6 +1,6 @@
 # Python 学习进度追踪表
 
-> **最后更新日期**：2026-05-09
+> **最后更新日期**：2026-05-13
 
 ---
 
@@ -8,12 +8,12 @@
 
 | 指标 | 数值 |
 |-----|------|
-| 总考点数 | 42 (+3 前端) |
+| 总考点数 | 46 (+3 前端) |
 | 已掌握考点（≥80%） | 0 |
 | 学习中考点（1%-79%） | 7 |
 | 未开始考点（0%） | 35 |
 | **整体进度** | **20%** |
-| **学习天数** | **20天** |
+| **学习天数** | **24天** |
 
 ---
 
@@ -48,7 +48,7 @@
 | C. Agent智能体开发 | 16% | 5 | 0 | 0 | 5 | 0% |
 | D. 大模型微调实战 | 15% | 5 | 0 | 0 | 5 | 0% |
 | E. 高性能推理部署与LLMOps | 14% | 5 | 0 | 0 | 5 | 0% |
-| F. 机器学习/深度学习基础 | 10% | 18 | 0 | 1 | 17 | 20% |
+| F. 机器学习/深度学习基础 | 10% | 22 | 0 | 1 | 21 | 30% |
 | G. 工具链与辅助开发 | 7% | 3 | 0 | 1 | 2 | 25% |
 | H. 编程规范与工程实践 | 0% | 2 | 0 | 1 | 1 | 50% |
 | I. 前端开发基础 | 0% | 3 | 0 | 2 | 1 | 30% |
@@ -83,7 +83,7 @@
 | 封装（私有属性） | 50% | 2026-03-31 | 理解__xxx私有属性，改名机制 |
 | get/set 方法 | 55% | 2026-03-31 | 能独立写get_age/set_age |
 | 多态 | 40% | 2026-03-31 | 有点模糊，需巩固 |
-| __str__ 方法 | 45% | 2026-03-31 | 定义print(对象)的输出 |
+| __str__ 方法 | 60% | 2026-05-12 | 复习后完全理解：print 时自动触发，自定义输出 |
 | 函数返回值（return） | 0% | 2026-03-30 | 未开始 |
 | 变量作用域 | 0% | 2026-03-30 | 未开始 |
 
@@ -237,18 +237,24 @@
 | 机器学习 vs 深度学习 | 30% | 2026-04-28 | 机器学习人工设计特征，深度学习自动学 |
 | 卷积原理 | 25% | 2026-04-28 | 小窗口滑动检测局部特征 |
 | CNN 卷积神经网络 | 25% | 2026-04-28 | 卷积层+激活+池化+全连接 |
-| sklearn ML流程 | 40% | 2026-05-09 | 加载→划分→训练→预测→评估（套模板不熟练） |
-| 逻辑回归（sklearn） | 50% | 2026-05-09 | 鸢尾花/乳腺癌已跑通 |
+| sklearn ML流程 | 60% | 2026-05-10 | 能裸写骨架，导入/fit参数偶尔出错 |
+| 逻辑回归（sklearn） | 65% | 2026-05-10 | 红酒数据集独立跑通，准确率 1.0 |
+| sklearn 子模块导入 | 50% | 2026-05-10 | 掌握命名规律（线/树/邻/贝/SVM=基础五件套） |
 | 决策树（sklearn） | 40% | 2026-05-09 | DecisionTreeClassifier 已跑通 |
 | 朴素贝叶斯 | 40% | 2026-05-09 | GaussianNB/Bernoulli/Multinomial/Complement 了解区别 |
 | KNN | 45% | 2026-05-09 | KNeighborsClassifier + 手动调参 + 画曲线 |
 | random_state | 50% | 2026-05-09 | 固定随机种子，可复现 |
-| StandardScaler | 40% | 2026-05-09 | 标准化，fit_transform vs transform |
+| StandardScaler | 55% | 2026-05-10 | fit_transform vs transform，知道哪些模型需要标准化 |
 | 手动调参（for循环） | 40% | 2026-05-09 | 遍历K值找最优 |
 | matplotlib 画图 | 25% | 2026-05-09 | plot/xlabel/ylabel/title/show，中文乱码需SimHei |
 | make_classification | 30% | 2026-05-09 | 造分类数据做实验 |
+| 集成学习（Bagging/Boosting/Stacking） | 50% | 2026-05-12 | 概念三招已通，StackingClassifier 代码已写 |
+| PCA 降维 | 50% | 2026-05-11 | 原理推导已理解，代码已看 |
+| t-SNE 降维 | 45% | 2026-05-11 | 原理推导已理解，与 PCA 区别清楚 |
+| 分类指标（Accuracy/Recall/Precision/F1） | 60% | 2026-05-12 | 能用自己的话解释四指标，知道 Recall 和 Precision 不能同时高 |
+| class_weight 不平衡处理 | 50% | 2026-05-12 | 理解原理（少数类权重更高），试了 balanced |
 
-**F 模块综合掌握度：20%**（进入sklearn实操阶段）
+**F 模块综合掌握度：30%**（新增集成学习概念、PCA/t-SNE、数学基础）
 
 ---
 
@@ -268,6 +274,8 @@
 | **缺失** | SVM 还没学 | 中 | 2026-05-09 | 待补充 |
 | **缺失** | sklearn代码独立默写不熟练 | 高 | 2026-05-09 | 需多套模板练习 |
 | **缺失** | 文本情感分析完全不会 | 低 | 2026-05-09 | 待学 |
+| **缺失** | `fit(X_train, y_train)` 参数易写错（写成 X_test） | 中 | 2026-05-10 | 需反复练习 |
+| **缺失** | sklearn 导入路径需查表，不能独立写出 | 中 | 2026-05-10 | 已掌握命名规律，需巩固 |
 | **缺失** | GridSearchCV 自动调参还没学 | 中 | 2026-05-09 | 待补充 |
 | **缺失** | matplotlib 语法不熟 | 低 | 2026-05-09 | 待练习 |
 
@@ -275,6 +283,81 @@
 - ~~self 概念理解不够牢固~~ → ✅ 已改善（60%）
 - ~~drop_duplicates/dropna 区分不清~~ → ✅ 已复习
 - ~~json.dumps/loads 区分不清~~ → ✅ 已复习
+
+---
+
+## 常犯错误模式
+
+| 编号 | 错误模式 | 正确写法 | 严重程度 | 最早发现 |
+|------|---------|---------|---------|---------|
+| 🔴 E1 | `fit(X_train, X_test)` | `fit(X_train, y_train)` | 高 | 2026-05-09 |
+| 🔴 E2 | `predict()` 忘写参数 | `predict(X_test)` | 中 | 2026-05-09 |
+| E3 | `final_estimator=LogisticRegression` 少括号 | `LogisticRegression()` | 中 | 2026-05-12 |
+| E4 | 相对路径找不到文件 | 用绝对路径或确认执行目录 | 中 | 2026-05-12 |
+| E5 | `pd.to_numeric()` 对整表用 | 只对单列（Series）用 | 低 | 2026-05-12 |
+
+---
+
+## 机器学习速查框架（2026-05-10 总结）
+
+### 选模型三步决策
+
+```
+1. 分类还是回归？
+   分类（判断类别）→ 逻辑回归/决策树/随机森林/KNN/贝叶斯/SVM
+   回归（预测数字）→ 线性回归/决策树回归/随机森林回归/KNN回归
+
+2. 数据多大了？
+   样本<1000, 特征<20 → 传统ML
+   样本>1000, 特征很多 → 深度学习
+
+3. 数据长什么样？
+   线性关系明显 → 逻辑回归/线性回归（快，可解释）
+   不确定什么关系 → 决策树/随机森林（万能基线）
+   文本数据 → 朴素贝叶斯
+   小样本+特征干净 → KNN 或 SVM
+   要最高精度 → XGBoost/LightGBM
+```
+
+### 模型家族速查
+
+| 家族 | 子模块 | 分类模型 | 回归模型 | 适用场景 |
+|------|--------|---------|---------|---------|
+| 线性 | `linear_model` | LogisticRegression | LinearRegression, Ridge, Lasso, ElasticNet | 线性关系、需解释 |
+| 树 | `tree` | DecisionTreeClassifier | DecisionTreeRegressor | 非线性、表格数据 |
+| 集成 | `ensemble` | RandomForestClassifier | RandomForestRegressor | 万能基线 |
+| 距离 | `neighbors` | KNeighborsClassifier | KNeighborsRegressor | 小样本、需标准化 |
+| 概率 | `naive_bayes` | GaussianNB, MultinomialNB | — | 文本分类 |
+| 边界 | `svm` | SVC | SVR | 高维、非线性、小样本 |
+
+### 一句口诀
+> 拿数据先试树，要解释用线回，做文本上贝叶斯，追精度上 XGBoost。
+
+### 分类四指标速查
+
+| 指标 | 含义 | 公式 | 业务问题 | 你的模型 |
+|------|------|------|---------|---------|
+| Accuracy | 判断对了多少（笼统） | (TP+TN) / 总数 | "看病有没有用" | 79% |
+| Recall | 真要走的，抓多少 | TP / (TP+FN) | "漏了多少"→越低漏越多 | 53% ⚠️ |
+| Precision | 喊走的，几个真走 | TP / (TP+FP) | "虚惊多少"→误报 | 64% |
+| F1 | Recall 和 Precision 调和平均 | 2RP/(R+P) | "两个一起看" | 58% |
+
+**四种结果：**
+```
+预测不走 + 真实不走 = TN（正常）
+预测会走 + 真实会走 = TP（抓到了）
+预测会走 + 真实不走 = FP（虚惊）
+预测不走 + 真实会走 = FN（漏了！）
+```
+
+| 场景 | 优先指标 | 原因 |
+|------|---------|------|
+| 挽留用户（流失预测） | Recall | 漏一个丢几百块 |
+| 垃圾邮件 | Precision | 误删一封重要邮件比漏一封垃圾严重 |
+| 疾病筛查 | Recall | 漏诊命没了 |
+| 精准广告 | Precision | 乱推广告只烦人，不推也行 |
+
+---
 
 ---
 
@@ -344,6 +427,22 @@
 - [x] 云服务器 vs 算力服务器区别
 - [x] 分析用户电脑配置（Intel Ultra 5 125H + Arc核显）
 
+### 今日完成 ✅
+
+**2026-05-10（ML 模板复习 + 科学复习法）：**
+- [x] 裸写 ML 7 步模板（红酒数据集）
+- [x] 掌握 sklearn 子模块命名规律（基础五件套 + 辅助三兄弟）
+- [x] 理解标准化适用场景（哪些模型需要/不需要）
+- [x] 独立跑通 `5_9task.py`（红酒分类，准确率 1.0）
+- [x] 理清知识管理策略（tracker 是唯一笔记，对话产出最有价值）
+
+**2026-05-11（集成学习入门 + 无监督学习 + 数学基础）：**
+- [x] 集成学习三招入门（Bagging/Boosting/Stacking）
+- [x] 无监督学习概览（K-Means/DBSCAN/层次聚类/PCA/t-SNE）
+- [x] 手推机器学习第一章整理（频率派vs贝叶斯派 + 高斯分布）
+- [x] ML 速查框架沉淀到 tracker
+- [x] CLAUDE.md 新增"所有总结必须保存"规则
+
 ### 近期目标（按优先级）
 1. [x] ✅ Git 基础操作 → 已学习（2026-04-25）
 2. [ ] 循环结构（while/for）→ 目标 60%
@@ -352,11 +451,29 @@
 5. [ ] SQLAlchemy 深入学习
 6. [ ] Matplotlib/Seaborn 可视化
 
+**2026-05-12（Stacking 实战 + 分类指标 + OOP 复习）：**
+- [x] 贝叶斯 MAP 公式深度学习（argmax/log/先验→正则化）
+- [x] 电信用户流失预测项目（StackingClassifier，accuracy 0.79）
+- [x] 分类指标深入理解（Accuracy/Recall/Precision/F1）
+- [x] class_weight='balanced' 原理与实操
+- [x] OOP 快速复习（__init__/__str__/self/继承）
+- [x] Session notes 记录标准改革（CLAUDE.md 更新）
+
+**2026-05-13（深度学习入门 + 系统复习 + 记忆固化）：**
+- [x] PyTorch 入门（训练循环 vs sklearn fit 对比）
+- [x] 神经网络基础复习（有监督学习、需要标准化）
+- [x] SVM 系统复习（软硬间隔、核函数、支撑向量、适用/不适用场景）
+- [x] 标准化原理深度学习（哪些模型需要 + 数学原因）
+- [x] 朴素贝叶斯四种复习（Gaussian/Multinomial/Bernoulli/Complement）
+- [x] CLAUDE.md 新增「间隔复习提问」规则
+- [x] 分类指标 + OOP + 正则化 间隔复习提问
+- [x] Session notes 写成"背诵清单"格式
+
 ### 明日计划
-- [ ] Matplotlib（折线图、柱状图、饼图、散点图）
-- [ ] Seaborn（bar/box/cat/dis/hist/line/violin 7种图表）
-- [ ] Pandas补充：fillna/drop_duplicates/astype/apply/str.replace
-- [ ] 开始BERT情感分析代码（Colab）
+- [ ] 餐厅项目：database.py（SQLAlchemy 实操）或 ml_train.py
+- [ ] 或 5_12.py 调参（class_weight + GridSearchCV 提 recall）
+- [ ] 函数四种参数形式快速复习（当前 25%）
+- [ ] 背诵 session-notes 中「核心背诵清单」
 
 ---
 
@@ -378,3 +495,7 @@
 | 2026-04-27 | [session-notes](../sessions/2026-04-27/session-notes.md) | Attention论文+DeepSeek API | 归一化、Layer Norm、DeepSeek调用 |
 | 2026-04-28 | [session-notes](../sessions/2026-04-28/session-notes.md) | 神经网络+深度学习理论 | 神经元计算、反向传播、卷积/CNN（刚记录待深入） |
 | 2026-05-09 | [session-notes](../sessions/2026-05-09/session-notes.md) | sklearn实操（贝叶斯/KNN/调参） | ML模板、4种贝叶斯、KNN调参画图、模型对比 |
+| 2026-05-10 | [session-notes](../sessions/2026-05-10/session-notes.md) | ML模板复习+科学复习法 | 裸写7步模板、sklearn导入规律、标准化适用场景、42梗 |
+| 2026-05-11 | [session-notes](../sessions/2026-05-11/session-notes.md) | 集成学习+无监督学习+数学基础 | 三招(Bagging/Boosting/Stacking)、PCA/t-SNE推导、聚类、频率派vs贝叶斯派 |
+| 2026-05-12 | [session-notes](../sessions/2026-05-12/session-notes.md) | 贝叶斯深度学习+Stacking实战+分类指标+OOP复习 | MAP公式推导、StackingClassifier、accuracy/recall/precision/F1、__str__复习 |
+| 2026-05-13 | [session-notes](../sessions/2026-05-13/session-notes.md) | 深度学习入门+SVM复习+标准化原理+间隔复习 | PyTorch骨架、标准化谁需要/谁不需要、SVM软硬间隔核函数、贝叶斯4种、知识点背诵清单 |
