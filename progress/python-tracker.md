@@ -1,6 +1,6 @@
 # Python 学习进度追踪表
 
-> **最后更新日期**：2026-05-13
+> **最后更新日期**：2026-05-14
 
 ---
 
@@ -13,7 +13,7 @@
 | 学习中考点（1%-79%） | 7 |
 | 未开始考点（0%） | 35 |
 | **整体进度** | **20%** |
-| **学习天数** | **24天** |
+| **学习天数** | **25天** |
 
 ---
 
@@ -469,6 +469,19 @@
 - [x] 分类指标 + OOP + 正则化 间隔复习提问
 - [x] Session notes 写成"背诵清单"格式
 
+**2026-05-14（系统串联复习 + 知识网络固化）：**
+- [x] 训练循环六步完整推导（MSE→梯度→更新 w）
+- [x] 损失函数三人对比（MSE vs 交叉熵 vs MAE）
+- [x] 正则化串联（MSE/L2 → Ridge → 高斯先验）
+- [x] 贝叶斯线完全推导（p(θ)→先验三分布→三正则）
+- [x] 梯度下降精讲（梯度=0 含义）
+- [x] 标准化决策树（谁需要+数学原因）
+- [x] 模型全家福速查表（六家族+特殊需求）
+- [x] 深度学习入门（隐藏层逐层抽象+激活函数折弯）
+- [x] SVM 四核函数 vs 朴素贝叶斯四种（防串助记）
+- [x] 分类四指标公式默写纠正（Recall 分母 TP+FN）
+- [x] Session notes 写成「11 节串联背诵链」
+
 ### 明日计划
 - [ ] 餐厅项目：database.py（SQLAlchemy 实操）或 ml_train.py
 - [ ] 或 5_12.py 调参（class_weight + GridSearchCV 提 recall）
@@ -499,3 +512,4 @@
 | 2026-05-11 | [session-notes](../sessions/2026-05-11/session-notes.md) | 集成学习+无监督学习+数学基础 | 三招(Bagging/Boosting/Stacking)、PCA/t-SNE推导、聚类、频率派vs贝叶斯派 |
 | 2026-05-12 | [session-notes](../sessions/2026-05-12/session-notes.md) | 贝叶斯深度学习+Stacking实战+分类指标+OOP复习 | MAP公式推导、StackingClassifier、accuracy/recall/precision/F1、__str__复习 |
 | 2026-05-13 | [session-notes](../sessions/2026-05-13/session-notes.md) | 深度学习入门+SVM复习+标准化原理+间隔复习 | PyTorch骨架、标准化谁需要/谁不需要、SVM软硬间隔核函数、贝叶斯4种、知识点背诵清单 |
+| 2026-05-14 | [session-notes](../sessions/2026-05-14/session-notes.md) | 系统串联复习（训练循环→损失→正则→贝叶斯→模型全家福→深度学习） | 11节背诵链：MSE/交叉熵/MAE、L1/L2→Ridge/Lasso、三先验→三正则、梯度下降六步、模型选型表 |
