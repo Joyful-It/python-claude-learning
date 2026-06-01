@@ -6,6 +6,5 @@ class Restaurant:
         self.price=price
         self.rating=rating
     def __str__(self):
-        return
-        
+        return f"餐厅名字：{self.name},地址：{self.location},价格:{self.price}"
     
