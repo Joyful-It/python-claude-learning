@@ -1,4 +1,6 @@
 {
     "trae.tab.enableRename": false,
-    "trae.tab.enableAutoImport": false
+    "trae.tab.enableAutoImport": false,
+    "python-envs.defaultEnvManager": "ms-python.python:conda",
+    "python-envs.defaultPackageManager": "ms-python.python:conda"
 }

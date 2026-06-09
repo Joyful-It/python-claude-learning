@@ -1,0 +1,4278 @@
+[
+  {
+    "id": "3e0c6e17-2032-4a06-ae2f-c0d4c8a88762",
+    "class": "sheet",
+    "title": "",
+    "rootTopic": {
+      "id": "root",
+      "title": "机器学习",
+      "extensions": [],
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "children": {
+        "attached": [
+          {
+            "id": "4ca895e5d5874c3c9972b924a6b93abb",
+            "title": "概念与理论（左）",
+            "extensions": [],
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "children": {
+              "attached": [
+                {
+                  "id": "e8f22f30b16948f39ca2b651594f21d0",
+                  "title": "核心概念",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "cd0afb9e06b140a9b4e13d423b0b1440",
+                        "title": "定义",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "7a5190c43cbe4f20aac604ea0066fe88",
+                        "title": "三大要素",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "d1afd52cdd9b4e698c417a80dfbeccb4",
+                              "title": "数据",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "b7210f9ba1d1449f8819c8dd4022d851",
+                              "title": "模型",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "60d58c27546e441ca32088555f7a328e",
+                              "title": "算法",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "93c075ff58af43f6a90eac3d41b6aa31",
+                        "title": "关键术语",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "305a79c3d5f7470b801c1e81f8c3d512",
+                              "title": "特征",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "381be985879048fa968f7e35088272d5",
+                              "title": "标签",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "c74e381a7abf4ed6a515410bcf975063",
+                              "title": "样本",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "085c2e1fc402415097ab7121db6541df",
+                              "title": "训练",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "c8a5cfd868394551babbbd29bbf54ca5",
+                              "title": "预测",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "f506fca944f74af9b260c40eb4647aee",
+                              "title": "泛化",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "f67537da601d467ea2fa738e1e108d3a",
+                              "title": "权重(w) — 模型要学的核心参数，θ=w，贝叶斯算的=梯度找的=正则约束的",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "a2903fec1e984dfa9e4f1404d7b38b57",
+                              "title": "偏置(b) — 截距，wx+b中的b，控制起点",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "9a681d891a5b47b7a3c503171dd2f878",
+                              "title": "损失函数 — 衡量预测ŷ与真实y的差距",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "971332a69b864c88a3c014b0de4a36bb",
+                                    "title": "回归：MSE=Σ(ŷ-y)²/n（罚距离平方）、MAE=Σ|ŷ-y|/n（绝对值）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "c7f3532559c949ef811495b49aa43e84",
+                                    "title": "分类：交叉熵=-[y·logŷ+(1-y)·log(1-ŷ)]（罚方向对不对）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "d1600775e3d348329fa617a334fcde06",
+                              "title": "正则化 — 防过拟合的约束项 = 贝叶斯先验的数学等价",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "7f9093578ebf4c32b45fcfd465a2adba",
+                                    "title": "L2正则 = Ridge = λ·Σw² → w趋近0",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "a34ab0dee8b54f07b5c06d3a32f69e29",
+                                    "title": "L1正则 = Lasso = λ·Σ|w| → 不重要w直接变0",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "111f342460f84d0597f3bb7bd1cd069d",
+                              "title": "梯度 — 损失函数对w的偏导数，指南针（指方向不说多远）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "6484bb00f4c74bc9a658928d94c27ac8",
+                              "title": "学习率(lr) — 梯度下降的步长，最重要超参数",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "30b3d66199f14a43a32132c031ad4236",
+                        "title": "核心难题",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "c228655a855b48f9bada129a57ec8618",
+                              "title": "过拟合",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "50b9092cadf944f481df3922d48d8372",
+                                    "title": "解决方案1：正则化 L1/L2 → 约束w大小",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "d90b725c6682448ebc3cd8ea0d34398c",
+                                    "title": "解决方案2：更多数据 → 减少对噪音的拟合",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "a5024bb0f8bb4cceb2a733cd77323381",
+                                    "title": "解决方案3：早停(Early Stopping) → 验证集误差不再降就停",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "5e59a22574294eb08163563d51b88ca0",
+                                    "title": "解决方案4：Dropout（深度学习）→ 随机关神经元",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "000884a3c0414c56a7f778635ddd9da1",
+                              "title": "欠拟合",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "c34a6c1569064d88b1c917b821d7e461",
+                                    "title": "表现：训练集和测试集都差",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "82df6b76c1c540feb09e2fe76a61b285",
+                                    "title": "原因：模型太简单 or 训练不充分",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "417ae7bbf22042b8abf43d1d643a954d",
+                                    "title": "解决：加特征/换复杂模型/加训练轮数",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "cc2ed7dfacec48649c36fa583100d098",
+                              "title": "偏差方差权衡",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "1e0fd111618e454db601ce8dbd470a25",
+                                    "title": "偏差(Bias)：模型预测平均值与真实值的差距 → 高偏差=欠拟合",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "24748210538643d5a5f5715901a704cd",
+                                    "title": "方差(Variance)：不同训练集上学到的模型差异 → 高方差=过拟合",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "37888ed059e64eb092f35362b7942fcd",
+                                    "title": "权衡：简单模型高偏差低方差，复杂模型低偏差高方差 → 找平衡点",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "58c85f3a6cd74b649e91ebf243f3936b",
+                        "title": "θ=w 统一理解 — θ就是权重w：贝叶斯p(θ|X)求后验 = ML训练找最好w",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "e15f2aef43b94abb82dbe80080fddfc2",
+                              "title": "MLE(频率派)：只用似然p(X|θ)，数据说啥就是啥 → 损失=MSE",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "08bc7ec9c645443aab44cfe5babd6be4",
+                              "title": "MAP(贝叶斯)：p(X|θ)×p(θ)，数据+信念综合 → 损失=MSE+正则化",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "7304ae61b3ff4ad1887043fd6a89c059",
+                              "title": "贝叶斯→正则化链：高斯先验→L2/Ridge，拉普拉斯先验→L1/Lasso",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "a3d3d27ce3de4ec5bc936b5c5e5fe731",
+                  "title": "学习类型",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "334a4b4264d942f79460e6e0b832df67",
+                        "title": "监督学习",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "be0b661fe95d4c3f835b98bbcd358af5",
+                              "title": "分类",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "0d32a27fdc9c4929b1c6571a303a7103",
+                                    "title": "逻辑回归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "3d4fea03b6fb44c6ab726530cd1e4f19",
+                                    "title": "回归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "81a6c81547ec4a0ab414336a9006183b",
+                                    "title": "决策树",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "4eb0c165f64743519475a4168f028b17",
+                                    "title": "SVM",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "7b2fd5130bfa49f8a72b214f7746bbd3",
+                                    "title": "KNN",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "f23b070fc7614dd788e0c50dae821e6f",
+                                    "title": "随机森林",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "f496fd0d0e0a456e863f18310514f99c",
+                                          "title": "Bagging：并行训练多棵树，投票/平均 → 降方差",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "43a6cff814114dbb8961b095fc45797a",
+                                          "title": "核心参数：n_estimators(树数量)、max_depth、max_features",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "f78102647b9943a1bbc7422fac4863ec",
+                                    "title": "XGBoost",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "2ba3ce6fcebc47ed92dba8db5ecda594",
+                                          "title": "Boosting：串行训练，每棵树纠正前一棵的错 → 降偏差",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "ec194c7fb08740daa7616d58d776da2f",
+                                          "title": "三大Boosting：GBDT → XGBoost(快+正则化) → LightGBM(更快+直方图)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "5c09ab45e176472c96860b3c73a790c5",
+                                          "title": "核心参数：learning_rate(学习率)、n_estimators(轮数)、max_depth",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "0d203da2060c49cea35560ff98d06715",
+                              "title": "回归",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "06b881c4d5e3415796690be6115d7a75",
+                                    "title": "线性回归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "ed5801cc69a54b09a8dce4fedc7bd0c0",
+                                    "title": "Ridge回归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "296fcb1cf4354fd38864fd2aa161a084",
+                                    "title": "Lasso回归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "fde40d3f9f734d1ab85779aa217d5ab7",
+                                    "title": "决策树回归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "909244b035cd45f6930fbddfbab6e13a",
+                                    "title": "SVR",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "0c5af29363d442aba3dca593b797a8b9",
+                        "title": "无监督学习",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "de16c6439c8c45aa9ad73228ab08e682",
+                              "title": "聚类",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "cdcdb9081b9741b2ba16be3d65cafa17",
+                                    "title": "K-Means",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "a01bd9f5b81047b9a9411eaf76b16c06",
+                                    "title": "DBSCAN",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "7544391d2db148c2a9971866d9c0c28f",
+                                    "title": "层次聚类",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "41080fe957b54782a3c66557cc72af36",
+                              "title": "降维",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "40543462ffb6403c944ffbbe5d27cce6",
+                                    "title": "PCA",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "a920cff2c0144ed580227d7d80edeeab",
+                                    "title": "PCA",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "6e6e060cf8714139957e1515534c0b40",
+                                    "title": "t-SNE",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "5bfd4e22c6634d50bc47288ec824971d",
+                        "title": "半监督学习",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "8daf41e5384a4095be9cb714b202c879",
+                        "title": "强化学习",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "e51b1d91ade44b9b8b2c98bd37501e16",
+                  "title": "模型五大派分类（按计算方式，不是按频率/贝叶斯）",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "8af02594ba8941638cd05b0f2f7c5800",
+                        "title": "wx+b派（梯度下山） — 线性回归/逻辑回归/Ridge/Lasso/深度学习",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "9c24fbd6484b4f83b884941f63f8a00a",
+                              "title": "特点：有wx+b公式，损失函数求导，梯度下降迭代更新w",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "fe5b9d4e547240b1a7eb1c312f1514c3",
+                              "title": "深度学习 = wx+b + 多隐藏层 + 激活函数折弯",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "e4af8cdbf84545299270c08948dc8ec8",
+                        "title": "树派（贪心切蛋糕） — 决策树/随机森林/XGBoost/LightGBM",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "ac19dfb223404b68a083d8a4f7c5d1b8",
+                              "title": "特点：不用wx+b，不求导，暴力搜索最佳切分点",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "806d421e21bf47d1a46afd6add965d01",
+                              "title": "用Gini(分类)/MSE(回归)衡量切的纯度",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "d0ab44e85dfc48b4b7aadea1a34b61ac",
+                        "title": "距离派（比邻居） — KNN",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "7a442f444c9c44ef9d34777ab440410b",
+                              "title": "特点：不训练，直接比距离（欧式/曼哈顿）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "73844ceb3df04a558e83d2c90e2b8e7d",
+                              "title": "必须标准化！因为特征间要互相比较",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "5ccf75749e374450a168c4e5889d4fab",
+                        "title": "概率派（独立乘概率） — 朴素贝叶斯4种",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "3e31c956267d4aadb85e3b244bf3c562",
+                              "title": "GaussianNB(连续正态)、MultinomialNB(计数)、BernoulliNB(0/1)、ComplementNB(不平衡)",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "7709cb361a3c4955bfd824eaf367284a",
+                              "title": "朴素=假设所有特征独立，P(特征1)×P(特征2)各算各的",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "9f8867dc925f45609145ca8fd6763517",
+                        "title": "边界派（找最大间隔） — SVM",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "6d2b80a9d9834781ad7f4615038528d6",
+                              "title": "4核函数：linear(原空间)/poly(多项式)/rbf(无限维，默认)/sigmoid(几乎不用)",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "b586814ca6d1453c8d0f66f9e4422536",
+                              "title": "感知机 = SVM 去掉最大间隔和核函数(1957→1990升级版)",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "e42ae23067314ab78764d84b5065be54",
+                  "title": "标准化完整决策",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "8d3300b76f8d4655b4723cd761c7a301",
+                        "title": "需要标准化(特征互相比较)：KNN、SVM、神经网络、逻辑回归",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "53ba2a15c3d5468ea55a9993d5e9a83e",
+                        "title": "不需要(各算各的)：决策树/随机森林(只看阈值)、朴素贝叶斯(独立概率)",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "e71bdd06e95d4eb38e5bfed975671dae",
+                        "title": "判断口诀：两个特征凑一起运算→标准化；各玩各的→不用",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "a5a6dd109a3d426b9d6d92b6833a669f",
+                        "title": "反例：年龄0-100 vs 收入3万-5万，KNN距离被收入主导，树只看自己阈值不受影响",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "917c55d615a5495aa0bf52a6e2641b61",
+                  "title": "损失函数三人对比速查",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "1be355684d8c4aee8d22355d0cf29e39",
+                        "title": "MSE=Σ(ŷ-y)²/n → 平方罚距离，大错重罚，对离群点敏感 → 线性回归",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "a28b8b93331b455aa1ccfe1d1f43d5ae",
+                        "title": "MAE=Σ|ŷ-y|/n → 绝对值罚距离，不理离群点，梯度固定 → 数据有离群点",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "45227cdaa72a403f968dc29efb62c70a",
+                        "title": "交叉熵=-[y·logŷ+(1-y)·log(1-ŷ)] → 罚方向对不对，猜反往死里罚 → 分类用",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "8d1a6138e93d4e41930b8ac5a1c88e8d",
+                        "title": "| | 罚什么 | 敏感离群点 | 用在哪 |",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "71bf4b5281e14a959b1eac50b4048a27",
+                  "title": "先验分布→正则化速查",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "c469f052431342d3bc995474613425e6",
+                        "title": "均匀分布(常数)→log p(θ)=0 → 无正则化 → MLE",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "0fd312315d84442da1a3c653546816a5",
+                        "title": "高斯分布N(0,σ²)→log p(θ)=-θ²/(2σ²) → L2正则 → Ridge（w趋近0）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "9a4abeebf5934fd0a26f4ec9d47f55bd",
+                        "title": "拉普拉斯分布→log p(θ)=-|θ| → L1正则 → Lasso（不重要w直接变0）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "845d07307c164934ba89bc3e140982de",
+                        "title": "先验 = 起点（你信什么），后验 = 终点（训练把你从先验拽到后验）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "5c17614e3a7c465d8160e6d10a3cc5a1",
+            "title": "实践与技能（右）",
+            "extensions": [],
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "children": {
+              "attached": [
+                {
+                  "id": "4075af071d4e44cb9819f45ef79bf480",
+                  "title": "标准工作流程",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "12bda5078af44ec4b6bdf09a81a6dad3",
+                        "title": "数据加载",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "6199d54497ba440dae4cc8067257627f",
+                        "title": "探索性数据分析",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "130cbba269764f62a4f3ae944310b1b7",
+                        "title": "数据预处理",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "f53ff28b31824a5da0b0ddf372678100",
+                              "title": "处理缺失值处理",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "9a07343052a740b88b660fc750ce4691",
+                                    "title": "dropna() 删除缺失值 → 数据多时用",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "96b64bdd9428435b8a696ae32b840b90",
+                                    "title": "fillna(mean/median/mode) 填充 → 数据少时用",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "b5978c8bd72f4d7ba62da56cb243662f",
+                                    "title": "sklearn: SimpleImputer(strategy='mean'/'median'/'most_frequent')",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "2c06f1fc746d44dda8bd88461ae2eee7",
+                              "title": "特征缩放",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "efc3d8fee7d04f65943b8e17c73219e7",
+                                    "title": "标准化决策：两个特征凑一起运算→需要；各算各的→不需要",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "a9ea71f20a8d4b9abc33da370f8101f6",
+                                          "title": "需要：KNN(算距离)、SVM(算间隔)、神经网络(梯度步长)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "7055878708a54fcf8d64c5de9dbe291a",
+                                          "title": "不需要：决策树/随机森林(只看阈值)、朴素贝叶斯(独立乘概率)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "b2fd6669de8d4b49b91d8f476916d6a6",
+                                    "title": "StandardScaler（标准化）：(x-μ)/σ → 均值0方差1，适合正态分布数据",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "318979dfe77d472086212f005be9603e",
+                                    "title": "MinMaxScaler（归一化）：(x-min)/(max-min) → 压缩到[0,1]，对异常值敏感",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "9fb2a68c747546af8c25031f2d072e2d",
+                                    "title": "选标准化还是归一化？有异常值→StandardScaler；无异常值/图像像素→MinMaxScaler",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "d6e11ed67f134bb69eb6238cf0187a71",
+                              "title": "数据集划分",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "96b164bf2b43447894e47ad1f52a3b10",
+                        "title": "模型训练",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "1148469df5d04e45a33648a49a4582d1",
+                              "title": "梯度下降本质",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "b64ead7d20d54d55961103bb7607842b",
+                                    "title": "损失函数=海拔地图 | 梯度=斜率=方向 | 梯度=0→谷底→停下",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "303fe089472a45cea7f67b37be22bb3a",
+                                    "title": "w_new = w_old - lr × 梯度 → 反复走到梯度≈0",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "84871b24f7594486a389de80a6d46c99",
+                                    "title": "lr太小→慢；lr太大→震荡/跳过最优",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "a5656ce6744f4ea2b500a82df5ea125d",
+                              "title": "sklearn 三件套：model.fit(X_train,y_train) → model.predict(X_test) → model.score(X_test,y_test)",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "95900753d38d4682aab124c6edd3cac3",
+                              "title": "分类器特有：predict_proba() 输出概率（逻辑回归/随机森林），log_loss 测概率质量",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "ef64d8a7669c489c95f1257daa77a935",
+                        "title": "模型评估",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "bb3661f7e1dd49dcaf2a0fdbd951128f",
+                              "title": "分类指标",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "c797510686274ecc83abbc80dce54760",
+                                    "title": "准确率",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "8b8209a6e305491d87d473a079ef40e8",
+                                          "title": "Accuracy=(TP+TN)/All — 全对÷全量，笼统",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "5658d852d87541c38af03ba7f3979785",
+                                    "title": "精确率",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "b9a5e26b0643428b9ceca71273dfa3b8",
+                                          "title": "Precision=TP/(TP+FP) — 喊Yes对几个，分母含FP虚惊",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "1a42c9b90ca54c6fb0f95dea208c44f8",
+                                          "title": "高Precision→少误报：垃圾邮件过滤",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "68c7598d3a4a4cbf8ad9b65a3aa152f3",
+                                    "title": "召回率",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "678bae7d61c549c5a97f1527563c30b5",
+                                          "title": "Recall=TP/(TP+FN) — 真Yes抓到几个，分母含FN漏的",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "e3efe68a6bc8474b9a98279f98be23c2",
+                                          "title": "高Recall→少漏：疾病筛查、用户流失预测",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "7d7aa1ddb0f441e489e4898e137e14f3",
+                                          "title": "⚠️易错：分母是TP+FN(不是TN)，和Precision的FP区分",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "24b1d16756794917a08992701d47e674",
+                                    "title": "F1分数",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "f27270e1292245889f0542b857eaff7b",
+                                          "title": "F1=2PR/(P+R) — P和R都高F1才高，调和平均",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "011579a763c843c3a16e133d05706e7c",
+                                    "title": "AUC-ROC",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "51aff27afb0b47dba8a59787341a4849",
+                                          "title": "ROC曲线下面积，0.5=乱猜，1.0=完美",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "5ca2c9f75687401d9c0e8d4c0e9f0296",
+                              "title": "回归指标",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "4bb998baa821426ba9be0bdcd4cc3d20",
+                                    "title": "均方误差",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "ed5f98f55e0a4932bc9c387501f08ef4",
+                                          "title": "MSE=(1/n)Σ(ŷ-y)² — 罚距离平方，大错重罚，对离群点敏感",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "d982fcb6c6ed49d89fc481251cbc4017",
+                                          "title": "MAE=(1/n)Σ|ŷ-y| — 罚距离绝对值，不理离群点",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "acbba780355c4aa688fb4000872a973d",
+                                    "title": "决定系数",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "a0e247e64a114dda894d43aff5ffaba8",
+                                          "title": "R²衡量模型比瞎猜均值好多少，1=完美，0=跟均值一样烂",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "41a767eb21b94b3594aee0f61715f5af",
+                              "title": "通用方法",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "637e196990c3420ea6fc5e3ae40d7994",
+                                    "title": "交叉验证",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "36d0ccdb71ed426fac389695b1a3f03e",
+                                          "title": "K折交叉验证：数据分K份，轮流用K-1份训练+1份验证，取K次平均",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "0eb78744f8484b0b855e3ca878295333",
+                                          "title": "目的：避免单次划分运气成分，更可靠评估泛化能力",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "466fe8d4e4b24b538a6207796627dcdc",
+                                          "title": "sklearn: cross_val_score(model, X, y, cv=5)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "024a27d3946b4d0197d4b28b97d78974",
+                              "title": "指标选型场景",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "a0d4753ae49748eaaaa534f5840bf709",
+                                    "title": "挽留用户→优先Recall（漏一个丢钱）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "46f1e85c621844d18fcb36eac9151c2e",
+                                    "title": "垃圾邮件→优先Precision（误删重要邮件严重）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "35722057d390472e88ffc7743f1216a9",
+                                    "title": "疾病筛查→优先Recall（漏诊命没了）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "8bef94a1205a4e118d6b5724e5f46a08",
+                                    "title": "精准广告→优先Precision（乱推只烦人）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "bc142e497f1849f0a19dc53752d2e169",
+                        "title": "特征分析与模型解释",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "79e22f012ae0491288396820e72a3d71",
+                              "title": "特征重要性",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "1424023605534e738cbb73069f227ff8",
+                              "title": "可解释性",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "79d87c7964654ad6aa85ee21f7efa3c8",
+                  "title": "算法家族",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "44f721b2c3f24e79bc2e247e6c057e0b",
+                        "title": "线性模型",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "5e0f56bd3ca845a783b542430dbc20a9",
+                              "title": "线性回归",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "a25dec7f582648bca6f29b66615e0b9b",
+                                    "title": "假设",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "f03c7746760746aa896f353782eccbed",
+                                    "title": "求解方法",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "5e3b4d8ac10d4172907255664c5e29a9",
+                                    "title": "线性回归 vs 决策树回归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "f91d9ddf6c1f4a60838e4f646672afd2",
+                                          "title": "线性回归：函数形式=直线；非线性❌；可解释✅；过拟合风险低；对异常值敏感",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "d8fabec3a0724c2cb5c38a1f2703b35e",
+                                          "title": "决策树回归：函数形式=分段常数；非线性✅；可解释✅；过拟合风险高；对异常值鲁棒",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "f9ed6791f4ef4ca98ea593f50f47fe31",
+                              "title": "逻辑回归",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "273e933ff2ac4e49a6518084ce8ff9cd",
+                                    "title": "本质",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "f5855476efd443e4ab3b0ff158032ccd",
+                              "title": "正则化回归",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "5200c902635e49999a26dab0236d04c7",
+                                    "title": "化回归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "91e5884ab688411cb847370189848fa3",
+                                    "title": "Ridge",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "d3ef1a697bc64d86b440e50b3ea2e3ac",
+                                    "title": "Lasso",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "d1a30fc8d8744c21a01904182efb613f",
+                                    "title": "L1/L2 与损失函数的区别",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "32742e18bc7f4d4585bfe9a2bee6eff3",
+                                          "title": "MSE(平方)罚预测误差 → 让预测ŷ接近真实y",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "b3f14a2048274a8e84cb8e23a0631f4e",
+                                          "title": "L2(平方)罚权重w → 让w趋近0",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "870bd2e691b44cbf90713c356ae57883",
+                                          "title": "数学都是²，但作用对象不同！",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "ecb467bbb2d3420282c1bf848b21da70",
+                                    "title": "L1/L2 与贝叶斯先验对应",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "102fbe7620a94d7b933c21301aec8016",
+                                          "title": "L2=Ridge ↔ 高斯先验N(0,σ²)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "e401e614b6254693bccef652045290ef",
+                                          "title": "L1=Lasso ↔ 拉普拉斯先验",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "10a0f645c68b4fd68d8543e49f9676e3",
+                                    "title": "需要正则化的场景：特征多或相关 → 保命；特征少数据多 → 不需要",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "e54cc2aa1c8d49889dfc4f0b0d97181a",
+                              "title": "多项式回归（Polynomial Regression）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "f924a8e537ea486383f60426d116f9dc",
+                                    "title": "场景：数据不是直线(y=x²+x₁x₂+…)，不能用wx+b直接拟合",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "39b5879a9f0b4056a3ccf3fd91e5e818",
+                                    "title": "做法：PolynomialFeatures(degree=2) 生成 x₁,x₂,x₁²,x₁x₂,x₂²",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "2eb0a53c34a54f109e0fdccedd024944",
+                                    "title": "然后对新特征做 LinearRegression.fit() —— 跟线性回归完全一样",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "952aaf98776345a298d30de843e69b7b",
+                                    "title": "degree=2: 二次曲线；degree=3: 三次；degree太高→严重过拟合",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "3c3ee2a49cd74d2898bd23015618ed9c",
+                              "title": "ElasticNet 弹性网络",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "b96aaba4b29b4fe3a7faf464f86089f8",
+                                    "title": "= L1 + L2 = Lasso + Ridge",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "9dc5e0e4fc5446a59b030248fbacab6b",
+                                    "title": "alpha 控制整体正则化强度，l1_ratio 控制L1占比",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "0f1ca3145db045ed9643082ad99ac97b",
+                                    "title": "l1_ratio=0 → 纯L2(Ridge)；l1_ratio=1 → 纯L1(Lasso)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "054713570c1e486386d3c0045a96f444",
+                        "title": "树模型",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "47e08b95e08d495f9ecce2c653e5b5fe",
+                              "title": "决策树",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "e0d0f694528e42899994c840d01d72b9",
+                                    "title": "核心指标",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "081fcbef862b495385e792707b6c58b5",
+                                          "title": "决策树三种分裂算法",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          },
+                                          "children": {
+                                            "attached": [
+                                              {
+                                                "id": "d5f20b1e0e3c44328ec0edf34f8f0953",
+                                                "title": "ID3：信息增益 IG=H(父)-H(子加权) → 多叉树，仅分类，偏向多值特征，已淘汰",
+                                                "extensions": [],
+                                                "position": {
+                                                  "x": 0,
+                                                  "y": 0
+                                                }
+                                              },
+                                              {
+                                                "id": "8daf20e44be9499884c967a826a70c23",
+                                                "title": "C4.5：信息增益率 IGR=IG/IV → 多叉树+连续值+缺失值+剪枝，慢但稳",
+                                                "extensions": [],
+                                                "position": {
+                                                  "x": 0,
+                                                  "y": 0
+                                                }
+                                              },
+                                              {
+                                                "id": "3f82f8b48fe64117b0a6a3a9f8a9d519",
+                                                "title": "CART：基尼指数/MSE → 二叉树，分类+回归，sklearn唯一实现，工业标配",
+                                                "extensions": [],
+                                                "position": {
+                                                  "x": 0,
+                                                  "y": 0
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "id": "714c45b2f39249d7a348a03820da0cf4",
+                                          "title": "Gini vs Entropy：Gini计算快(默认)，Entropy需算log慢但决策更谨慎",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "274fc37662dd41b78b2ed2c4829da432",
+                                    "title": "剪枝策略",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "90d3fe4629c349b684241c2febaa0824",
+                                          "title": "预剪枝：max_depth(最大深度) / min_samples_split(最少分裂样本) / min_samples_leaf(叶最少样本)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "29ae420ce1834b64a389509026eabff7",
+                                          "title": "后剪枝：生成完整树→自底向上剪 → sklearn用代价复杂度剪枝 ccp_alpha",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "e54213ba9aea4bfa991f72e770d72997",
+                                          "title": "过拟合时：先降max_depth，再调min_samples_leaf，最后用ccp_alpha",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "7b13f9e47f6d47b1aca6ef8174ff79e3",
+                                    "title": "决策树 vs 逻辑回归 全面对比",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "3ec64b99130748a981475e09fd0ecea8",
+                                          "title": "模型本质：规则划分(树) vs 广义线性模型(线)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "7bf5c823d3f94670bd784726f67c7836",
+                                          "title": "决策边界：阶梯状/轴平行 vs 直线/超平面",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "0d58bc646fd146a18e88b2ab84ec1365",
+                                          "title": "非线性：天然支持 vs 不支持(需人工构造特征)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "1e9b98a5fe5541efbc5f6093cb85f4ab",
+                                          "title": "特征归一化：不需要 vs 强烈建议",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "8b5b555feb8b4c23a3ab428a797baa37",
+                                          "title": "过拟合风险：⭐⭐⭐⭐(高) vs ⭐(低)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "54234355b84a4a1192eb1f8791e8d5ab",
+                                          "title": "模型稳定性：不稳定(数据小变结构大变) vs 稳定",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "1cdc58f265fc4e48a33a351af7b58f6e",
+                                          "title": "典型场景：客户分群/规则挖掘/表格数据 vs 风控评分卡/医疗预测/CTR",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "6a5831f6b04b45b6a73f29459d6f0d04",
+                              "title": "集成学习",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "5fffaa9afd44468dab7424f106b43364",
+                                    "title": "Bagging",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "d476b69e49a745098f01e9803f61792f",
+                                          "title": "并行训练 + 投票/平均 → 主打降方差，代表：随机森林",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "1208057fc3024901854ea5a8e03c06c8",
+                                    "title": "随机森林",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "3062b48634024e9a8ca2219714893724",
+                                    "title": "Boosting",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "e680c613dae247d6a185d1151f9888b8",
+                                          "title": "串行训练 + 后树纠正前树错误 → 主打降偏差",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "ea0c35fd66184842b6a41414cf3509cb",
+                                          "title": "GBDT → XGBoost(二阶梯度+正则化) → LightGBM(直方图加速+leaf-wise)",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "56a7aeb844224a4cbdd4efe876bbd810",
+                                    "title": "GBDT",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "7196f43e866d4f9aa0880deb66846f92",
+                                    "title": "XGBoost",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "b6c1fb400a9342d890cab1d7774d7b91",
+                                    "title": "LightGBM",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "64ed07e3eb8546b4a1ae75bf8b73605a",
+                                    "title": "Stacking",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "fd7aa46de4fd4dc0a69599597e091b52",
+                                          "title": "多模型输出做新特征，再训练一个最终模型 → 融合多样性",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "8a49a06adcbd430bbd805b1444ee8948",
+                                          "title": "sklearn: StackingClassifier(estimators=[...], final_estimator=LogisticRegression())",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "50e5ecc9b99b4db59505355a61c4c8bf",
+                                          "title": "⚠️ final_estimator 要加()，传实例不传类！",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "0fc36a57edd24c2297eba0d99556833b",
+                        "title": "支持向量机",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "c60da53416584a04a72388398d871dbc",
+                              "title": "目标",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "54412effa88b45059285265cdb485fa7",
+                                    "title": "找最大间隔分类线，支撑向量=离分类线最近的点",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "6e82b480e19f4ec49e1c20aaef74411a",
+                              "title": "核技巧",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "f2cee4c61e1b49e59f62ce55e801a0ce",
+                                    "title": "linear：原空间不动（线性可分）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "af099cc353074163965a119bb2d65c83",
+                                    "title": "poly：多项式升维（知道大概几阶）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "cc914f3ba50e408b8f0c08ec19e33c6c",
+                                    "title": "rbf：升到无限维（默认首选，不知道什么形状先试它）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "7e02bdd5d83b4441a5588fc99f0e9c25",
+                                    "title": "sigmoid：模拟神经网络（几乎不用）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "7a6652096e1f4302b94931832479ed6c",
+                              "title": "特点",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "384953841fff4c0f82fce5350cbc921f",
+                                    "title": "软间隔(C控制)：允许几个点越界，C大=罚狠=硬",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "9e6e865c7fc745fdbc3db78d43b27ada",
+                                    "title": "不适合：10万+条(太慢)、需要解释(黑盒)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "190bca8c5190445e8797bfe929e5401c",
+                                    "title": "必须标准化！算间隔距离",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "62bf537e91914db4bdb1a3ef680d0af1",
+                                    "title": "感知机 = SVM 去最大化间隔+核函数 → 升级版",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "c1da35f184d4402fbf9bd6eb098f8404",
+                              "title": "SVM 数学核心",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "fb6a22467e8a4041a66388b35bd12e99",
+                                    "title": "超平面 w^Tx+b=0，正类≥1，负类≤-1",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "f2aeb0bbf16e49c9b3ff2fa3a9921acc",
+                                    "title": "核心思想：找最大间隔 → 只有支撑向量决定最终模型",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "fb093010bdff49898e7d83b732a1e89b",
+                                    "title": "软间隔 C：C大=罚狠=硬间隔；C小=宽容=软间隔",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "b1987c26656c4c68ba4800e75060630b",
+                                    "title": "高斯核(RBF)：升到无限维，处理任意非线性，默认首选",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "a718c54178e44a6eb39a6342532f7cd9",
+                        "title": "贝叶斯方法",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "3aa0ea602888498e9b164265d7b2b5e8",
+                              "title": "朴素贝叶斯",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "f752899edb8b4749be16c4fc35ca6b1b",
+                                    "title": "核心",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "79ea100ccaa545aab0afebd516f537a5",
+                                          "title": "朴素=假设所有特征互相独立 P(特征1)×P(特征2)各算各的",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  {
+                                    "id": "9d80bc8b122c457c8b3728b5c2e1cf21",
+                                    "title": "变体",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    },
+                                    "children": {
+                                      "attached": [
+                                        {
+                                          "id": "69102d6c40fc4aec9acf25485d653499",
+                                          "title": "GaussianNB：连续数据，正态分布（身高/成绩/价格）",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "dc99dfd1ebf943ca9418e92a7187566f",
+                                          "title": "MultinomialNB：计数数据（词频统计）",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "a85560615fac452e804bbbf7015f5a4d",
+                                          "title": "BernoulliNB：0/1数据（词出现/不出现）",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        },
+                                        {
+                                          "id": "1fa7cc6e82d34f4f8ff106a928444f9e",
+                                          "title": "ComplementNB：不平衡文本改进版",
+                                          "extensions": [],
+                                          "position": {
+                                            "x": 0,
+                                            "y": 0
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "7a3680d2c3e249d2a959253fa8bceb03",
+                              "title": "贝叶斯→正则化推导链",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "3ed372cc99714129b18ea3bb08dbf499",
+                                    "title": "MAP：p(θ|X) ∝ p(X|θ)×p(θ) → -log后 ∝ MSE + (-log先验)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "393156c65ced49ed811a602288bcb166",
+                                    "title": "高斯先验 N(0,σ²) → -log = w²/(2σ²) → L2正则(=Ridge)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "a019707bb78442988a7cf3c065c571bc",
+                                    "title": "拉普拉斯先验 → -log = |w| → L1正则(=Lasso)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "3f020b6e020643d6a837045f37b0028d",
+                                    "title": "均匀先验(常数) → -log = 常数 → 无正则化(=MLE)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "79f9fe9c13114db8b32000fb49d83774",
+                                    "title": "正则化 ≠ 贝叶斯独有：频率派也用L1/L2防过拟合，殊途同归",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "bcf0cff1236a4a3dbd1bf9bb72f3c1bd",
+                              "title": "Ridge vs BayesianRidge",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "5d4b77af50144b2bb1b8230723fa846a",
+                                    "title": "Ridge(频率派)：算出w=3.2一个数，λ手动调，秒级",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "a5b6d43cdc7844c28a63ed27eefc7bd2",
+                                    "title": "BayesianRidge(贝叶斯)：算出w概率分布±置信度，λ自动学，慢百倍",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "22f1f793db7946fb95f21ee0082586b2",
+                                    "title": "工业界99%用Ridge：性价比；医疗/金融才用BayesianRidge：要置信度",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "741b9f3923e8457c8b45ff134f305877",
+                        "title": "K近邻",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "ea4f3b66986e4fd2a54cad5414684c72",
+                              "title": "特点",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "6cbf3337db6449ae850d88a313d6e48c",
+                                    "title": "唯一不训练的模型！直接比距离",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "eae4259468074ed484dd3afedd6a0920",
+                                    "title": "必须标准化（特征尺度不同→距离无意义）",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "36555b98407844bc9033d7dddadf4e38",
+                              "title": "距离度量",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "101eca7491034381902f2a956cbb975d",
+                                    "title": "欧氏距离：直线距离，最常用",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "d44c37d642714ea9a15e4df47c1648f5",
+                                    "title": "曼哈顿距离：街区距离，高维有时更好",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "acf5cc54bee34a53add4af6723eeb84b",
+                              "title": "K值选择",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "8736c91f269946f4a3fe844538241090",
+                                    "title": "K太小 → 过拟合(噪音敏感)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "db832699b6334a888282b6e249845157",
+                                    "title": "K太大 → 欠拟合(太粗糙)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "4b0e6bff473d4627afbf9829eff873fa",
+                                    "title": "用for循环试K值，画准确率曲线找最优",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "c6c1f1875d424e708d123e051c7eb200",
+                              "title": "KNN 优化",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "6988a71f149e410eaf34db429bfa4200",
+                                    "title": "加权KNN：weights='distance' → 近邻居权重大，远邻居权重小",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "ebcd1db76d5a4b699e94616110148864",
+                                    "title": "交叉K验证：用for循环试K值(1~30)，画准确率曲线找最优K",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "190e9ee5f898469a88a1529507341378",
+                                    "title": "K太小→过拟合(噪音敏感)；K太大→欠拟合(太粗糙)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "e51f5c69f49346e8b706b2b2173ab423",
+                              "title": "KNN 优缺点",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "784f469e45f64d1b9ac2de8888fd03d9",
+                                    "title": "优点：无需训练、思想简单、天然非线性、无参数假设",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "3727d594426a4e38b5938f6b435884e7",
+                                    "title": "缺点：预测慢(全量算距离)、内存大(O(ND))、高维/噪声差",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "eb9afb657133431ebc137473e99d9a27",
+                                    "title": "适用：小样本+低维+简单任务+快速基线",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "b52b0738d78c484ba740c3a906743eb0",
+                              "title": "距离度量",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "6f6ae626b03d4660b245697e0c069bda",
+                                    "title": "欧氏距离（euclidean）：直线距离，默认，平方和开根号",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "70b16fc8afb94d29a014985d970e5a46",
+                                    "title": "曼哈顿距离（manhattan）：街区距离，绝对值求和，高维有时更好",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "07a51f68de8c4a9ba97b1a3fcf40d881",
+                              "title": "KNN 回归：K个邻居的目标值取平均（weights='distance'时加权平均）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "25f5c78646e146d388026b397c19a9bb",
+                        "title": "聚类算法",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "6b07e049fb724905beb92219070b1988",
+                              "title": "K-Means",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "0086c1446e3e4c528f22b0e4111609fe",
+                              "title": "DBSCAN",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "eea446a5033940539cfc8d697e2621ea",
+                              "title": "层次聚类",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "e51161b4cb144f5e909a887e6cbb134d",
+                        "title": "降维算法",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "28772a09f94848068e6fbfcde969e060",
+                              "title": "PCA",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "62688a59bdaa4f169b14dad95f2a57c1",
+                              "title": "t-SNE",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "8cbc05db0ee5423e979d9b817ef8131f",
+                        "title": "深度学习（wx+b派升级版）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "c7a0d657eddf48c9b2545cf8edec4738",
+                              "title": "隐藏层作用：逐层学抽象特征 — 像素→边角→形状→部件→整张脸",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "a6207f0763c2414f96722228dcc211e2",
+                              "title": "激活函数：折弯直线让网络画任意形状",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "e99c87f5858b4411a4b8b7b1c5a7c1f0",
+                                    "title": "ReLU(中间层默认)、Sigmoid(最后二分类)、Softmax(最后多分类)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  },
+                                  {
+                                    "id": "a8fdc037537b47d98e62832ca99e3b2b",
+                                    "title": "没激活→三层叠一起=一层，永远画直线",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "id": "2116fa09d0264ec382846981c93ab48e",
+                              "title": "损失函数：只有最后一层有，中间层只折弯不打分",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "1bdbe8ee6f0e494c94e44756a2d64fed",
+                              "title": "PyTorch核心：loss.backward()自动求导，其余自己控制",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "a12fa70678db406ba58ef42facf9b658",
+                              "title": "weight_decay = L2正则化的深度学习叫法",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              },
+                              "children": {
+                                "attached": [
+                                  {
+                                    "id": "93d38a44720d4e07aa3eac0a76231f21",
+                                    "title": "optimizer = Adam(params, lr=0.001, weight_decay=1e-4)",
+                                    "extensions": [],
+                                    "position": {
+                                      "x": 0,
+                                      "y": 0
+                                    }
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "656d215664534132b651817d2eb66ae6",
+                  "title": "训练循环六步（所有模型的底盘）",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "14984a42f8b042cc9cdaec7cc4a82867",
+                        "title": "① 瞎猜 w,b → ② wx+b(+激活)算预测 ŷ → ③ 损失函数算错多少",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "db1e319ef14f4fdf9a7dc29f12e04971",
+                        "title": "④ 梯度求方向(∂损失/∂w) → ⑤ w=w-lr×梯度 更新 → ⑥ 回到②",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "21ee7c2d8d4d42c9a27223f8d0072cf6",
+                        "title": "sklearn：六步装进fit()一把梭 | PyTorch：亲手写每一步，loss.backward()只帮你自动求导",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "2862308768fc4fbaa437ec9babebf483",
+                        "title": "深度学习 = 机器学习 + 多隐藏层。训练六步完全一样。",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "5d335a3833d344119bf433c1a6bbdb5c",
+                  "title": "ML五步标准框架",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "9d0e03c72a8f4a01bf81c6f486f7e5b4",
+                        "title": "第一步：选模型结构 — 线性→线性回归/逻辑回归，非线性→树/神经网络+激活函数",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "3b69c723514c4f75bff168bd57dd6170",
+                        "title": "第二步：定义损失函数 — 回归MSE/MAE，分类交叉熵",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "35084ffe361d48ae938b2907d01887ef",
+                        "title": "第三步：加正则化（防过拟合）— L1/L2 = 贝叶斯先验，数学等价",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "2cd2b24c4bc54d309e9910fad7351942",
+                        "title": "第四步：优化找最好w — 解析解(线性回归) or 梯度下降(lr控制步长)",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "ddacd3eb04b043eebedb4eb2e12cd7de",
+                        "title": "第五步：测试集评估泛化 — 回归看MSE/R²，分类看Accuracy/Recall/Precision/F1",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "72c82f1b0ed6450a827ea733326eda7a",
+                  "title": "AI全栈学习路线（4-6月入行）",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "9a760391377a4ea7bfee28c1e25bdf0d",
+                        "title": "阶段二：ML/DL基础（4-6周）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "c362e1a84bfb48acb76fe7228efb125b",
+                              "title": "目标：建立训练思维，会用sklearn/PyTorch跑小项目",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "6f2da566b98545a19dfd1acce3bb9a63",
+                              "title": "📊 项目：房价回归预测/客户流失分类/NumPy手写神经网络/PyTorch MNIST",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "25c5cb6807b048fe9abe449c05e206c1",
+                              "title": "📺 课程：Andrew Ng ML Specialization / DeepLearning.AI DL Specialization",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "bca2a7cca5c745758f0da8d63e6b2824",
+                              "title": "✅ 达标：能判断分类/回归类型，懂训练/验证/测试集，会4个模型对比",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "d83f7dee84834d5191ec43d14c6e5f92",
+                        "title": "阶段三：CNN图像（2-3周）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "8df19e86369146028a3c428aa35ad42f",
+                              "title": "核心：卷积核/stride/padding/channel/feature map/pooling/感受野",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "5ab8ecd2a1da485e9725126e64875641",
+                              "title": "模型：LeNet→AlexNet→VGG→ResNet（重点：残差连接 y=F(x)+x）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "a1e9b02d661f4507bef28a072f8b67fc",
+                              "title": "📊 项目：CIFAR-10 CNN / ResNet迁移学习 / 特征图可视化",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "1f0ed2d7bf504257a240094b06325002",
+                              "title": "📺 课程：Stanford CS231n / fast.ai Practical DL",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "7b89fbcf8f02480a98e47a0a1c61b24e",
+                        "title": "阶段四：RNN/Seq2Seq/Attention（2周）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "7f7dde15798245d8be133f9a2145e62f",
+                              "title": "核心：hidden state/BPTT/梯度消失/LSTM三门/GRU两门",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "867180a7913e49a985740be393869dd6",
+                              "title": "Attention：Decoder每步对Encoder所有隐藏状态加权求和→解决固定向量瓶颈",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "2cbb3e7229d24a36a3ee382a99eedb5a",
+                              "title": "📊 项目：LSTM文本分类 / 字符级文本生成 / Seq2Seq日期格式转换",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "5291c70010b34bbca18d8b68659e1c8f",
+                              "title": "📺 课程：Stanford CS224n / DeepLearning.AI Sequence Models",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "08b1631a92474d8f9b6353c14241565b",
+                        "title": "阶段五：Transformer从零手写（3-4周）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "79dfe966944d45f9b7d52e201f01c1ee",
+                              "title": "核心：QKV/Multi-Head Attention/Position Encoding/LayerNorm/Mask",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "5313b76e29da4ea7a47307352a056a90",
+                              "title": "必懂：Q/K点积算相似度→V加权；÷√d_k防梯度爆炸；多头=不同角度注意",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "85370715a90340a3a232db1b9d6bfa38",
+                              "title": "📊 项目：手写Self-Attention→Multi-Head→Transformer Block→Mini-GPT",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "fc97fcd84f784da5922c264663a2cd02",
+                              "title": "📄 必读：Attention Is All You Need / BERT / GPT系列 / RoPE",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "63e1b666bc8e41de955c160c74b70c8b",
+                        "title": "阶段六：现代LLM工程（3-4周）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "ddffef1f82a84ed9a0d1be8f468ef319",
+                              "title": "核心：Tokenizer(BPE/SentencePiece) / HuggingFace / LoRA/QLoRA / 4-8bit量化",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "060fd21762d44613a6c781bbb1234783",
+                              "title": "📊 项目：HF文本分类微调 / LoRA微调小模型 / FastAPI封装模型API",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "e9a244a852a948db9fd9d722c691d8f1",
+                              "title": "📄 必读：LoRA / QLoRA / InstructGPT / Scaling Laws",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "990a432aa27e442b9873f5a21ba4abcf",
+                        "title": "阶段七：RAG + Agent（3-4周）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "8f141fa44b75402c90efcdc07e9f9fad",
+                              "title": "RAG链：PDF解析→chunk策略→embedding→向量库→混合检索→rerank→生成+引用",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "c672e19aff56491eb2c9bb17df3abe00",
+                              "title": "Agent链：function calling→ReAct(思考-行动-观察)→LangGraph状态图→人工介入",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "18c1c5d3722245c9bdb9f49c77adfefb",
+                              "title": "📊 项目：私有知识库问答 / RAG评测系统 / LangGraph Agent系统",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "367530e830cd434689c6d4df7bea0d3a",
+                              "title": "安全：prompt injection防御 / 工具权限控制 / PII脱敏 / 越权检测",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "8a23b3b804354522b7ff5a399b5478e0",
+                        "title": "阶段八：部署与LLMOps（3-4周）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "e44dbc7070c44447bc9bc5c0d492b963",
+                              "title": "核心：vLLM/Ollama / Docker / FastAPI兼容OpenAI接口 / 流式输出",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "3e1463fb4fce4cb997565400b8ef4bdf",
+                              "title": "监控：Prometheus+Grafana / 日志追踪 / token消耗/QPS/延迟/内存",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "87dd7713ce8f4b0aa002ad16b3ccf8b2",
+                              "title": "📊 项目：大模型服务部署 / RAG系统Docker化 / AI中台原型",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "deb04279fffc4cee960745f390326cb2",
+                              "title": "面试：准备30道高频题 + 3个精讲项目（ML/DL→Transformer→RAG/Agent）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "21bfa7d5829b405fae626453ba81e538",
+                  "title": "ML 7天快速入门路线",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "ca3f936e3c20473a924afbcd001ed832",
+                        "title": "第1天：ML全景图 → 监督/无监督、分类/回归、训练/测试、过/欠拟合",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "411b7fcf59e74384a1bb81ff915bc6a6",
+                        "title": "第2天：线性回归(wx+b,MSE) + 逻辑回归(sigmoid,交叉熵) → sklearn实操",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "2cb8bd7f586745e18d993c82cc7593be",
+                        "title": "第3天：KNN(邻居投票,必须标准化) + 朴素贝叶斯(独立假设) + SVM(最大间隔)",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "00d6a3aabe9d4bca86f0af7e1d76357e",
+                        "title": "第4天：决策树 → 随机森林(Bagging投票) → XGBoost/LightGBM(Boosting串行纠错)",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "97a591b06bd74667b1b767b4d74df920",
+                        "title": "第5天：评估指标(Acc/Prec/Rec/F1/AUC/MSE/MAE) + 过拟合解决方案",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "51ae25720c494605b97c3b3a055afb6e",
+                        "title": "第6天：K-means聚类(K值选择) + PCA降维(压缩到2维可视化)",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      },
+                      {
+                        "id": "1676eb2bc3f0479992123830d33ef518",
+                        "title": "第7天：完整小项目 → 数据加载→清洗→3模型对比→指标报告→README",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "79f6ce6d364b49adb905baa9d26b57d7",
+                  "title": "面试与项目准备指南",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "e23362a3c66b4850941d9a9438bef59f",
+                        "title": "5个核心项目（按顺序做，每个写README+架构图+关键截图）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "0a0c588a50814495a8303c127d6a2112",
+                              "title": "1. 传统ML项目：房价/流失预测 → 证明数据处理+建模流程+模型选型能力",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "759ff7d4156a4f8f8826b303cddd7d87",
+                              "title": "2. PyTorch+CNN：CIFAR-10/MNIST → 证明深度学习训练+可视化能力",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "631d234ded8140beaf40b0c44f8e4908",
+                              "title": "3. Mini-GPT/Transformer手写 → 证明懂底层原理，不只是调API",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "c0e76495b29846568429170456e35058",
+                              "title": "4. RAG私有知识库问答 → 证明大模型落地+检索增强能力（面试重点）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "9dcac65d4997414991cca34d3e48e14e",
+                              "title": "5. Agent+工具调用+部署 → 证明全栈+自动化能力（差异化亮点）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "53e699211d6146438708a1f3b06d326a",
+                        "title": "面试表达结构（STAR法则）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "e445a0b3dc7f4a3d87cb2ebb95846f67",
+                              "title": "业务问题→技术方案→架构设计→关键取舍→指标提升→踩坑改进",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "26071d25471a43a4b18cd7412a12a3c2",
+                        "title": "高频面试题分布",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "54326d8c3985473d88d0c357bab27500",
+                              "title": "ML基础8题：过/欠拟合、正则化、偏差方差、交叉验证、特征工程等",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "d3e8c3f2fffe481c90d355687516050d",
+                              "title": "DL基础8题：反向传播、激活函数、BatchNorm/LayerNorm、Dropout等",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "a521908b69004d9a9c1d41d1f6196e8a",
+                              "title": "Transformer 8题：QKV、MHA、Position Encoding、Mask、LayerNorm位置等",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "a350ec1b7d2f440bb26c46a15453b5e9",
+                              "title": "RAG/Agent/部署 6题：chunk策略、召回率优化、ReAct、function calling、vLLM等",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "d238a49ea7374276a81968e58d51d351",
+                        "title": "目标岗位与核心要求",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "d4e4a515259146aeac7f28d558553d30",
+                              "title": "大模型应用开发：Python+FastAPI+RAG+Agent+业务系统对接",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "585c9150ff03482ba9217170d05d6e61",
+                              "title": "RAG工程师：文档解析+chunk+embedding+混合检索+rerank+RAG评测",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "3e9957bdbd0c4fa8856e9a06670dfaee",
+                              "title": "大模型微调工程师：数据构造+LoRA/QLoRA+HF/PEFT+量化+评估",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "3a7336bd7abe42c3b4e287b42288e338",
+                              "title": "LLMOps/部署：vLLM+Docker+监控+KV cache+QPS/延迟优化",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "471a4c0cacc44a55b80e34a2c9daaf91",
+                  "title": "推荐学习资源索引",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "3e3a4e795bb04bca87bd78781ea6fdcc",
+                        "title": "入门课程",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "459f6641da174038a9e1249758c2ec77",
+                              "title": "Andrew Ng ML Specialization (Coursera) — ML基础首选",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "3550b5f279334f0492e5ec3d8b1d8363",
+                              "title": "DeepLearning.AI DL Specialization — 系统学神经网络/CNN/序列模型",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "26357c32631e49b59657a4e7ce1f5875",
+                              "title": "fast.ai Practical DL — 项目驱动，动手优先",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "bbcd120f5e904132a6b20a7effb98745",
+                        "title": "进阶课程",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "b17620be676c4090a7ad3216a3015e4d",
+                              "title": "Stanford CS231n — CNN/计算机视觉经典",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "d4ea8ff9f0f74274a103ec43ae7f0c96",
+                              "title": "Stanford CS224n — NLP/RNN/Attention/Transformer",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "a45ce34100f44e7aa8e4b1ef29381c18",
+                              "title": "Hugging Face Course — Transformers/Datasets/Tokenizers（免费）",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "bb505382323a4fb4b8e1e4897d507eb0",
+                              "title": "Berkeley LLM Agents — Agent系统设计",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "63e01df0180d47c0a72479ed475dd96b",
+                        "title": "必读论文（按阶段）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "f690f55b486c401ca593969a1e2f3463",
+                              "title": "CNN: AlexNet / ResNet",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "596e2ee2bd934e3e81514eb5aa106f62",
+                              "title": "RNN/Attention: Seq2Seq / Bahdanau Attention",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "cfc382a2cb0f48908b74481c2d0aef9a",
+                              "title": "Transformer: Attention Is All You Need / BERT / GPT系列 / RoPE",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "b3d97c1f3efa448b94e944bdfdae349a",
+                              "title": "微调: LoRA / QLoRA / InstructGPT",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "8dcb6e031b4b41d1b2fc1c940f030f62",
+                              "title": "RAG/Agent: RAG / ReAct",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "61a923d549824e49b161b36bd61212e9",
+                              "title": "推理优化: FlashAttention / vLLM",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "id": "343efe28c07b4c69a8000c45923ee3bf",
+                  "title": "sklearn 内置数据集速查",
+                  "extensions": [],
+                  "position": {
+                    "x": 0,
+                    "y": 0
+                  },
+                  "children": {
+                    "attached": [
+                      {
+                        "id": "f0755112a4fd434883dad169a94d5475",
+                        "title": "经典玩具数据（load_*）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "689c07d0726648b799b5b7b680d9b793",
+                              "title": "load_iris()：三分类，150样本，4特征 → 多分类/可视化",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "266f484bb728499c84d6e67959034961",
+                              "title": "load_digits()：多分类(0-9)，1797样本，64特征(8×8图像) → 高维分类/降维",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "7e0a02c7071c4e9b954376c673b44678",
+                              "title": "load_breast_cancer()：二分类，569样本，30特征 → 逻辑回归/正则化/指标",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "be781ba43c6d4470a91ff2861c314116",
+                              "title": "load_diabetes()：回归，442样本，10特征 → Ridge/Lasso/多项式回归",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "fc7475f83f034995a4ab9e24a09a1077",
+                        "title": "真实数据接口（fetch_*）",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "c8e5380d94c44e66b69436b23a5dd292",
+                              "title": "fetch_openml('california_housing')：回归，20640样本 → 真实规模回归/Pipeline",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "cf2dfaca9c124055967bb4b2fc014945",
+                              "title": "fetch_covtype()：森林植被分类(大样本)",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "e8beea2bef35464f8c016a7cdb682076",
+                              "title": "fetch_20newsgroups()：文本分类",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "id": "28a24cc7a7d04e4c9a5dd0db0ac7e06f",
+                        "title": "数据生成器（make_*）—— 实验神器",
+                        "extensions": [],
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "children": {
+                          "attached": [
+                            {
+                              "id": "edc6c39f55574cfd9dcd29db1d086118",
+                              "title": "make_regression(n_samples,n_features,n_informative,noise)：构造回归数据",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "9d683fcf4a354ecc9cf2655098037bb5",
+                              "title": "make_classification(n_samples,n_features,n_informative,n_redundant)：构造分类数据",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            },
+                            {
+                              "id": "78b5f3c29b524123820271a35b2ff5eb",
+                              "title": "用途：Ridge/Lasso/ElasticNet 对比、类别不平衡实验、控制信噪比",
+                              "extensions": [],
+                              "position": {
+                                "x": 0,
+                                "y": 0
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "detached": [
+          {
+            "id": "60441a1388f24d4584c19dd86ebde5a7",
+            "title": "ima AI生成",
+            "extensions": [],
+            "position": {
+              "x": 0,
+              "y": 3042.5
+            }
+          }
+        ]
+      },
+      "structureClass": "org.xmind.ui.map",
+      "class": "topic"
+    },
+    "extensions": [],
+    "theme": {
+      "id": "1da6ac16-70d3-4e3e-8521-183ba2819739",
+      "centralTopic": {
+        "id": "c97ca4c8-ef74-4198-a2c6-926dbbfa049b",
+        "properties": {
+          "fo:font-family": "Microsoft YaHei",
+          "fo:font-size": "24pt",
+          "fo:font-weight": "bold",
+          "svg:fill": "#2972f4ff",
+          "line-color": "#c4c4c4ff",
+          "border-line-width": "0pt",
+          "border-line-color": "#000000",
+          "line-width": "2",
+          "fo:color": "#ffffff",
+          "shape-class": "org.xmind.topicShape.roundedRect",
+          "line-class": "org.xmind.branchConnection.bight",
+          "fill-style": "solid",
+          "fo:font-style": "normal",
+          "fo:text-transform": "manual",
+          "fo:text-decoration": "none",
+          "line-pattern": "solid",
+          "fill-pattern": "solid",
+          "arrow-end-class": "org.xmind.arrowShape.none",
+          "alignment-by-level": "inactived",
+          "fo:text-align": "left"
+        }
+      },
+      "mainTopic": {
+        "id": "ed29aaa4-8c75-4ebc-afb5-1f54614bc514",
+        "properties": {
+          "fo:font-family": "Microsoft YaHei",
+          "fo:font-size": "18pt",
+          "fo:font-weight": "bold",
+          "svg:fill": "#f3f5f7ff",
+          "line-color": "#c4c4c4ff",
+          "border-line-width": "0pt",
+          "border-line-color": "#000000",
+          "line-width": "2",
+          "fo:color": "#1f1f1f",
+          "shape-class": "org.xmind.topicShape.roundedRect",
+          "line-class": "org.xmind.branchConnection.roundedElbow",
+          "fill-style": "solid",
+          "fo:font-style": "normal",
+          "fo:text-transform": "manual",
+          "fo:text-decoration": "none",
+          "fill-pattern": "solid",
+          "fo:text-align": "left",
+          "line-pattern": "solid"
+        }
+      },
+      "subTopic": {
+        "id": "790a3426-8e23-4017-aff7-d83f3c1c22be",
+        "properties": {
+          "fo:font-family": "Microsoft YaHei",
+          "fo:font-size": "14pt",
+          "fo:font-weight": "normal",
+          "svg:fill": "#f3f5f7ff",
+          "line-color": "#c4c4c4ff",
+          "border-line-width": "0pt",
+          "border-line-color": "#000000",
+          "line-width": "2",
+          "fo:color": "#1f1f1f",
+          "shape-class": "org.xmind.topicShape.roundedRect",
+          "line-class": "org.xmind.branchConnection.roundedElbow",
+          "fill-style": "solid",
+          "fo:font-style": "normal",
+          "fo:text-transform": "manual",
+          "fo:text-decoration": "none",
+          "fill-pattern": "solid",
+          "fo:text-align": "left",
+          "line-pattern": "solid"
+        }
+      },
+      "map": {
+        "id": "6bc0e41a-906f-4774-a3f1-0d069e22b6f6",
+        "properties": {
+          "svg:fill": "#FFFFFF",
+          "line-tapered": "none"
+        }
+      },
+      "colorThemeId": "Rainbow-#000229-MULTI_LINE_COLORS"
+    },
+    "topicPositioning": "free",
+    "coreVersion": "2.74.0",
+    "style": {
+      "id": "1b0e8fef-87b6-46b7-bcdd-2773a6823ec8",
+      "properties": {}
+    },
+    "floatingTopicFlexible": true,
+    "topicOverlapping": "none",
+    "relationships": [],
+    "legend": {
+      "visibility": "visible",
+      "position": {
+        "x": -2031.359375,
+        "y": -905.0402021806317
+      }
+    },
+    "compactLayoutModeLevel": "Third",
+    "structureClass": "org.xmind.ui.map"
+  }
+]

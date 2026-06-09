@@ -1,5 +1,6 @@
 import langchain
 import random
+import os
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
 
@@ -15,9 +16,8 @@ def get_num ():
 
 model=init_chat_model(
     model="deepseek-v4-flash",
-    
     model_provider="deepseek",
-    api_key="sk-20200342f04849fd955dc4cfb0e9ae6b"
+    api_key=os.getenv("DEEPSEEK_API_KEY")
 )
 
 agent=create_agent(

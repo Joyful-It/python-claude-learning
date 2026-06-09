@@ -245,7 +245,7 @@ from langchain.agents.middleware import before_agent, after_agent, before_model,
 # 模型
 model=ChatOpenAI(
     model="deepseek-v4-flash",
-    openai_api_key="sk-bf6b5981d3694f358df92886d9978605",
+    openai_api_key="sk-xxx",
     base_url="https://api.deepseek.com/",
 )
 
@@ -356,7 +356,7 @@ from langchain.tools import tool
 # 准备模型
 model=ChatOpenAI(
     model="deepseek-v4-flash",
-    openai_api_key="sk-bf6b5981d3694f358df92886d9978605",
+    openai_api_key="sk-xxx",
     base_url="https://api.deepseek.com/",
 )
 # 定义第一个Agent

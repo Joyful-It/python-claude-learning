@@ -36,7 +36,11 @@
       "Read(//mnt/c/Project/python/**)",
       "Read(//c/Users/Lenovo/**)",
       "Read(//c/Project/**)",
-      "Bash(/c/Users/Lenovo/AppData/Local/Programs/Python/Python313/python -c ' *)"
+      "Bash(/c/Users/Lenovo/AppData/Local/Programs/Python/Python313/python -c ' *)",
+      "Bash(mkdir -p \"c:/Project/python/sessions/2026-05-12/\")",
+      "Bash(mkdir -p \"c:/Project/python/sessions/2026-05-13\")",
+      "Bash(mkdir -p \"c:/Project/python/sessions/2026-05-14\")",
+      "Bash(python machine-Learning/ml_standard_template.py)"
     ],
     "additionalDirectories": [
       "c:\\Project\\python\\sessions"

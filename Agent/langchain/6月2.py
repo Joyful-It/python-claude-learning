@@ -1,3 +1,4 @@
+import os
 from langchain.chat_models import init_chat_model
 from langchain.agents import create_agent
 from langchain.tools import tool
@@ -18,8 +19,7 @@ def teacher_chinese(subject):
 model=init_chat_model(
     model="deepseek-v4-flash",
     model_provider='deepseek',
-    api_key='sk-20200342f04849fd955dc4cfb0e9ae6b'
-    
+    api_key=os.getenv("DEEPSEEK_API_KEY")
 )
 
 agent=create_agent(

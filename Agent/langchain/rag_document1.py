@@ -87,7 +87,7 @@ embedding = HuggingFaceEmbeddings(
 # from langchain_openai import OpenAIEmbeddings        # OpenAI 兼容接口
 # embedding = OpenAIEmbeddings(
 #     model="text-embedding-3-small",                  # OpenAI 官方
-#     api_key="sk-xxx"
+#     api_key=os.getenv("OPENAI_API_KEY")
 # )
 # # 或者智谱：
 # # embedding = ZhipuAIEmbeddings(model="embedding-2")
@@ -128,7 +128,7 @@ from langchain_core.prompts import ChatPromptTemplate
 llm = init_chat_model(
     model="deepseek-v4-flash",
     model_provider="deepseek",
-    api_key="sk-20200342f04849fd955dc4cfb0e9ae6b",
+    api_key=os.getenv("DEEPSEEK_API_KEY"),
     temperature=0,  # RAG 问答不需要创意，0=稳定输出
 )
 

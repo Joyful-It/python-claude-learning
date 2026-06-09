@@ -145,7 +145,7 @@ def get_num():
 # 准备模型
 model=init_chat_model(
     model="deepseek-v4-flash", # 具体模型名称 全程
-    api_key="sk-bf6b5981d3694f358df92886d9978605", # 模型的key
+    api_key="sk-xxx", # 模型的key
     model_provider="deepseek" # 大模型的名称 必须写指定
 )
 ```
@@ -193,7 +193,7 @@ print(res)
 
 ## 3.1 Model
 
-> Kimi：sk-R2jL86pp6orUPP2aGafSwPi1By7bcHPoELm3tVmtgrEDj4af
+> Kimi：sk-xxx (示例Key)
 
 大语言模型（LLMs）是强大的人工智能工具，能够像人类一样理解和生成文本。它们功能多样，足以编写内容、翻译语言、总结信息以及回答问题，而无需为每项任务进行专门训练。
 
@@ -219,7 +219,7 @@ from langchain.messages import HumanMessage,SystemMessage
 # 创建模型
 model1=ChatOpenAI(
     model="kimi-k2.6",
-    openai_api_key="sk-R2jL86pp6orUPP2aGafSwPi1By7bcHPoELm3tVmtgrEDj4af",
+    openai_api_key="sk-xxx",
     base_url="https://api.moonshot.cn/v1",
 )
 # 使用模型
@@ -303,7 +303,7 @@ from langchain.messages import HumanMessage
 # 1.先创建模型
 model=ChatOpenAI(
     model="deepseek-v4-pro",
-    openai_api_key="sk-bf6b5981d3694f358df92886d9978605",
+    openai_api_key="sk-xxx",
     base_url="https://api.deepseek.com/",
 )
 # 2.工具函数

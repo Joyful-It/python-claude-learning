@@ -1,3 +1,4 @@
+import os
 from langchain.chat_models import init_chat_model
 from langchain.agents import create_agent
 from langchain.tools import tool
@@ -27,9 +28,9 @@ def book_hotel(city: str, date: str, people: int, budget: str) -> str:
 
 
 model = init_chat_model(
-    model="deepseek-v4-flash",      
+    model="deepseek-v4-flash",
     model_provider="deepseek",
-    api_key="sk-20200342f04849fd955dc4cfb0e9ae6b"
+    api_key=os.getenv("DEEPSEEK_API_KEY")
 )
 
 middleware = [

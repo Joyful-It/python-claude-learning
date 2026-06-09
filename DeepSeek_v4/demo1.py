@@ -1,7 +1,8 @@
+import os
 from openai import OpenAI # 导入OpenAI类，用于创建OpenAI API客户端
 
 client = OpenAI(
-    api_key="sk-a18b770419fb4bed87d887c2013ef32e",
+    api_key=os.getenv("DEEPSEEK_API_KEY"),
     base_url="https://api.deepseek.com"
 )
 

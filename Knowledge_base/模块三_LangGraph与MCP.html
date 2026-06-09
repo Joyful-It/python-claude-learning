@@ -1,0 +1,2486 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模块三：LangGraph 与 MCP</title>
+<style>
+    @page {
+        size: A4;
+        margin: 2cm;
+    }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.8;
+        color: #1a1a1a;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 40px 30px;
+        background: #fff;
+    }
+    h1 {
+        font-size: 28px;
+        color: #1a1a2e;
+        border-bottom: 3px solid #4361ee;
+        padding-bottom: 12px;
+        margin: 40px 0 20px 0;
+    }
+    h2 {
+        font-size: 22px;
+        color: #2d3436;
+        border-bottom: 2px solid #dfe6e9;
+        padding-bottom: 8px;
+        margin: 35px 0 18px 0;
+    }
+    h3 {
+        font-size: 18px;
+        color: #2d3436;
+        margin: 25px 0 12px 0;
+    }
+    h4 {
+        font-size: 16px;
+        color: #636e72;
+        margin: 20px 0 10px 0;
+    }
+    p {
+        margin: 10px 0;
+        text-indent: 0;
+    }
+    ul, ol {
+        margin: 8px 0 8px 20px;
+    }
+    li {
+        margin: 4px 0;
+    }
+    strong {
+        color: #2d3436;
+    }
+    code {
+        font-family: "Consolas", "Courier New", monospace;
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 14px;
+        color: #e17055;
+    }
+    pre {
+        font-family: "Consolas", "Courier New", monospace;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 6px;
+        padding: 14px 16px;
+        overflow-x: auto;
+        font-size: 13px;
+        line-height: 1.6;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+    }
+    th, td {
+        border: 1px solid #dfe6e9;
+        padding: 8px 12px;
+        text-align: left;
+    }
+    th {
+        background: #4361ee;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background: #f8f9fa;
+    }
+    blockquote {
+        border-left: 4px solid #4361ee;
+        padding: 10px 15px;
+        margin: 15px 0;
+        background: #f0f4ff;
+        color: #2d3436;
+    }
+    .cell {
+        margin: 20px 0;
+    }
+    .markdown-cell {
+        padding: 5px 0;
+    }
+    .code-wrapper {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        margin: 20px 0;
+        overflow: hidden;
+    }
+    .cell-header {
+        background: #f0f0f0;
+        padding: 6px 14px;
+        font-size: 12px;
+        color: #636e72;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .code-cell {
+        background: #1e1e2e;
+        color: #cdd6f4;
+        padding: 16px;
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+    .code-cell code {
+        background: transparent;
+        color: #cdd6f4;
+        padding: 0;
+    }
+    .output-area {
+        background: #fff;
+        border-top: 1px solid #e0e0e0;
+        padding: 10px 0;
+    }
+    .output {
+        margin: 8px 14px;
+        padding: 10px 14px;
+        background: #f8f9fa;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    .output.error {
+        background: #fff5f5;
+        border-color: #ffc8c8;
+        color: #c0392b;
+    }
+    .html-output {
+        margin: 8px 14px;
+        padding: 10px;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    hr {
+        border: none;
+        border-top: 1px solid #dfe6e9;
+        margin: 30px 0;
+    }
+    .toc {
+        background: #f8f9fa;
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .toc ul {
+        list-style: none;
+        padding-left: 0;
+    }
+    .toc li {
+        margin: 4px 0;
+    }
+    .toc a {
+        color: #4361ee;
+        text-decoration: none;
+    }
+</style>
+</head>
+<body>
+    <div class="notebook">
+        <div class="cell markdown-cell"><h1 id="langgraph-agent">模块三：LangGraph 工作流与多 Agent 系统</h1>
+<h1 id="1langgraph">第1章：LangGraph 入门与条件边</h1></div><div class="cell markdown-cell"><hr />
+<h2 id="_1">⚙️ 环境准备：安装依赖</h2></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[2] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【环境准备】安装所有依赖
+# 如果网络慢，可换清华镜像源：
+#!pip install langgraph langchain-core langchain-openai mcp uvicorn ipython   grandalf  </code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h2 id="llm">⚙️ 模型初始化：全局共享 LLM</h2>
+<ul>
+<li>model.py</li>
+</ul></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[4] Code Cell</div>
+            <pre class="code-cell"><code class="python"># ========================================
+# 导入模型初始化所需的最小依赖
+# ========================================
+import os
+from langchain_openai import ChatOpenAI
+from langchain_core.messages import HumanMessage
+
+# ========================================
+# 初始化 DeepSeek V4 Flash 模型（关闭思考模式，兼容最广）
+# ========================================
+llm = ChatOpenAI(
+    model=&quot;deepseek-v4-flash&quot;,
+    openai_api_key=os.environ.get(&quot;DEEPSEEK_API_KEY&quot;, &quot;&quot;),
+    openai_api_base=&quot;https://api.deepseek.com/v1&quot;,
+    temperature=0,
+    max_tokens=8000,
+    extra_body={&quot;thinking&quot;: {&quot;type&quot;: &quot;disabled&quot;}},
+)
+
+# ========================================
+# 验证连通性
+# ========================================
+try:
+    llm.invoke([HumanMessage(content=&quot;hello world&quot;)])
+    print(&quot;✅ DeepSeek V4 Flash 已就绪，开始学习！&quot;)
+except Exception:
+    print(&quot;⚠️ 模型未连通，请查环境变量 DEEPSEEK_API_KEY&quot;)</code></pre>
+            <div class="output-area"><pre class="output">✅ DeepSeek V4 Flash 已就绪，开始学习！
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h2 id="11-langgraph">1.1 LangGraph 是什么</h2>
+<p>你们之前学过的 <strong>LangChain</strong>，是个agent框架，核心是<strong>流水线（Pipeline）</strong>——把提示词、工具、大模型串成一条线，
+按固定顺序执行。就像<strong>品牌成品电脑</strong>，买来就能用，但不能随便改内部结构。</p>
+<p>今天学的 <strong>LangGraph</strong>，是个agent框架，核心是<strong>图（Graph）+ 状态（State）</strong>。
+图中的<strong>边（箭头）</strong>决定了数据走哪条路（分支、循环、并行），<strong>状态</strong>记录了数据走到哪了、变成了什么。
+就像<strong>DIY组装电脑</strong>，不同型号主板、CPU、显卡让你自由搭配，
+<strong>状态</strong>就像数据总线在组件间传递信息。</p>
+<p>【注解】这里说的「图(Graph)」不是图片，是「节点+连线」的结构。
+就像<strong>地铁线路图</strong>：每个站是一个「节点」，轨道是「边」。
+数据就是乘客，从起点站上车，经过一个个站（节点）处理，最后到终点站下车。</p>
+<p>下面这张图就是一个最简单的「有向图」——箭头表示方向，数据只能沿着箭头方向流动：</p>
+<div class="codehilite"><pre><span></span><code>          <span class="p">(</span><span class="err">节点</span><span class="p">)</span>        <span class="p">(</span><span class="err">节点</span><span class="p">)</span>        <span class="p">(</span><span class="err">节点</span><span class="p">)</span>
+      <span class="err">┌────────┐</span>   <span class="err">┌────────┐</span>   <span class="err">┌────────┐</span>
+      <span class="err">│</span> <span class="n">START</span>  <span class="err">│──→│</span> <span class="n">judge</span>  <span class="err">│──→│</span>  <span class="kr">END</span>   <span class="err">│</span>
+      <span class="err">│</span> <span class="p">(</span><span class="err">入口</span><span class="p">)</span> <span class="err">│</span>   <span class="err">│</span> <span class="p">(</span><span class="err">判断</span><span class="p">)</span>  <span class="err">│</span>   <span class="err">│</span> <span class="p">(</span><span class="err">出口</span><span class="p">)</span> <span class="err">│</span>
+      <span class="err">└────────┘</span>   <span class="err">└────────┘</span>   <span class="err">└────────┘</span>
+          <span class="err">↑</span>             <span class="err">↑</span>             <span class="err">↑</span>
+        <span class="err">起点</span>          <span class="err">处理站</span>        <span class="err">终点</span>
+
+<span class="err">数据从</span><span class="n">START出发</span> <span class="err">→</span> <span class="err">进入</span><span class="n">judge处理</span> <span class="err">→</span> <span class="err">到</span><span class="n">END结束</span>
+</code></pre></div>
+
+<p>这就是<strong>LangGraph的核心思想</strong>：用画流程图的方式写AI程序。</p>
+<p>安装依赖：<code>pip install langgraph</code></p>
+<h3 id="langgraph4">LangGraph的4个固定步骤</h3>
+<p>所有LangGraph程序都遵循同样的套路（记住它！以后每个demo基本都是这个结构）：</p>
+<div class="codehilite"><pre><span></span><code>第①步：定义状态(State)  → 确定数据包长什么样
+第②步：定义节点(Node)  → 写每个处理函数（每个函数做一件事）
+第③步：构建图(Graph)   → 添加节点，通过边（箭头）把它们连起来
+第④步：编译并运行      → 把设计图变成可执行的程序，启动它
+</code></pre></div>
+
+<p>下面用一个最简单的例子来演示这4步。</p></div><div class="cell markdown-cell"><p>【注解】下面这段代码展示了 LangGraph 的<strong>完整工作流程</strong>：</p>
+<ol>
+<li><strong>导入工具</strong>：引入 TypedDict（定义数据类型）和 StateGraph（构建流程图）</li>
+<li><strong>定义数据格式</strong>：成绩信息包含 name（姓名）、score（分数）、grade（等级）</li>
+<li><strong>定义处理函数</strong>：judge 函数接收数据包，判断分数是否及格</li>
+<li><strong>构建流程图</strong>：创建一个流程，只有一个 judge 节点</li>
+<li><strong>编译运行</strong>：把设计图转成程序，输入学生数据，启动！</li>
+</ol></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[7] Code Cell</div>
+            <pre class="code-cell"><code class="python"># ========== LangGraph 第一个程序 ==========
+
+# 【注解】TypedDict：Python的类型注解工具。
+# 用来规定字典里每个字段的名字和类型，写错了IDE会提醒你。
+from typing import TypedDict
+
+# 【注解】StateGraph：LangGraph的核心类，用来构建&quot;状态图&quot;（状态=数据，图=节点+连线）
+# START：内置的&quot;起点&quot;标记，表示流程从哪里开始
+from langgraph.graph import StateGraph, START
+
+# ---------- 第①步：定义状态(State) ----------
+# 规定数据包长什么样：有3个字段
+class Chengji(TypedDict):
+    name: str      # 学生姓名（str=字符串/文字）
+    score: int     # 考试分数（int=整数）
+    grade: str     # 成绩等级（初始传入时为空，由judge函数来填）
+
+# ---------- 第②步：定义节点(Node) ----------
+# 【注解】节点 = 处理函数。参数state接收当前数据包，返回要更新的数据
+# -&gt; dict 表示这个函数返回一个字典（键值对结构）
+def judge(state: Chengji) -&gt; dict:
+    &quot;&quot;&quot;判断成绩&quot;&quot;&quot;
+    # state[&#x27;score&#x27;]：从数据包里取出score字段的值
+    if state[&#x27;score&#x27;] &gt;= 60:
+        # return 只返回修改的字段，没改的字段自动保留
+        return {&quot;grade&quot;: &quot;及格&quot;}
+    else:
+        return {&quot;grade&quot;: &quot;不及格&quot;}
+
+# ---------- 第③步：构建图(Graph) ----------
+# 创建一张成绩处理流程图，括号里指定数据格式为&quot;Chengji&quot;
+flow = StateGraph(Chengji)
+# add_node：添加一个叫&quot;judge&quot;的节点，关联上面定义的judge函数
+flow.add_node(&quot;judge&quot;, judge)
+# add_edge：画箭头，从START起点指向judge节点
+flow.add_edge(START, &quot;judge&quot;)
+
+# ---------- 第④步：编译并运行 ----------
+# compile()：把&quot;设计图&quot;转成&quot;可以执行的程序&quot;
+app = flow.compile()
+
+# invoke：启动程序！传入初始数据{姓名:张三, 分数:80}
+result = app.invoke({&quot;name&quot;: &quot;张三&quot;, &quot;score&quot;: 80})
+print(result)  # 输出：{&#x27;name&#x27;: &#x27;张三&#x27;, &#x27;score&#x27;: 80, &#x27;grade&#x27;: &#x27;及格&#x27;}</code></pre>
+            <div class="output-area"><pre class="output">{&#x27;name&#x27;: &#x27;张三&#x27;, &#x27;score&#x27;: 80, &#x27;grade&#x27;: &#x27;及格&#x27;}
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h2 id="12-langgraph">1.2 LangGraph 核心概念</h2>
+<p>刚才的 demo 背后就是这四个概念：</p>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码里怎么写</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>State（状态）</strong></td>
+<td><code>class State(TypedDict)</code></td>
+<td>定义"数据包"长什么样，有哪些字段</td>
+</tr>
+<tr>
+<td><strong>Node（节点）</strong></td>
+<td><code>def my_func(state):</code></td>
+<td>一个函数，做一件事，更新数据包</td>
+</tr>
+<tr>
+<td><strong>Edge（边）</strong></td>
+<td><code>add_edge(A, B)</code></td>
+<td>固定路线：A做完直接去B</td>
+</tr>
+<tr>
+<td><strong>Conditional Edge（条件边）</strong></td>
+<td><code>add_conditional_edges(A, router_fn)</code></td>
+<td>岔路：根据当前数据判断下一步去哪</td>
+</tr>
+</tbody>
+</table>
+<p>【注解】这4个概念的关系：
+- <strong>State</strong> 是"数据包"，在节点之间传递，每个节点都能读和改
+- <strong>Node</strong> 是"处理站"，每个站做一件事，处理完后把结果写回数据包
+- <strong>Edge</strong> 是"传送带"，从一个站到另一个站的固定路线
+- <strong>Conditional Edge</strong> 是"岔路"，不是固定路线，而是根据当前数据选择走哪条路</p>
+<p><strong>LangGraph 的本质</strong>：用画流程图的方式写 AI 程序。定义函数（节点）、画箭头（边）、箭头决定State走向</p>
+<blockquote>
+<p><strong>核心公式：LangGraph = 节点 + 边 + 状态</strong></p>
+</blockquote>
+<h3 id="_1">以后会经常用的导入</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Annotated</span><span class="p">,</span> <span class="n">TypedDict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">MessagesState</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph</span><span class="w"> </span><span class="kn">import</span> <span class="n">StateGraph</span><span class="p">,</span> <span class="n">START</span><span class="p">,</span> <span class="n">END</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">langgraph.graph.message</span><span class="w"> </span><span class="kn">import</span> <span class="n">add_messages</span>
+</code></pre></div>
+
+<p>【注解】这些是 LangGraph 开发最常用的导入：
+- <code>TypedDict</code>：定义数据包格式
+- <code>Annotated</code> + <code>add_messages</code>：让消息可以"追加"而不是"覆盖"（后面会讲）
+- <code>MessagesState</code>：LangGraph内置的标准数据格式，自带<code>messages</code>字段管理聊天记录
+- <code>StateGraph</code>：创建流程图
+- <code>START</code> / <code>END</code>：流程图的起点和终点</p></div><div class="cell markdown-cell"><h2 id="13-langgraph">1.3 为什么学 LangGraph？</h2>
+<hr />
+<h3 id="langchain-vs-langgraph">LangChain vs LangGraph</h3>
+<p>【注解】LangChain底层其实就是用LangGraph搭好的一个模板。
+所以学LangGraph并不是抛弃LangChain，而是当模板不够用时，你自己有能力定制。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>LangChain</th>
+<th>LangGraph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>一句话</strong></td>
+<td><strong>品牌电脑套装</strong>，买来直接用</td>
+<td><strong>DIY 组装电脑</strong>，按需自己配</td>
+</tr>
+<tr>
+<td><strong>能做循环吗？</strong></td>
+<td>✅ 能（自动 ReAct 循环）</td>
+<td>✅ 能</td>
+</tr>
+<tr>
+<td><strong>能插自定义步骤吗？</strong></td>
+<td>⚠️ <strong>有限</strong>，1.0+ 可通过 Middleware（<code>@before_model</code> 等）在模型调用前后插入逻辑，但受限于固定管线顺序</td>
+<td>✅ <strong>完全自由</strong>，想加几步加几步，任意编排节点顺序</td>
+</tr>
+<tr>
+<td><strong>能让人中途插手吗？</strong></td>
+<td>✅ 能（设暂停点）</td>
+<td>✅ 能</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心区别就一点</strong>： langchain 是封装好的<strong>样品</strong>，你只能按它的固定管线来用（1.0+ 虽支持 Middleware，但仍是固定管线内插入）。LangGraph 让你<strong>彻底自由搭</strong></p>
+<p>-
+<strong>以前大家花几年在混乱里学 Agent，现在你用 LangGraph，一次就把 Agent 学明白</strong>
+-
+<strong>等你真正掌握了 LangGraph，Agent 对你来说就不再是黑盒了。以后不管出现什么新的智能体框架，你都能一眼看懂它在干什么</strong></p>
+<p>需要往流程中间<strong>插入自定义节点</strong>的时候：</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># LangGraph 的关键优势 —— 在 agent 和 tools 之间插一个自定义校验节点：</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;agent&quot;</span><span class="p">,</span> <span class="n">call_model</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;validate&quot;</span><span class="p">,</span> <span class="n">validate_input</span><span class="p">)</span>  <span class="c1"># &lt;- 自定义校验！LangGraph 可自由编排</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="n">tool_node</span><span class="p">)</span>
+<span class="c1"># 自定义流程：agent -&gt; 校验 -&gt; tools -&gt; agent</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;agent&quot;</span><span class="p">,</span> <span class="s2">&quot;validate&quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;validate&quot;</span><span class="p">,</span> <span class="s2">&quot;tools&quot;</span><span class="p">)</span>
+<span class="n">builder</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="s2">&quot;tools&quot;</span><span class="p">,</span> <span class="s2">&quot;agent&quot;</span><span class="p">)</span>
+</code></pre></div></div><div class="cell markdown-cell"><hr />
+<h2 id="14-stategraph">1.4 StateGraph：亲手搭一个</h2>
+<hr />
+<h3 id="_1">流程概览</h3>
+<p><strong>核心流程</strong>：</p>
+<div class="codehilite"><pre><span></span><code><span class="w">            </span><span class="err">┌──</span><span class="w"> </span><span class="err">需要调用工具</span><span class="w">  </span><span class="err">→</span><span class="w">  </span><span class="n">tools</span><span class="w"> </span><span class="err">→</span><span class="w"> </span><span class="err">回到</span><span class="w"> </span><span class="n">agent</span><span class="err">（再次判断）</span>
+<span class="n">START</span><span class="w"> </span><span class="err">→</span><span class="w">  </span><span class="n">agent</span><span class="w">                     </span>
+<span class="w">            </span><span class="err">└──</span><span class="w"> </span><span class="err">无需调用工具</span><span class="w">  </span><span class="err">→</span><span class="w"> </span><span class="n">END</span><span class="err">（返回最终回答）</span>
+</code></pre></div>
+
+<p><strong>关键概念</strong>：
+- <strong>MessagesState</strong>：LangGraph 内置的标准状态，自动管理消息列表
+- <strong>ToolNode</strong>：内置节点，自动执行 LLM 发出的工具调用
+- <strong>条件边</strong>：根据 LLM 的输出决定下一步走哪条路</p></div><div class="cell markdown-cell"><hr />
+<h4 id="1-messagesstate">【第①步】定义状态：直接使用内置 MessagesState</h4>
+<p>这个例子中我们的"数据包"直接用 LangGraph 内置的 <strong>MessagesState</strong>，
+它自带了 <code>messages</code> 字段来管理聊天记录，我们不需要自己定义状态类。</p>
+<hr />
+<h4 id="2-agent">【第②步】定义节点：准备 Agent 组件</h4>
+<p>先准备好 Agent 需要的"工作站"：工具函数（@tool）、工具管理器（ToolNode）、绑定了工具的模型。
+<strong>工具函数</strong>和<strong>call_model函数</strong>就是图中的"节点"——每个函数是一个工作站，做一件事。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[12] Code Cell</div>
+            <pre class="code-cell"><code class="python">from model import llm
+from langchain_core.tools import tool
+# 【注解】@tool 装饰器：把下面的函数标记为&quot;一个工具&quot;，LLM可以调用它
+# @tool 是 Python 装饰器语法，本质就是把函数包装一下
+from langgraph.prebuilt import ToolNode
+# 【注解】ToolNode：LangGraph内置的&quot;工具管理器&quot;
+# 它会自动检查LLM的回复，如果要调工具就自动执行
+from langgraph.graph import MessagesState,StateGraph,START
+# 【注解】MessagesState：LangGraph内置的数据格式，自带messages字段管理聊天记录
+# 你不需要自己定义messages字段，直接用就行了
+from langchain_core.messages import HumanMessage
+
+# ========== 定义节点（工作站） ==========
+
+# ----- 节点函数1：search（天气查询工具）-----
+# 【注解】@tool 让下面的函数成为一个&quot;工具&quot;，LLM可以调用它
+# 这个工具函数会被 ToolNode 包装成一个叫&quot;tools&quot;的节点
+@tool
+def search(query: str) -&gt; str:
+    &#x27;&#x27;&#x27;查询天气的工具函数&#x27;&#x27;&#x27;
+    if &quot;sf&quot; in query.lower() or &quot;san francisco&quot; in query.lower():
+        return &quot;温度是 60 华氏度，天气阴霾。&quot;
+    return &quot;温度是 90 华氏度，天气晴朗。&quot;
+
+# 把工具打包成节点：search函数 → tools列表 → ToolNode节点
+tools = [search]                       # 工具列表
+model = llm.bind_tools(tools)          # 把工具绑定给LLM，告诉LLM可以调用它
+
+
+tool_node = ToolNode(tools)            # 【节点】创建&quot;tools&quot;节点（自动执行工具）
+
+
+
+
+# ----- 节点函数2：call_model（AI思考节点）-----
+# 【注解】这个函数就是图中的&quot;agent&quot;节点
+# 它的工作：读取聊天记录 → 发给LLM → LLM决定直接回答还是调工具
+def call_model(state: MessagesState) -&gt; dict:
+    &#x27;&#x27;&#x27;【节点函数】Agent 思考节点&#x27;&#x27;&#x27;
+    res = model.invoke(state[&quot;messages&quot;])
+    return {&quot;messages&quot;: [res]}
+    # 注意 res外部的中括号不能少，对应messages: Annotated[list, add_messages]中的list参数</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h4 id="2-3">【第②步 续】先定义条件路由函数（为第③步做准备）</h4>
+<p>条件路由函数决定了LLM回复后下一步去哪：要调工具就去tools节点，直接回答就结束。
+这个函数是第③步<code>add_conditional_edges</code>要用到的判断逻辑，所以先在节点定义好之后再准备它。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[14] Code Cell</div>
+            <pre class="code-cell"><code class="python">def should_continue(state: MessagesState):
+    &#x27;&#x27;&#x27;【注解】条件路由函数 = &quot;岔路口的指示牌&quot;
+    检查LLM最后一条回复：
+    - 如果LLM说要调用工具 → 返回&quot;tools&quot;，去执行工具
+    - 如果LLM直接回答了 → 返回&quot;__end__&quot;，结束流程&#x27;&#x27;&#x27;
+    last_message = state[&quot;messages&quot;][-1]
+    # 【注解】state[&quot;messages&quot;][-1]：取messages列表的最后一条消息
+    # [-1] 是Python语法，表示&quot;列表的最后一个元素&quot;
+    # tool_calls：LLM消息的一个属性，如果LLM想调用工具，这个属性就有值
+    if last_message.tool_calls:
+        print(&quot;&gt;&gt; [条件边] 检测到工具调用 -&gt; 路由到 tools 节点\n&quot;)
+        return &quot;tools&quot;         # → 路由到tools节点执行工具
+    else:
+        print(&quot;&gt;&gt; [条件边] 无需工具调用 -&gt; 路由到 END\n&quot;)
+        return &quot;__end__&quot;       # → 路由到__end__结束</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h4 id="3">【第③步】构建图</h4>
+<p>把前面准备好的节点、条件路由函数组装成一张完整的图。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[16] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】创建流程图，数据格式是MessagesState（自带messages聊天记录）
+workflow = StateGraph(MessagesState)
+# 注册上面第②步定义好的两个节点：
+workflow.add_node(&quot;agent&quot;, call_model)  # 注册节点：call_model → 节点名&quot;agent&quot;
+workflow.add_node(&quot;tools&quot;, tool_node)    # 注册节点：tool_node → 节点名&quot;tools&quot;
+workflow.add_edge(START, &quot;agent&quot;)       # 起点 → agent
+workflow.add_conditional_edges(&quot;agent&quot;, should_continue, 
+                                { 
+         &quot;tools&quot;: &quot;tools&quot;, 
+         &quot;__end__&quot;: END 
+     })  # 条件边：agent做完后根据should_continue决定去哪
+workflow.add_edge(&quot;tools&quot;, &quot;agent&quot;)    # tools做完 → 回到agent（形成循环）
+
+
+# compile：编译，把画好的图转成可执行的程序
+app = workflow.compile()</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h4 id="4">【第④步】编译并运行</h4>
+<p>把设计图编译成可执行的程序，然后传入数据启动它。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[18] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】app.invoke()：启动流程图，传入初始数据
+# 第一个参数：初始数据包（这里传入一条用户消息）
+# config：配置参数，thread_id是&quot;会话ID&quot;，给这次对话一个编号
+# 方便以后查看历史记录（不同对话用不同编号，不会搞混）
+final_state = app.invoke({&quot;messages&quot;: [HumanMessage(content=&quot;旧金山的天气如何&quot;)]})
+
+print(final_state[&quot;messages&quot;][-1].content)</code></pre>
+            <div class="output-area"><pre class="output">&gt;&gt; [条件边] 检测到工具调用 -&gt; 路由到 tools 节点
+
+&gt;&gt; [条件边] 无需工具调用 -&gt; 路由到 END
+
+旧金山目前的天气情况如下：
+
+- **温度**：90 华氏度（约 32 摄氏度）
+- **天气状况**：晴朗 ☀️
+
+天气比较热，如果出门的话建议做好防晒措施，多补充水分！
+</pre></div>
+        </div>
+        
+        <div class="cell code-wrapper">
+            <div class="cell-header">[19] Code Cell</div>
+            <pre class="code-cell"><code class="python">print(app.get_graph().draw_ascii())</code></pre>
+            <div class="output-area"><pre class="output">        +-----------+         
+        | __start__ |         
+        +-----------+         
+              *               
+              *               
+              *               
+          +-------+           
+          | agent |           
+          +-------+           
+         *         .          
+       **           ..        
+      *               .       
++-------+         +---------+ 
+| tools |         | __end__ | 
++-------+         +---------+ 
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h3 id="_1">练习题</h3>
+<p><strong>练习 1（基础）</strong>：修改用户提问内容，改为查询 "san francisco 的天气"，观察路由结果变化。</p>
+<p><strong>练习 2（基础）</strong>：修改 <code>search</code> 工具，增加对 "北京" 城市的支持，返回 "温度 15°C，晴"。</p>
+<p><strong>练习 3（挑战）</strong>：新增一个 <code>calculator</code> 工具，支持加减运算，让 LLM 在需要计算时自动调用它。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>你刚写下的代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>节点</strong></td>
+<td><code>add_node("name", func)</code></td>
+<td>一个函数，做一件事，返回字典</td>
+</tr>
+<tr>
+<td><strong>边</strong></td>
+<td><code>add_edge(A, B)</code></td>
+<td>A 做完后走 B</td>
+</tr>
+<tr>
+<td><strong>条件边</strong></td>
+<td><code>add_conditional_edges(A, router)</code></td>
+<td>根据状态动态选路</td>
+</tr>
+<tr>
+<td><strong>编译运行</strong></td>
+<td><code>compile()</code> -&gt; <code>invoke()</code></td>
+<td>画完图，跑起来</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想</strong>：LangGraph = 节点（函数） + 边（流程控制） + 状态（数据传递）</p></div><div class="cell markdown-cell"><hr />
+<h1 id="2">第2章：高级状态管理与条件分支实战</h1>
+<hr /></div><div class="cell markdown-cell"><hr />
+<h2 id="messagesstate-messages">MessagesState 内部机制：messages 为什么必须是列表？</h2>
+<p>第1章里我们直接用 <code>MessagesState</code> 作为状态，但没有细讲它内部是怎么工作的。
+现在我们要深入看穿它——因为第2章要自己定义状态了，理解 MessagesState 的机制才能用好它。</p>
+<h3 id="messagesstate">MessagesState 长什么样？</h3>
+<p>MessagesState 的底层定义，其实就是这样一个<strong>类（Class）</strong>——你可以理解为它就是个「提前做好的自定义状态模板」：</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">MessagesState</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+    <span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="n">add_messages</span><span class="p">]</span>  <span class="c1"># 注意：list 是列表，Annotated 是固定写法</span>
+</code></pre></div>
+
+<p>它本质上就是 <code>TypedDict</code>，只不过 LangGraph 帮你写好了。所以你完全可以用自己的类替代它，它的核心就一句话：</p>
+<blockquote>
+<p><strong><code>messages</code> 是一个列表，用来装聊天记录</strong></p>
+</blockquote>
+<h3 id="_1">为什么必须是列表？</h3>
+<p>因为聊天记录是一堆消息的集合：用户说一句、AI 回一句、工具返回结果……这些消息需要<strong>按顺序存起来</strong>。
+在 Python 里，<strong>列表（list）</strong> 就是干这个事的——它可以装多个东西，而且有顺序：</p>
+<div class="codehilite"><pre><span></span><code>messages = [
+    HumanMessage(&quot;你好&quot;),       # 第一条：用户说的
+    AIMessage(&quot;有什么能帮您？&quot;), # 第二条：AI 回的
+    HumanMessage(&quot;查天气&quot;),     # 第三条：用户又问
+    ...                           # 继续追加……
+]
+</code></pre></div>
+
+<h3 id="vs">列表是怎么更新的？—— 追加 vs 覆盖</h3>
+<p>这是初学者最容易搞混的地方，记住一个对比就好：</p>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>更新行为</th>
+<th>比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>messages: list</code>（普通列表）</td>
+<td><strong>覆盖</strong>：新消息替换旧消息</td>
+<td>像黑板，每次写新的就擦掉旧的</td>
+</tr>
+<tr>
+<td><code>messages: Annotated[list, add_messages]</code></td>
+<td><strong>追加</strong>：新消息添加到末尾</td>
+<td>像日记本，每天新内容写在后面一页</td>
+</tr>
+</tbody>
+</table>
+<p><strong>MessagesState 默认就是追加模式</strong>（因为它内部用的是 <code>Annotated[list, add_messages]</code>）。</p>
+<p>【图解】追加模式的更新过程：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">初始状态</span><span class="err">：</span><span class="w">                                    </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w">               </span><span class="err">←</span><span class="w"> </span><span class="n">空列表</span>
+<span class="n">第一步</span><span class="w"> </span><span class="n">invoke</span><span class="p">(</span><span class="err">{</span><span class="nl">messages</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="n">用户消息</span><span class="o">]</span><span class="err">}</span><span class="p">)</span><span class="err">：</span><span class="w">         </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">用户消息</span><span class="o">]</span><span class="w">       </span><span class="err">←</span><span class="w"> </span><span class="n">初始传入</span>
+<span class="w">    </span><span class="err">↓</span><span class="w"> </span><span class="n">call_model</span><span class="w"> </span><span class="n">返回</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;messages&quot;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">AI回复</span><span class="o">]</span><span class="err">}</span><span class="w">   </span>
+<span class="w">    </span><span class="err">↓</span><span class="w"> </span><span class="n">LangGraph</span><span class="w"> </span><span class="n">内部自动合并</span><span class="w">                    </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">用户消息, AI回复</span><span class="o">]</span>
+<span class="w">    </span><span class="err">↓</span><span class="w"> </span>
+<span class="n">第二步</span><span class="w"> </span><span class="n">invoke</span><span class="err">（</span><span class="n">带着历史继续</span><span class="err">）：</span><span class="w">                   </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">用户消息, AI回复, 新问题</span><span class="o">]</span>
+<span class="w">    </span><span class="err">↓</span><span class="w"> </span><span class="n">call_model</span><span class="w"> </span><span class="n">返回</span><span class="w"> </span><span class="err">{</span><span class="ss">&quot;messages&quot;</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">新AI回复</span><span class="o">]</span><span class="err">}</span><span class="w">  </span>
+<span class="w">    </span><span class="err">↓</span><span class="w"> </span><span class="n">LangGraph</span><span class="w"> </span><span class="n">内部自动合并</span><span class="w">                    </span><span class="n">messages</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n">用户消息, AI回复, 新问题, 新AI回复</span><span class="o">]</span>
+</code></pre></div>
+
+<h3 id="return-res">那为什么节点 return 时还要包成 <code>[res]</code>？</h3>
+<p>因为 MessagesState 的 messages 字段<strong>始终是列表</strong>，所以 <code>return</code> 的时候，
+你新加的消息也必须包在 <strong>列表中</strong> 返回，即 <code>{"messages": [res]}</code>——即使你只加了一条：</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># ❌ 错误写法：返回单条消息</span>
+<span class="k">return</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="n">res</span><span class="p">}</span>   <span class="c1"># 报错！messages 必须是列表</span>
+
+<span class="c1"># ✅ 正确写法：包成列表</span>
+<span class="k">return</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">res</span><span class="p">]}</span> <span class="c1"># 把单条消息 res 装进列表</span>
+</code></pre></div>
+
+<p>【类比】就像你去快递站寄东西：
+- 你寄的是<strong>一个</strong>包裹（单条消息 <code>res</code>）
+- 但快递站只接收<strong>整箱</strong>的（列表 <code>[res]</code>）
+- 所以你把这个包裹装进箱子里再交给快递站（<code>[res]</code>）
+- 快递站自动把你这箱东西合并到已有货架上（追加到 messages 列表）</p>
+<p>理解了 MessagesState 的内部机制，下面来看它的两种更新模式——覆盖 vs 追加的实际代码对比。</p>
+<hr /></div><div class="cell markdown-cell"><h2 id="21-vs">2.1 消息追加机制：覆盖 vs 追加</h2>
+<p>多轮对话场景中，我们希望消息一条条累积。但 LangGraph 默认行为是<strong>覆盖</strong>——新消息会把旧消息冲掉。</p>
+<p>解决办法是使用 <code>Annotated[list, add_messages]</code> 这个固定写法：</p>
+<table>
+<thead>
+<tr>
+<th>写法</th>
+<th>效果</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>messages: list</code></td>
+<td><strong>覆盖</strong>，只保留最后一条</td>
+<td>不需要保存聊天历史时</td>
+</tr>
+<tr>
+<td><code>messages: Annotated[list, add_messages]</code></td>
+<td><strong>追加</strong>，消息一条条累积</td>
+<td>多轮对话需保存历史时</td>
+</tr>
+</tbody>
+</table></div><div class="cell markdown-cell"><p>【注解】<code>Annotated[list, add_messages]</code> 是一整个固定模式。<code>add_messages</code> 是 LangGraph 内置的规约器（Reducer），它的工作方式是将新消息追加到已有消息列表末尾，而不是替换。你现在不需要深究 Annotated 是什么，只要记住：<strong>写这个 = 追加模式，不写 = 覆盖模式</strong>。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[26] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】TypedDict：Python 的类型注解工具，用来规定字典里每个字段的名字和类型
+# 【注解】Annotated：Python 的类型注解，可以附加额外元数据（此处是 add_messages 规约器）
+from typing import Annotated, TypedDict
+# 【注解】StateGraph：LangGraph 的核心类，用来构建有向图
+# 【注解】START/END：LangGraph 内置的特殊节点，分别代表图的起点和终点
+from langgraph.graph import StateGraph, START, END
+# 【注解】add_messages：LangGraph 内置的规约器，实现消息追加而非覆盖
+from langgraph.graph.message import add_messages
+# 【注解】HumanMessage/AIMessage：LangChain 的消息类型，分别代表用户消息和 AI 回复
+from langchain_core.messages import HumanMessage, AIMessage
+
+# ====== 同一张图，两种写法的对比 ======
+
+# ---------- 第①步：定义状态 ----------
+class StateA(TypedDict):
+    &quot;&quot;&quot;覆盖模式：messages 使用普通 list，每次返回都会覆盖&quot;&quot;&quot;
+    messages: list
+
+class StateB(TypedDict):
+    &quot;&quot;&quot;追加模式：messages 使用 Annotated[list, add_messages]，消息会累积&quot;&quot;&quot;
+    messages: Annotated[list, add_messages]
+
+# ---------- 第②步：定义节点 ----------
+
+# 图a的节点
+def node1(state: StateA):
+    return {&quot;messages&quot;: [AIMessage(&quot;第一条回复&quot;)]}
+
+def node2(state: StateA):
+    return {&quot;messages&quot;: [AIMessage(&quot;第二条回复&quot;)]}
+
+# 图b的节点
+def node3(state: StateB):
+    return {&quot;messages&quot;: [AIMessage(&quot;第一条回复&quot;)]}
+
+def node4(state: StateB):
+    return {&quot;messages&quot;: [AIMessage(&quot;第二条回复&quot;)]}
+
+# ---------- 第③步：构建图 ----------
+# 图 A：覆盖模式
+builder_a = StateGraph(StateA)
+builder_a.add_node(&quot;n1&quot;, node1).add_node(&quot;n2&quot;, node2)
+builder_a.add_edge(START, &quot;n1&quot;).add_edge(&quot;n1&quot;, &quot;n2&quot;).add_edge(&quot;n2&quot;, END)
+
+# 图 B：追加模式
+builder_b = StateGraph(StateB)
+builder_b.add_node(&quot;n3&quot;, node3).add_node(&quot;n4&quot;, node4)
+builder_b.add_edge(START, &quot;n3&quot;).add_edge(&quot;n3&quot;, &quot;n4&quot;).add_edge(&quot;n4&quot;, END)
+
+# ---------- 第④步：编译并运行 ----------
+app_a = builder_a.compile()
+app_b = builder_b.compile()
+
+result_a = app_a.invoke({&quot;messages&quot;: [HumanMessage(&quot;开始！&quot;)]})
+result_b = app_b.invoke({&quot;messages&quot;: [HumanMessage(&quot;开始！&quot;)]})
+
+print(&quot;=== 图 A（覆盖模式）===&quot;)
+print(result_a)
+print()
+print(&quot;=== 图 B（追加模式）===&quot;)
+print(result_b)
+
+# 【注解】对比结果：图 A 只有 1 条消息（第二条覆盖了第一条），
+# 图 B 有 3 条消息（HumanMessage + 第一条 + 第二条，全部累积）。
+# 唯一的区别就是 State 定义中 messages 字段的写法不同。</code></pre>
+            <div class="output-area"><pre class="output">=== 图 A（覆盖模式）===
+{&#x27;messages&#x27;: [AIMessage(content=&#x27;第二条回复&#x27;, additional_kwargs={}, response_metadata={}, tool_calls=[], invalid_tool_calls=[])]}
+
+=== 图 B（追加模式）===
+{&#x27;messages&#x27;: [HumanMessage(content=&#x27;开始！&#x27;, additional_kwargs={}, response_metadata={}, id=&#x27;b719f725-c6f0-4d4f-8b59-4cdafd01b260&#x27;), AIMessage(content=&#x27;第一条回复&#x27;, additional_kwargs={}, response_metadata={}, id=&#x27;5e546f2b-48a9-42c5-be79-f7868206a85b&#x27;, tool_calls=[], invalid_tool_calls=[]), AIMessage(content=&#x27;第二条回复&#x27;, additional_kwargs={}, response_metadata={}, id=&#x27;d46235ff-bf15-4c9c-b60a-ff7ed7ab8d71&#x27;, tool_calls=[], invalid_tool_calls=[])]}
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><p>【注解】<code>TypedDict</code>：Python 的类型注解工具，用来规定字典里每个字段的名字和类型。LangGraph 用它来定义状态的结构。使用时直接把类名传给 <code>StateGraph(MyState)</code>。</p>
+<p>【注解】<code>invoke()</code>：LangGraph 的执行方法，接收初始状态字典作为参数，返回最终状态字典。</p></div><div class="cell markdown-cell"><h2 id="22">2.2 部分更新：每个节点只改自己的信息</h2>
+<p><strong>核心思想</strong>：每个节点可以只返回自己修改的字段，没返回的字段 LangGraph 自动保留原值。</p>
+<p><strong>场景</strong>：学生成绩处理。
+- 节点 <code>judge</code>：根据分数算等级（90→优秀、80→良好……）
+- 节点 <code>gen_report</code>：根据等级写评语
+- <code>name</code> 和 <code>score</code> 是初始传入的，后续节点不需要动它们</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[29] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】TypedDict：定义状态的字段结构，传给 StateGraph
+from typing import TypedDict
+# 【注解】StateGraph：构建有向图的核心类
+from langgraph.graph import StateGraph, START, END
+
+# ---------- 第①步：定义状态 ----------
+class Chengji(TypedDict):
+    &quot;&quot;&quot;学生成绩状态：包含姓名、分数、等级、评语&quot;&quot;&quot;
+    name: str          # 学生姓名（初始传入，后续不修改）
+    score: float       # 考试分数（初始传入，后续不修改）
+    grade: str         # 等级（judge 节点更新）
+    report: str        # 评语（gen_report 节点更新）
+
+# ---------- 第②步：定义节点 ----------
+def judge(state: Chengji):
+    &quot;&quot;&quot;根据分数计算等级，只更新 grade 字段&quot;&quot;&quot;
+    score = state[&quot;score&quot;]
+    if score &gt;= 90:
+        grade = &quot;优秀&quot;
+    elif score &gt;= 80:
+        grade = &quot;良好&quot;
+    elif score &gt;= 70:
+        grade = &quot;中等&quot;
+    elif score &gt;= 60:
+        grade = &quot;及格&quot;
+    else:
+        grade = &quot;不及格&quot;
+    return {&quot;grade&quot;: grade}  # 只返回 grade，name 和 score 不变
+
+def gen_report(state: Chengji):
+    &quot;&quot;&quot;根据等级写评语，只更新 report 字段&quot;&quot;&quot;
+    print(&quot;befor gen_report:&quot;, state)
+    grade = state[&quot;grade&quot;]
+    if grade == &quot;优秀&quot;:
+        report = &quot;成绩优异，继续保持！&quot;
+    elif grade == &quot;良好&quot;:
+        report = &quot;表现不错，还有提升空间！&quot;
+    elif grade == &quot;中等&quot;:
+        report = &quot;成绩中等，需加倍努力！&quot;
+    elif grade == &quot;及格&quot;:
+        report = &quot;刚好及格，要加油了！&quot;
+    else:
+        report = &quot;不及格，需要认真复习！&quot;
+    return {&quot;report&quot;: report}  # 只返回 report，其他字段不变
+
+# ---------- 第③步：构建图 ----------
+builder = StateGraph(Chengji)
+builder.add_node(&quot;judge&quot;, judge)
+builder.add_node(&quot;gen_report&quot;, gen_report)
+builder.add_edge(START, &quot;judge&quot;)
+builder.add_edge(&quot;judge&quot;, &quot;gen_report&quot;)
+builder.add_edge(&quot;gen_report&quot;, END)
+
+# ---------- 第④步：编译并运行 ----------
+app = builder.compile()
+
+result = app.invoke({&quot;name&quot;: &quot;张三&quot;, &quot;score&quot;: 85, &quot;grade&quot;: &quot;&quot;, &quot;report&quot;: &quot;&quot;})
+print(&quot;after gen_report :&quot;,result)
+
+# 【注解】结果如下：
+# {&#x27;name&#x27;: &#x27;张三&#x27;, &#x27;score&#x27;: 85, &#x27;grade&#x27;: &#x27;良好&#x27;, &#x27;report&#x27;: &#x27;表现不错，还有提升空间！&#x27;}
+# judge 只改了 grade，gen_report 只改了 report，name 和 score 自动保留原值。</code></pre>
+            <div class="output-area"><pre class="output">befor gen_report: {&#x27;name&#x27;: &#x27;张三&#x27;, &#x27;score&#x27;: 85, &#x27;grade&#x27;: &#x27;良好&#x27;, &#x27;report&#x27;: &#x27;&#x27;}
+after gen_report : {&#x27;name&#x27;: &#x27;张三&#x27;, &#x27;score&#x27;: 85, &#x27;grade&#x27;: &#x27;良好&#x27;, &#x27;report&#x27;: &#x27;表现不错，还有提升空间！&#x27;}
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><p>【注解】部分更新的<strong>关键</strong>：每个节点 <code>return</code> 的内容只包含它自己修改的字段。LangGraph 会自动将返回值合并到全局状态中，没返回的字段保持原值不变。这和 React 的 <code>setState</code> 部分更新思路类似。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">练习题</h3>
+<p><strong>练习 1（基础 · 追加模式）</strong>：在 1.2 Demo 的图 B（追加模式）基础上增加第 3 个节点 <code>node5</code>，返回 <code>AIMessage("第三条回复")</code>，链接为 <code>n4 → n5 → END</code>。运行后看 messages 列表是否累积到 4 条消息。</p>
+<p><strong>练习 2（进阶 · 部分更新）</strong>：在 1.3 Demo 的 <code>judge</code> 和 <code>gen_report</code> 之间插入一个 <code>check_pass</code> 节点：
+- 读取 <code>grade</code>，如果为"不及格"则返回 <code>{"passed": False}</code>，否则返回 <code>{"passed": True}</code>
+- 记得在 State 中加上 <code>passed: bool</code> 字段</p>
+<p><strong>练习 3（挑战 · 混合）</strong>：在 1.3 Demo 的 State 中增加一个 <code>messages</code> 字段，使用追加模式：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">messages</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span><span class="nb">list</span><span class="p">,</span> <span class="n">add_messages</span><span class="p">]</span>
+</code></pre></div>
+
+<p>让 <code>judge</code> 和 <code>gen_report</code> 各自在 return 中加一条消息。验证"部分更新"和"消息追加"能否同时工作。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TypedDict = 状态模型</td>
+<td><code>class MyState(TypedDict)</code></td>
+<td>声明 state 要监控哪些字段，直接传给 <code>StateGraph(MyState)</code></td>
+</tr>
+<tr>
+<td>追加模式（固定写法）</td>
+<td><code>messages: Annotated[list, add_messages]</code></td>
+<td>消息自动追加而非覆盖；不写则默认覆盖</td>
+</tr>
+<tr>
+<td>部分更新</td>
+<td><code>return {"field": value}</code></td>
+<td>节点只返回自己修改的字段，没改的字段 LangGraph 自动保留原值</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想</strong>：状态是<strong>增量</strong>的——每个节点只修改 return 的部分，LangGraph 自动合并到全局状态。</p></div><div class="cell markdown-cell"><h2 id="23">2.3 条件边原理</h2>
+<p>条件边（Conditional Edge）让图不再是固定路线，而是根据当前状态决定下一步走向。</p>
+<div class="codehilite"><pre><span></span><code>普通边<span class="w"> </span><span class="ss">(</span><span class="nv">Edge</span><span class="ss">)</span>:
+<span class="w">  </span><span class="nv">A</span><span class="w"> </span>→<span class="w"> </span><span class="nv">B</span><span class="w">  </span>（固定路线，不可变）
+
+条件边<span class="w"> </span><span class="ss">(</span><span class="nv">Conditional</span><span class="w"> </span><span class="nv">Edge</span><span class="ss">)</span>:
+<span class="w">  </span><span class="nv">A</span><span class="w"> </span>→<span class="w"> </span><span class="ss">(</span><span class="k">if</span><span class="w"> </span>条件<span class="nv">B</span><span class="w">  </span><span class="k">then</span><span class="w">  </span><span class="nv">B</span><span class="w">  </span><span class="k">if</span><span class="w"> </span>条件<span class="nv">C</span><span class="w">  </span><span class="k">then</span><span class="w">  </span><span class="nv">C</span>...<span class="ss">)</span><span class="w">  </span>
+<span class="w">  </span>判断函数返回字符串<span class="w"> </span>→<span class="w"> </span>决定走哪条路
+</code></pre></div>
+
+<p>条件边不可替代的两个能力：<strong>循环 + 分流</strong>。</p></div><div class="cell markdown-cell"><h2 id="24-ai">2.4 实战：条件边路由——AI客服品类分流</h2>
+<p><strong>业务场景</strong>：客户说出需求 → LLM 判断信息是否充分 → 条件边决定下一步：
+1. 信息不够 → 继续收集
+2. 信息够了 → 分类后分流给对应品类客服（手机 / 家电 / 服装）</p>
+<p>同一个条件边，能走向<strong>不同方向</strong>（继续收集 or 去分类），这就是条件边的核心价值。</p></div><div class="cell markdown-cell"><p>【注解】<code>add_conditional_edges(source, router_fn)</code>：LangGraph 的条件边方法。第一个参数是源节点名，第二个参数是路由函数。路由函数接收当前 state，返回一个字符串（目标节点名）。</p>
+<p>【注解】这里用了<strong>两组条件边</strong>来展示条件边的灵活性：
+- <strong>第 1 组</strong>（<code>judge → route</code>）：判断信息是否足够。不够就回 <code>ask</code> 继续收集，够了就去 <code>classify</code> 分类。
+- <strong>第 2 组</strong>（<code>classify → route2</code>）：根据分类结果分流到手机/家电/服装三个品类客服。</p>
+<p>两组条件边本质都是<strong>判断+分流</strong>——根据 state 中的某个值，走向不同的节点。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[36] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】从 model.py 导入已配置好的 LLM 实例
+from model import llm
+from typing import Annotated, TypedDict
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langchain_core.messages import HumanMessage
+
+# ---------- 第①步：定义状态 ----------
+class State(TypedDict):
+    &quot;&quot;&quot;AI客服状态：对话历史 + 信息是否足够 + 商品类别&quot;&quot;&quot;
+    messages: Annotated[list, add_messages]  # 对话消息，使用追加模式
+    enough: str                               # 信息是否足够：&quot;yes&quot; / &quot;no&quot;
+    category: str                             # 商品类别：手机/家电/服装
+
+# ---------- 第②步：定义节点 ----------
+def ask(state):
+    &quot;&quot;&quot;向用户提问，收集需求信息&quot;&quot;&quot;
+    msg = input(&quot;输入需求：&quot;)
+    return {&quot;messages&quot;: [HumanMessage(content=msg)]}
+
+def judge(state): 
+    &quot;&quot;&quot;判断是否已收集到足够的客户信息来确定商品类别&quot;&quot;&quot;
+    conversation = &quot;&quot;.join(m.content for m in state[&#x27;messages&#x27;])
+    print(&quot;conversation: &quot;,conversation)
+    prompt = f&quot;对话内容：{conversation}\n\n请判断是否能确定客户想要的商品类别（手机/家电/服装）？只需回答 yes 或 no。&quot;
+    reply = llm.invoke(prompt).content.strip().lower()
+    return {&quot;enough&quot;: &quot;yes&quot; if &quot;yes&quot; in reply else &quot;no&quot;}
+
+
+def classify(state):
+    chat = &quot; &quot;.join(m.content for m in state[&quot;messages&quot;])
+    prompt = (
+        &quot;你是一个商品分类器。\n&quot;
+        &quot;请根据对话内容，只回答一个词，不要解释。\n&quot;
+        &quot;可选类别：手机 / 家电 / 服装\n\n&quot;
+        f&quot;对话内容：{chat}&quot;
+    )
+    result = llm.invoke(prompt).content.strip()
+    return {&quot;category&quot;: result}
+
+def phone(s):
+    return {&quot;result&quot;: &quot;手机AI助手已接入&quot;}
+
+def appliance(s):
+    return {&quot;result&quot;: &quot;家电AI助手已接入&quot;}
+
+def clothing(s):
+    return {&quot;result&quot;: &quot;服装AI助手已接入&quot;}
+
+# ---------- 第②步 续：定义路由函数（为第③步做准备）----------
+def route(state):
+    &quot;&quot;&quot;条件边路由函数：判断信息是否足够&quot;&quot;&quot;
+    if state[&quot;enough&quot;] == &quot;no&quot;:
+        return &quot;ask&quot;         # 不够 → 继续收集
+    return &quot;classify&quot;         # 够了 → 去分类
+
+def route2(state):
+    &quot;&quot;&quot;条件边路由函数：按类别分流给不同的客服&quot;&quot;&quot;
+    if state[&quot;category&quot;] == &quot;手机&quot;:
+        return &quot;phone&quot;
+    if state[&quot;category&quot;] == &quot;家电&quot;:
+        return &quot;appliance&quot;
+    return &quot;clothing&quot;
+
+# ---------- 第③步：构建图 ----------
+builder = StateGraph(State)
+
+# 添加节点
+builder.add_node(&quot;ask&quot;, ask)
+builder.add_node(&quot;judge&quot;, judge)
+builder.add_node(&quot;classify&quot;, classify)
+builder.add_node(&quot;phone&quot;, phone)
+builder.add_node(&quot;appliance&quot;, appliance)
+builder.add_node(&quot;clothing&quot;, clothing)
+
+# 添加边
+builder.add_edge(START, &quot;ask&quot;)
+builder.add_edge(&quot;ask&quot;, &quot;judge&quot;)
+# 条件边 1：judge → ask（继续收集）或 classify（分类）
+builder.add_conditional_edges(&quot;judge&quot;, route)
+# 条件边 2：classify → 不同品类客服
+builder.add_conditional_edges(&quot;classify&quot;, route2)
+
+# 终点连接
+builder.add_edge(&quot;phone&quot;, END)
+builder.add_edge(&quot;appliance&quot;, END)
+builder.add_edge(&quot;clothing&quot;, END)
+
+# ---------- 第④步：编译并运行 ----------
+app = builder.compile()
+
+result = app.invoke({&quot;messages&quot;: [], &quot;enough&quot;: &quot;&quot;, &quot;category&quot;: &quot;&quot;})
+print(&quot;result category: &quot;,result[&#x27;category&#x27;])</code></pre>
+            <div class="output-area"><pre class="output">输入需求： 我想买个笔记本
+</pre><pre class="output">conversation:  我想买个笔记本
+result category:  家电
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><p>【注解】<code>state["enough"]</code>：通过字典键名取值。因为 State 继承自 TypedDict，所以 state 本质上是一个字典。</p>
+<p>【注解】路由函数返回值必须是字符串，且必须在图中存在对应的节点名。<code>route</code> 返回 <code>"ask"</code>（继续收集）或 <code>"classify"</code>（去分类），<code>route2</code> 返回三个品类节点之一。</p>
+<p>【注解】一个图可以有多个条件边。这里的 <code>judge</code> 用一个条件边（继续收集/去分类），<code>classify</code> 用另一个条件边（品类分流），各管各的。至于"回到之前的节点"的<strong>循环机制</strong>，下一章会专门详细讲解。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">练习题</h3>
+<p><strong>练习 1（基础）</strong>：增加一个 <code>book</code> 分类（图书），在 <code>classify</code> 的提示词和 <code>route2</code> 的条件里加上。</p>
+<p><strong>练习 2（进阶）</strong>：让 <code>classify</code> 同时输出 <code>category</code> 和 <code>department</code>（线下/线上）两个字段，<code>route2</code> 根据这两个字段分流到不同的最终节点（如<code>phone_online</code>、<code>phone_offline</code>等）。</p>
+<p><strong>练习 3（挑战）</strong>：当 <code>classify</code> 无法确定类别时（返回"未知"），<code>route2</code> 路由到 <code>human_support</code> 人工客服节点，而不是默认走 <code>clothing</code>。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>条件边做分支判断</td>
+<td><code>if enough=="no": return "ask"</code></td>
+<td>条件边可以根据 state 走向不同方向（继续收集 or 去分类）</td>
+</tr>
+<tr>
+<td>条件边做品类分流</td>
+<td><code>if cat=="手机": return "phone"</code></td>
+<td>条件边可以根据 LLM 分类结果走向不同的品类客服</td>
+</tr>
+<tr>
+<td>多个条件边</td>
+<td><code>judge</code> 用一个、<code>classify</code> 用一个</td>
+<td>一个图里可以有多个条件边，各管各的判断逻辑</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想</strong>：条件边 = <strong>岔路口的指示牌</strong>，根据当前 state 决定下一步走哪条路。</p>
+<blockquote>
+<p>条件边回到之前节点（如 <code>judge → ask</code>）涉及<strong>循环机制</strong>，下一章会专门详细讲解。</p>
+</blockquote></div><div class="cell markdown-cell"><hr />
+<h1 id="3">第3章：循环控制与综合案例</h1>
+<hr /></div><div class="cell markdown-cell"><h2 id="31">3.1 循环控制：考试补考</h2>
+<p><strong>场景</strong>：学生参加考试，如果不及格就补考，直到及格为止。</p>
+<p>这是条件边形成<strong>循环</strong>的典型用法：路由函数让流程回到之前的节点，反复执行。</p></div><div class="cell markdown-cell"><p>【注解】条件边可以形成<strong>循环</strong>：路由函数返回前面的节点名（如 <code>"take_exam"</code>），流程会跳回去重新执行那个节点。这是普通边做不到的。</p>
+<p>【注解】<code>random.randrange(start, stop, step)</code>：Python 内置函数，从 <code>range(start, stop, step)</code> 范围内随机选一个数。此处 <code>random.randrange(10, 91, 10)</code> 会返回 10/20/30.../90 中的一个。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[43] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】random：Python 内置的随机数模块，用于模拟考试随机打分
+import random
+# 【注解】TypedDict：Python 的类型注解工具，用来规定字典里每个字段的名字和类型
+from typing import TypedDict
+# 【注解】StateGraph：LangGraph 构建有向图的核心类
+# 【注解】START/END：LangGraph 内置的特殊节点，分别代表图的起点和终点
+from langgraph.graph import StateGraph, START, END
+
+# ---------- 第①步：定义状态 ----------
+class Chengji(TypedDict):
+    &quot;&quot;&quot;学生成绩状态：姓名、分数、等级、考试次数&quot;&quot;&quot;
+    name: str         # 学生姓名
+    score: int        # 考试成绩
+    grade: str        # 毕业状态
+    exam_count: int   # 考试次数（用于循环计数）
+
+# ---------- 第②步：定义节点 ----------
+def take_exam(state: Chengji):
+    &quot;&quot;&quot;随机生成一个考分（10~90，按10分段）&quot;&quot;&quot;
+    score = random.randrange(10, 91, 10)
+    cnt = state.get(&quot;exam_count&quot;, 0) + 1
+    print(f&quot;第{cnt}次考试 → {score}分&quot;)
+    return {&quot;score&quot;: score, &quot;exam_count&quot;: cnt}
+
+def pass_exam(state: Chengji):
+    &quot;&quot;&quot;通过考试，更新毕业状态&quot;&quot;&quot;
+    return {&quot;grade&quot;: &quot;毕业&quot;}
+
+# ---------- 第②步 续：定义路由函数（为第③步做准备）----------
+def route(state: Chengji) -&gt; str:
+    &quot;&quot;&quot;条件边路由函数：根据分数判断流程走向&quot;&quot;&quot;
+    if state[&#x27;score&#x27;] &gt;= 60:
+        print(&quot;及格！结束&quot;)
+        return &quot;pass_exam&quot;  # 及格 → 走向毕业
+    print(&quot;不及格，补考...&quot;)
+    return &quot;take_exam&quot;     # 不及格 → 循环回去补考 --自循环
+
+# ---------- 第③步：构建图 ----------
+builder = StateGraph(Chengji)
+builder.add_node(&quot;take_exam&quot;, take_exam)
+builder.add_node(&quot;pass_exam&quot;, pass_exam)
+
+builder.add_edge(START, &quot;take_exam&quot;)
+# 【注解】条件边：从 take_exam 出发，由 route 函数决定去 pass_exam 还是回 take_exam
+builder.add_conditional_edges(&quot;take_exam&quot;, route)
+builder.add_edge(&quot;pass_exam&quot;, END)
+
+# ---------- 第④步：编译并运行 ----------
+graph = builder.compile()
+
+result = graph.invoke({&quot;name&quot;: &quot;小明&quot;, &quot;score&quot;: 0, &quot;grade&quot;: &quot;&quot;, &quot;exam_count&quot;: 0})
+print(f&quot;result：{result}&quot;)</code></pre>
+            <div class="output-area"><pre class="output">第1次考试 → 30分
+不及格，补考...
+第2次考试 → 10分
+不及格，补考...
+第3次考试 → 50分
+不及格，补考...
+第4次考试 → 20分
+不及格，补考...
+第5次考试 → 60分
+及格！结束
+result：{&#x27;name&#x27;: &#x27;小明&#x27;, &#x27;score&#x27;: 60, &#x27;grade&#x27;: &#x27;毕业&#x27;, &#x27;exam_count&#x27;: 5}
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h2 id="32-human-in-the-loop">3.2 人工干预 (Human-in-the-Loop)</h2>
+<h3 id="_1">先理解三个概念</h3>
+<p><strong>1. <code>interrupt()</code></strong><br />
+LangGraph 的暂停函数。节点里调用它，图就挂起等外部唤醒。类似 <code>input()</code> 效果，但不阻塞。</p>
+<p><strong>2. <code>MemorySaver()</code></strong><br />
+检查点。<strong>必须配</strong>，用来保存暂停时的状态（跑到哪了、数据是什么）。没有它，interrupt 没法用。</p>
+<p><strong>3. <code>thread_id</code></strong><br />
+会话 ID。图编译时指定 <code>checkpointer</code> 后，每次 invoke 要带 <code>thread_id</code>，用来区分不同的对话，互不干扰。</p>
+<p><strong>关系</strong>：<code>MemorySaver</code>(存状态) + <code>thread_id</code>(区分会话) + <code>interrupt</code>(暂停点) = 可恢复的工作流</p></div><div class="cell markdown-cell"><p>【注解】<code>interrupt()</code>：LangGraph 的暂停函数。在节点中调用后，图会挂起并返回一个暂停状态给外部调用者，等待 <code>Command(resume=...)</code> 唤醒。</p>
+<p>【注解】<code>MemorySaver()</code>：LangGraph 的内存检查点。编译时传入 <code>checkpointer=memory</code> 后，图每次运行到 <code>interrupt()</code> 都会保存当前状态，后续可以通过 <code>get_state()</code> 查看。</p>
+<p>【注解】<code>thread_id</code>：会话标识。同一个图可以同时跑多个对话，<code>thread_id</code> 用来区分不同的会话上下文。</p></div><div class="cell markdown-cell"><p>【注解】<code>interrupt()</code> 的实际应用场景：
+- AI 编程工具生成代码 → <strong>等你点 Apply or delete</strong> → 才改/删文件
+- AI 要执行危险命令 → 等你授权 → 才执行</p>
+<p>核心原则就是：AI 能做决定的事让它做，需要人决策的地方必须 <code>interrupt()</code>。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[47] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】TypedDict：定义状态的字段结构
+# 【注解】Annotated：类型注解，配合 add_messages 实现消息追加
+from typing import TypedDict, Annotated
+# 【注解】add_messages：LangGraph 内置规约器，消息自动追加
+from langgraph.graph.message import add_messages
+# 【注解】StateGraph / START / END：构建有向图的核心组件
+from langgraph.graph import StateGraph, START, END
+# 【注解】MemorySaver：内存检查点，用于保存 interrupt 暂停时的状态
+from langgraph.checkpoint.memory import MemorySaver
+# 【注解】interrupt：暂停函数；Command：唤醒命令
+from langgraph.types import interrupt, Command
+# 【注解】AIMessage：AI 回复的消息类型
+from langchain_core.messages import AIMessage
+
+# ---------- 第①步：定义状态 ----------
+class ApprovalState(TypedDict):
+    &quot;&quot;&quot;审批状态：对话历史 + 待审核内容 + 是否通过&quot;&quot;&quot;
+    messages: Annotated[list, add_messages]  # 对话消息
+    content: str                             # 待审核的内容
+    approved: bool                           # 是否通过审批
+
+# ---------- 第②步：定义节点 ----------
+def generate_content(state: ApprovalState) -&gt; ApprovalState:
+    &quot;&quot;&quot;生成待审核的内容&quot;&quot;&quot;
+    return {&quot;content&quot;: &quot;AI 生成的草稿内容。&quot;}
+
+def human_review(state: ApprovalState) -&gt; ApprovalState:
+    &quot;&quot;&quot;中断图，等待人工审核&quot;&quot;&quot;
+    # 【注解】interrupt() 暂停图执行，返回给外部调用者
+    # 外部通过 Command(resume=...) 传入审核结果来恢复
+    review = interrupt({
+        &quot;message&quot;: &quot;请审核以下内容：&quot;,
+        &quot;content&quot;: state[&quot;content&quot;],
+    })
+    return {&quot;approved&quot;: review.get(&quot;approved&quot;, False)}
+
+
+def publish_content(state: ApprovalState) -&gt; ApprovalState:
+    &quot;&quot;&quot;根据审核结果发布或拒绝&quot;&quot;&quot;
+    if state[&quot;approved&quot;]:
+        return {&quot;messages&quot;: [AIMessage(&quot;✅ 内容已发布！&quot;)]}
+    return {&quot;messages&quot;: [AIMessage(&quot;❌ 内容被拒绝。&quot;)]}
+
+# ---------- 第③步：构建图 ----------
+builder = StateGraph(ApprovalState)
+# 添加节点
+builder.add_node(&quot;generate&quot;, generate_content)
+builder.add_node(&quot;review&quot;, human_review)
+builder.add_node(&quot;publish&quot;, publish_content)
+# 添加边
+builder.add_edge(START, &quot;generate&quot;)
+builder.add_edge(&quot;generate&quot;, &quot;review&quot;)
+builder.add_edge(&quot;review&quot;, &quot;publish&quot;)
+builder.add_edge(&quot;publish&quot;, END)
+
+# ---------- 第④步：编译并运行 ----------
+# 【注解】编图时必须传入 checkpointer，否则 interrupt() 无法工作
+memory = MemorySaver()
+graph = builder.compile(checkpointer=memory)
+config = {&quot;configurable&quot;: {&quot;thread_id&quot;: &quot;task-001&quot;}}
+
+# ========== Step 1: 启动图，走到 review 节点会暂停 ==========
+try:
+    graph.invoke({&quot;content&quot;: &quot;&quot;, &quot;approved&quot;: False, &quot;messages&quot;: []}, config)
+except:
+    pass  # interrupt() 抛异常暂停，属正常行为
+
+state = graph.get_state(config)
+print(f&quot; 待审核内容：{state.values.get(&#x27;content&#x27;)}&quot;)
+
+# ========== Step 2: 外部系统（这里用 input 模拟）审批 ==========
+cmd = input(&quot; 管理员审批 (approve / reject): &quot;).strip().lower()
+
+# ========== Step 3: Command(resume=...) 唤醒图继续 ==========
+# 【注解】Command(resume=...) 是外部恢复图执行的方式
+# resume 的内容会作为 interrupt() 的返回值传入节点
+result = graph.invoke(Command(resume={&quot;approved&quot;: cmd == &quot;approve&quot;}), config)
+print(f&quot;最终消息: {result[&#x27;messages&#x27;][-1].content}&quot;)</code></pre>
+            <div class="output-area"><pre class="output"> 待审核内容：AI 生成的草稿内容。
+</pre><pre class="output"> 管理员审批 (approve / reject):  reject
+</pre><pre class="output">最终消息: ❌ 内容被拒绝。
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h3 id="_1">练习题</h3>
+<p><strong>练习 1（基础）</strong>：把及格分数线从 60 分改成 80 分，运行观察循环次数变化。</p>
+<p><strong>练习 2（进阶）</strong>：在 <code>pass_exam</code> 后面加一个 <code>debrief</code> 节点（打印"考试总结：共尝试 X 次"），然后才到 END。这要求修改图结构。</p>
+<p><strong>练习 3（挑战）</strong>：在 State 中增加 <code>max_attempts</code> 字段。修改 <code>route</code> 函数，当补考次数超过限制时路由到 <code>fail</code>（留级）而不是继续循环。需要新增 <code>fail</code> 节点并连到 END。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>循环（条件边自环）</td>
+<td><code>return "take_exam"</code></td>
+<td>条件边指回自身节点，形成补考循环</td>
+</tr>
+<tr>
+<td>interrupt()</td>
+<td><code>interrupt(question)</code></td>
+<td>暂停图执行，等待外部输入恢复</td>
+</tr>
+<tr>
+<td>Command(resume)</td>
+<td><code>Command(resume=data)</code></td>
+<td>外部系统传入数据，唤醒暂停的图</td>
+</tr>
+<tr>
+<td>MemorySaver</td>
+<td><code>compile(checkpointer=memory)</code></td>
+<td>支持暂停/恢复的必要组件</td>
+</tr>
+<tr>
+<td>thread_id</td>
+<td><code>{"thread_id": "task-001"}</code></td>
+<td>会话标识，区分不同的对话上下文</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想</strong>：循环 + 人工干预 = <strong>可控的自动化</strong>——机器做事，人做决策。</p></div><div class="cell markdown-cell"><h2 id="33-ai">3.3 AI客服追问循环增强</h2>
+<p><strong>场景</strong>：在 2.4 节「AI客服信息收集」的基础上，将 <code>ask</code> 节点中硬编码的 <code>输入需求：</code> 改为由 LLM 根据对话历史生成针对性追问。其余代码（State、judge、classify、route、图结构）与 2.4 完全一致。</p>
+<p><strong>相比 2.4 仅有的改动</strong>：<code>ask</code> 节点中，首轮之后由 LLM 生成针对性追问取代硬编码提示，其余代码与 2.4 完全一致。</p></div><div class="cell markdown-cell"><p>【注解】本代码与 2.4 节的唯一区别：<code>ask</code> 节点中，当已有对话历史时（<code>state["messages"]</code> 非空），由 LLM 生成针对性追问，取代 2.4 中每次固定的 <code>输入需求：</code>。图结构、路由函数、其他节点与 2.4 完全一致。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[52] Code Cell</div>
+            <pre class="code-cell"><code class="python">from model import llm
+from typing import Annotated, TypedDict
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from langchain_core.messages import HumanMessage, AIMessage
+
+# ---------- 状态 ----------
+class State(TypedDict):
+    messages: Annotated[list, add_messages]
+    enough: str
+    category: str
+    turn: int
+
+# ---------- 节点 ----------
+def ask(state):
+    if state[&quot;messages&quot;]:
+        conversation = &quot; &quot;.join(m.content for m in state[&quot;messages&quot;])
+        prompt = llm.invoke(
+            &quot;你是一个客服，根据客户的回答自然追问。\n&quot;
+            f&quot;客户说：{conversation}\n&quot;
+            &quot;商品类别只有三种：手机、电脑、文具。\n&quot;
+            &quot;请用一句简短的话追问，帮他确认属于哪一类。\n&quot;
+            &quot;只输出问题本身。&quot;
+        ).content.strip()
+        prompt = prompt.split(&quot;\n&quot;)[0].strip()
+        print(f&quot;\n 客服追问：{prompt}&quot;)
+        # 把追问也存进消息历史，让 judge 看到完整的上下文
+        msg = input(&quot; 用户输入：&quot;)
+        return {&quot;messages&quot;: [AIMessage(content=prompt), HumanMessage(content=msg)],
+                &quot;turn&quot;: state[&quot;turn&quot;] + 1}
+    else:
+        print(&quot;\n 客服：有什么能帮到您？&quot;)
+        msg = input(&quot; 用户输入：&quot;)
+        return {&quot;messages&quot;: [HumanMessage(content=msg)], &quot;turn&quot;: state[&quot;turn&quot;] + 1}
+
+def judge(state):
+    conversation = &quot; &quot;.join(m.content for m in state[&quot;messages&quot;])
+    prompt = (
+        f&quot;对话内容：{conversation}\n\n&quot;
+        &quot;请判断根据现有对话，是否已经足够确定客户想买的是【手机、电脑、文具】中的哪一类？\n&quot;
+        &quot;只需回答 yes 或 no。&quot;
+    )
+    reply = llm.invoke(prompt).content.strip().lower()
+    return {&quot;enough&quot;: &quot;yes&quot; if &quot;yes&quot; in reply else &quot;no&quot;}
+
+def classify(state):
+    chat = &quot; &quot;.join(m.content for m in state[&quot;messages&quot;])
+    prompt = (
+        &quot;你是一个商品分类器。\n&quot;
+        &quot;根据用户与助手的对话内容，准确的回答用户想买的商品类别，只回答一个类别词：手机 / 电脑 / 文具\n&quot;
+        &quot;不要解释。\n\n&quot;
+        f&quot;对话内容：{chat}&quot;
+    )
+    return {&quot;category&quot;: llm.invoke(prompt).content.strip()}
+
+def phone(s):     return {&quot;category&quot;: &quot;手机&quot;}
+def computer(s):  return {&quot;category&quot;: &quot;电脑&quot;}
+def stationery(s): return {&quot;category&quot;: &quot;文具&quot;}
+
+# ---------- 路由 ----------
+def route(state):
+    if state[&quot;enough&quot;] == &quot;no&quot; and state[&quot;turn&quot;] &lt; 3:
+        return &quot;ask&quot;          # ← 这就是 LangGraph 的循环！
+    return &quot;classify&quot;
+
+def route2(state):
+    if state[&quot;category&quot;] == &quot;手机&quot;: return &quot;phone&quot;
+    if state[&quot;category&quot;] == &quot;电脑&quot;: return &quot;computer&quot;
+    return &quot;stationery&quot;
+
+# ---------- 构图 ----------
+builder = StateGraph(State)
+for name, fn in [(&quot;ask&quot;, ask), (&quot;judge&quot;, judge), (&quot;classify&quot;, classify),
+                  (&quot;phone&quot;, phone), (&quot;computer&quot;, computer), (&quot;stationery&quot;, stationery)]:
+    builder.add_node(name, fn)
+
+builder.add_edge(START, &quot;ask&quot;)
+builder.add_edge(&quot;ask&quot;, &quot;judge&quot;)
+builder.add_conditional_edges(&quot;judge&quot;, route)
+builder.add_conditional_edges(&quot;classify&quot;, route2)
+builder.add_edge(&quot;phone&quot;, END)
+builder.add_edge(&quot;computer&quot;, END)
+builder.add_edge(&quot;stationery&quot;, END)
+
+# ---------- 运行 ----------
+app = builder.compile()
+result = app.invoke({&quot;messages&quot;: [], &quot;enough&quot;: &quot;&quot;, &quot;category&quot;: &quot;&quot;, &quot;turn&quot;: 0})
+print(f&quot;\n最终分类结果：{result[&#x27;category&#x27;]}&quot;)
+</code></pre>
+            <div class="output-area"><pre class="output">✅ DeepSeek V4 Flash 已就绪，开始学习！
+
+ 客服：有什么能帮到您？
+</pre><pre class="output"> 用户输入： 笔记本电脑
+</pre><pre class="output">
+ 客服追问：请问您说的是笔记本电脑，属于电脑类吗？
+</pre><pre class="output"> 用户输入： 对
+</pre><pre class="output">
+最终分类结果：电脑
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基于 2.4</td>
+<td>State、节点、图结构完全复用</td>
+<td>只改了 ask 节点的追问话术逻辑</td>
+</tr>
+<tr>
+<td>LLM 追问</td>
+<td><code>if state["messages"]: llm.invoke(追问提示)</code></td>
+<td>有历史时由LLM针对性追问，否则用固定提示</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想</strong>：在 2.4 代码基础上，只改 <code>ask</code> 节点中追问话术生成方式，其余代码完全不动。</p></div><div class="cell markdown-cell"><hr />
+<h1 id="4autogpt-babyagi-agent">第4章：AutoGPT 与 BabyAGI（单 Agent 自主循环）</h1>
+<hr /></div><div class="cell markdown-cell"><h2 id="41-autogpt">4.1 AutoGPT 核心循环</h2>
+<p>AutoGPT 是一个单 Agent 自主循环系统，核心是 <strong>拆解 → 执行 → 观察 → 再拆解</strong> 的循环：</p>
+<ol>
+<li><strong>拆解任务</strong>：用 LLM 生成当前该做的任务列表</li>
+<li><strong>执行任务</strong>：取第一个任务，模拟执行</li>
+<li><strong>观察决策</strong>：还有任务 → <strong>回到第 1 步重新拆解</strong>；没了 → 结束</li>
+</ol>
+<blockquote>
+<p>和 BabyAGI 不同：AutoGPT 每次回到 <strong>think（重新生成）</strong>，
+可以根据执行结果<strong>增删改</strong>任务列表，而 BabyAGI 只对已有任务<strong>重排顺序</strong>。</p>
+<p>简单记：AutoGPT = <strong>重做计划</strong>，BabyAGI = <strong>重排顺序</strong>。</p>
+</blockquote></div><div class="cell markdown-cell"><h3 id="1">第①步：定义状态</h3></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[57] Code Cell</div>
+            <pre class="code-cell"><code class="python">from model import llm
+from typing import TypedDict
+
+class AutoGPTState(TypedDict):
+    &quot;&quot;&quot;AutoGPT 状态：只有 3 个字段&quot;&quot;&quot;
+    objective: str    # 总目标
+    tasks: list       # 当前任务列表（每次 think 都可能变）
+    result: str       # 上一步执行结果
+</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><h3 id="2">第②步：定义节点</h3>
+<p>AutoGPT 只需要 <strong>2 个节点 + 1 条条件边</strong>：
+1. <strong>think</strong>：LLM 生成/重新规划任务列表（每次执行完都回到这里）
+2. <strong>act</strong>：取第一个任务执行 → 移除它
+3. <strong>route</strong>：还有任务 → <strong>回 think 重新规划</strong>；没任务/满 3 步 → 结束</p>
+<blockquote>
+<p>和 BabyAGI 的区别：
+- AutoGPT （LLM 重新生成，可以加新任务、删任务）
+- BabyAGI （只移除已完成任务，重排剩余）</p>
+</blockquote></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[59] Code Cell</div>
+            <pre class="code-cell"><code class="python">from langchain_core.messages import HumanMessage
+from langgraph.graph import StateGraph, START, END
+
+# 节点 1：拆解任务
+def think(state: AutoGPTState):
+    &quot;&quot;&quot;拆解任务：首次从目标拆分，后续根据结果调整&quot;&quot;&quot;
+    if state[&quot;result&quot;]:
+        remaining = &quot;、&quot;.join(state[&quot;tasks&quot;])
+        prompt = f&quot;&quot;&quot;目标：{state[&#x27;objective&#x27;]}
+已完成：{state[&#x27;result&#x27;]}
+剩余任务：{remaining}
+
+请安排剩余任务。除非上一步结果提示有必要调整，否则原样输出。每行一个。&quot;&quot;&quot;
+    else:
+        prompt = f&quot;目标：{state[&#x27;objective&#x27;]}    请按顿号分隔的子项拆成任务，每个子项作为一个任务，不要进一步拆分。每行一个，不要序号。&quot;
+
+    response = llm.invoke([HumanMessage(content=prompt)])
+    tasks = [t.strip() for t in response.content.strip().split(&quot;\n&quot;) if t.strip()]
+    label = &quot;再次拆解&quot; if state[&quot;result&quot;] else &quot;初次拆解&quot;
+    print(f&quot;\n[{label}] 当前任务列表（{len(tasks)} 个）：&quot;)
+    return {&quot;tasks&quot;: tasks}
+
+
+# =================== 节点 2：执行任务 ===================
+def act(state: AutoGPTState):
+    &quot;&quot;&quot;【执行任务】取第一个任务，模拟执行&quot;&quot;&quot;
+    task = state[&quot;tasks&quot;][0]
+    print(f&quot;\n[执行任务] {task}&quot;)
+    print(f&quot;[完成] ✅ {task}&quot;)
+    # 移除已执行任务，记录结果
+    remaining_task = state[&quot;tasks&quot;][1:]
+    return {&quot;tasks&quot;: remaining_task, &quot;result&quot;: task}
+
+# =================== 条件边：观察决策 ===================
+def route(state: AutoGPTState):
+    &quot;&quot;&quot;【观察决策】
+    - 还有任务 → 回 think 再次拆解（AutoGPT 的精髓）
+    - 没任务   → 结束
+    &quot;&quot;&quot;
+    if state[&quot;tasks&quot;]:
+        print(f&quot;[观察决策] 还剩 {len(state[&#x27;tasks&#x27;])} 个任务，继续...\n&quot;)
+        return &quot;think&quot;
+        
+    print(&quot;[观察决策] 全部完成！\n&quot;)
+    return &quot;__end__&quot;
+</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><h3 id="3">第③步：构建循环图</h3>
+<p>AutoGPT 的循环流程（注意 route 回到 think）：</p>
+<div class="codehilite"><pre><span></span><code>         <span class="err">┌──────────────────────┐</span>
+    <span class="err">┌→</span>   <span class="err">│</span>       <span class="n">think</span>          <span class="err">│</span> <span class="err">←</span> <span class="err">初次拆解</span> <span class="o">/</span> <span class="err">重新规划任务</span>
+    <span class="err">│</span>    <span class="err">└──────────┬───────────┘</span>
+    <span class="err">│</span>               <span class="err">↓</span>
+    <span class="err">│</span>    <span class="err">┌──────────┴───────────┐</span>
+    <span class="err">│</span>    <span class="err">│</span>        <span class="n">act</span>           <span class="err">│</span> <span class="err">←</span> <span class="err">取第一个任务执行</span>
+    <span class="err">│</span>    <span class="err">└──────────┬───────────┘</span>
+    <span class="err">│</span>               <span class="err">↓</span>
+    <span class="err">│</span>    <span class="err">┌──────────┴───────────┐</span>
+    <span class="err">└────┤</span>       <span class="n">route</span>         <span class="err">│</span> <span class="err">←</span> <span class="err">还有任务？→</span> <span class="err">回</span> <span class="n">think</span> <span class="err">重新规划</span>
+         <span class="err">└──────────────────────┘─────→</span> <span class="kr">END</span><span class="err">（清空时结束）</span>
+</code></pre></div>
+
+<blockquote>
+<p><strong>和 BabyAGI 对比</strong>：
+- AutoGPT：think → act → <strong>think</strong> → act → ...（每次重新生成）
+- BabyAGI：decompose → act → <strong>reprioritize</strong> → act → ...（只重排顺序）</p>
+</blockquote></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[61] Code Cell</div>
+            <pre class="code-cell"><code class="python">builder = StateGraph(AutoGPTState)
+builder.add_node(&quot;think&quot;, think)
+builder.add_node(&quot;act&quot;, act)
+builder.add_edge(START, &quot;think&quot;)           # 启动 → 拆解
+builder.add_edge(&quot;think&quot;, &quot;act&quot;)           # 拆完 → 执行
+builder.add_conditional_edges(&quot;act&quot;, route) # 执行完 → 回 think 或结束
+</code></pre>
+            <div class="output-area"><pre class="output">&lt;langgraph.graph.state.StateGraph at 0x208f76dfac0&gt;</pre></div>
+        </div>
+        <div class="cell markdown-cell"><h3 id="4">第④步：编译并运行</h3>
+<p>启动 AutoGPT 真实循环：
+1. <strong>初次拆解</strong> → LLM 生成任务 <code>[a, b, c]</code>
+2. <strong>执行任务</strong> → 取 a 执行 → 移除 a
+3. <strong>再次拆解</strong> → LLM 根据结果继续安排剩余任务（必要时可加新任务）
+4. <strong>循环 2~3</strong>，直到任务清空结束</p>
+<blockquote>
+<p><strong>AutoGPT vs BabyAGI</strong>：
+- AutoGPT 每次回 <strong>think</strong>：LLM 可以<strong>重新生成</strong>任务列表
+- BabyAGI 每次回 <strong>execute_next</strong>：只移除已完成任务，LLM 仅<strong>重排</strong>剩余</p>
+</blockquote></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[63] Code Cell</div>
+            <pre class="code-cell"><code class="python">app = builder.compile()
+
+result = app.invoke({ &quot;objective&quot;: &quot;帮小明完成周末作业：做完数学卷子、背 20 个英语单词、写一篇 300 字日记&quot;,&quot;result&quot;:&quot;&quot;})</code></pre>
+            <div class="output-area"><pre class="output">
+[初次拆解] 当前任务列表（3 个）：
+
+[执行任务] 做完数学卷子
+[完成] ✅ 做完数学卷子
+[观察决策] 还剩 2 个任务，继续...
+
+
+[再次拆解] 当前任务列表（2 个）：
+
+[执行任务] 背20个英语单词
+[完成] ✅ 背20个英语单词
+[观察决策] 还剩 1 个任务，继续...
+
+
+[再次拆解] 当前任务列表（1 个）：
+
+[执行任务] 写一篇300字日记
+[完成] ✅ 写一篇300字日记
+[观察决策] 全部完成！
+
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h2 id="42-babyagi">4.2 BabyAGI — 任务驱动的循环执行</h2>
+<p>BabyAGI 的核心是一个 <strong>任务队列 + 优先级重排 + 循环执行</strong> 模式：
+1. <strong>任务队列</strong>：按优先级从高到低排列的任务列表
+2. <strong>逐个执行</strong>：从队列头部取出最高优任务执行
+3. <strong>LLM 动态重排</strong>：根据执行结果，让 LLM 重新评估剩余任务的优先级
+4. <strong>自动结束</strong>：队列为空时循环停止</p>
+<blockquote>
+<p>BabyAGI 的灵魂是 <strong>「取最高优 → 执行 → 根据结果重排剩余任务 → 继续」</strong> 的持续循环。</p>
+<p>这里的 <strong>重排</strong> 不是写死的，而是用 LLM 动态决策，这才符合真实的 BabyAGI。</p>
+</blockquote>
+<p>为了讲课效率，本示例使用<strong>硬编码任务</strong>（跳过 LLM 拆解，聚焦于 <strong>循环 + 动态重排</strong> 机制）。</p></div><div class="cell markdown-cell"><h3 id="1">第①步：定义状态</h3></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[66] Code Cell</div>
+            <pre class="code-cell"><code class="python">from model import llm
+from typing import TypedDict
+from langgraph.graph import StateGraph, START, END
+
+class BabyAGIState(TypedDict):
+    &quot;&quot;&quot;BabyAGI 状态：只有 3 个字段&quot;&quot;&quot;
+    objective: str       # 总目标
+    tasks: list          # 任务列表（字符串列表）
+    result: str          # 执行结果
+</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><h3 id="2">第②步：定义节点</h3>
+<p>BabyAGI 只需要 <strong>3 个节点</strong>：
+1. <strong>decompose</strong>：初始化任务队列（按优先级从高到低排列）
+2. <strong>execute_next</strong>：从队列取出第一个任务 → 模拟执行 → 移除它
+3. <strong>reprioritize</strong>（新）：用 LLM 根据执行结果<strong>动态重排</strong>剩余任务的优先级</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[68] Code Cell</div>
+            <pre class="code-cell"><code class="python">from langchain_core.messages import HumanMessage
+
+# =================== 节点 1：初始化任务队列 ===================
+def decompose(state: BabyAGIState):
+    &quot;&quot;&quot;初始化任务队列，按优先级从高到低排列&quot;&quot;&quot;
+    tasks = [
+        &quot;做数学作业&quot;,         # 今晚要交，最急
+        &quot;复习英语单词&quot;,       # 明天听写
+        &quot;写作文&quot;,             # 后天交
+        &quot;整理笔记&quot;,           # 不着急
+        &quot;预习明天课程&quot;,       # 有空再做
+    ]
+    print(f&quot;[拆解] 得到 {len(tasks)} 个子任务&quot;)
+    for t in tasks:
+        print(f&quot;  - {t}&quot;)
+    return {&quot;tasks&quot;: tasks}
+
+# =================== 节点 2：执行单个任务 ===================
+def execute_next(state: BabyAGIState):
+    &quot;&quot;&quot;取出第一个任务，模拟执行&quot;&quot;&quot;
+    task = state[&quot;tasks&quot;][0]
+    result = f&quot;已完成：{task}&quot;
+    print(f&quot;\n[执行] {task}&quot;)
+    print(f&quot;[结果] {result}&quot;)
+    # 移除已执行的任务，剩下未完成的交给 LLM 重排
+    return {&quot;tasks&quot;: state[&quot;tasks&quot;][1:], &quot;result&quot;: result}
+
+# =================== 节点 3：LLM 动态重排优先级 ===================
+def reprioritize(state: BabyAGIState):
+    &quot;&quot;&quot;用 LLM 根据结果重新排剩余任务的顺序
+    
+    这是 BabyAGI 的灵魂：每次做完一个任务后，
+    让 AI 根据刚才的完成情况重新思考「剩下哪个最重要」，
+    而不是死板地按最初顺序走。
+    &quot;&quot;&quot;
+    if not state[&quot;tasks&quot;]:
+        return {&quot;tasks&quot;: []}
+    
+    remaining = &quot;\n&quot;.join(state[&quot;tasks&quot;])
+    prompt = f&quot;目标：{state[&#x27;objective&#x27;]}\n刚完成：{state[&#x27;result&#x27;]}\n剩余任务：\n{remaining}\n重新排序，最重要的在前。只输出任务名，每行一个，不要序号。&quot;
+    
+    response = llm.invoke([HumanMessage(content=prompt)])
+    # 读取 LLM 返回的内容，去掉空行，得到新顺序
+    new_tasks = [line.strip() for line in response.content.strip().split(&quot;\n&quot;) if line.strip()]
+    
+    print(f&quot;\n[LLM 重排] 根据「{state[&#x27;result&#x27;]}」重新思考任务顺序：&quot;)
+    for i, t in enumerate(new_tasks, 1):
+        print(f&quot;  {i}. {t}&quot;)
+    
+    return {&quot;tasks&quot;: new_tasks}
+</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><h3 id="3">第③步：构建循环图</h3>
+<p>BabyAGI 的循环流程（3 个节点 + 1 条条件边）：</p>
+<div class="codehilite"><pre><span></span><code>              <span class="err">┌──────────────┐</span>
+              <span class="err">│</span>  <span class="n">decompose</span>   <span class="err">│</span> <span class="err">←</span> <span class="err">初始化任务队列（仅一次）</span>
+              <span class="err">└──────┬───────┘</span>
+                     <span class="err">↓</span>
+              <span class="err">┌──────────────┐</span>
+              <span class="err">│</span> <span class="n">execute_next</span> <span class="err">│</span> <span class="err">←</span> <span class="err">取最高优任务</span> <span class="err">→</span> <span class="err">执行</span> <span class="err">→</span> <span class="err">移除</span>
+              <span class="err">└──────┬───────┘</span>
+                     <span class="err">↓</span>
+              <span class="err">┌──────────────┐</span>
+         <span class="err">┌→</span>   <span class="err">│</span> <span class="n">reprioritize</span> <span class="err">│</span> <span class="err">←</span> <span class="err">🆕</span> <span class="n">LLM</span> <span class="err">根据结果重排剩余任务</span>
+         <span class="err">│</span>    <span class="err">└──────┬───────┘</span>
+         <span class="err">│</span>           <span class="err">↓</span>  <span class="p">(</span><span class="err">还有任务？</span><span class="p">)</span>
+         <span class="err">└───────────┘─────→</span> <span class="kr">END</span>
+</code></pre></div>
+
+<blockquote>
+<p><strong>循环终止条件</strong>：任务队列 <code>tasks</code> 被逐步清空，条件边检测到空队列时自动走向 END。</p>
+</blockquote></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[70] Code Cell</div>
+            <pre class="code-cell"><code class="python">def route(state: BabyAGIState):
+    &quot;&quot;&quot;条件边：有任务就循环（回到 execute_next），没任务就结束&quot;&quot;&quot;
+    if state[&quot;tasks&quot;]:
+        print(&quot;[路由] 还有任务 → 继续循环\n&quot;)
+        return &quot;execute_next&quot;
+    print(&quot;[路由] 任务全部完成 → 结束\n&quot;)
+    return &quot;__end__&quot;
+
+builder = StateGraph(BabyAGIState)
+builder.add_node(&quot;decompose&quot;, decompose)
+builder.add_node(&quot;execute_next&quot;, execute_next)
+builder.add_node(&quot;reprioritize&quot;, reprioritize)
+builder.add_edge(START, &quot;decompose&quot;)
+builder.add_edge(&quot;decompose&quot;, &quot;execute_next&quot;)
+builder.add_edge(&quot;execute_next&quot;, &quot;reprioritize&quot;)   # 执行完 → 先重排
+builder.add_conditional_edges(&quot;reprioritize&quot;, route) # 重排完 → 判断是否继续
+</code></pre>
+            <div class="output-area"><pre class="output">&lt;langgraph.graph.state.StateGraph at 0x2610d647ee0&gt;</pre></div>
+        </div>
+        <div class="cell markdown-cell"><h3 id="4">第④步：编译并运行</h3>
+<p>启动 BabyAGI 循环：
+1. <strong>decompose</strong> → 初始化任务队列
+2. <strong>execute_next</strong> → 取最高优任务执行（此处模拟执行）
+3. <strong>reprioritize</strong> → LLM 根据执行结果动态重排剩余任务优先级
+4. 循环步骤 2~3，直到队列清空</p>
+<blockquote>
+<p>每次执行后 LLM 都会重新评估「谁更优先」，这就是 BabyAGI 比普通顺序执行 smart 的核心原因！</p>
+</blockquote></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[72] Code Cell</div>
+            <pre class="code-cell"><code class="python">app = builder.compile()
+
+result = app.invoke({
+    &quot;objective&quot;: &quot;完成今晚的家庭作业&quot;,
+    &quot;tasks&quot;: [],
+    &quot;result&quot;: &quot;&quot;,
+})
+
+print(&quot;\n&quot; + &quot;=&quot; * 40)
+print(&quot;  ✅ 所有作业任务执行完毕&quot;)
+print(&quot;=&quot; * 40)
+print(f&quot;最后完成的是：{result[&#x27;result&#x27;]}&quot;)
+</code></pre>
+            <div class="output-area"><pre class="output">[拆解] 得到 5 个子任务
+  - 做数学作业
+  - 复习英语单词
+  - 写作文
+  - 整理笔记
+  - 预习明天课程
+
+[执行] 做数学作业
+[结果] 已完成：做数学作业
+
+[LLM 重排] 根据「已完成：做数学作业」重新思考任务顺序：
+  1. 复习英语单词
+  2. 写作文
+  3. 整理笔记
+  4. 预习明天课程
+[路由] 还有任务 → 继续循环
+
+
+[执行] 复习英语单词
+[结果] 已完成：复习英语单词
+
+[LLM 重排] 根据「已完成：复习英语单词」重新思考任务顺序：
+  1. 写作文
+  2. 整理笔记
+  3. 预习明天课程
+[路由] 还有任务 → 继续循环
+
+
+[执行] 写作文
+[结果] 已完成：写作文
+
+[LLM 重排] 根据「已完成：写作文」重新思考任务顺序：
+  1. 整理笔记
+  2. 预习明天课程
+[路由] 还有任务 → 继续循环
+
+
+[执行] 整理笔记
+[结果] 已完成：整理笔记
+
+[LLM 重排] 根据「已完成：整理笔记」重新思考任务顺序：
+  1. 预习明天课程
+[路由] 还有任务 → 继续循环
+
+
+[执行] 预习明天课程
+[结果] 已完成：预习明天课程
+[路由] 任务全部完成 → 结束
+
+
+========================================
+  ✅ 所有作业任务执行完毕
+========================================
+最后完成的是：已完成：预习明天课程
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><h3 id="_1">练习题</h3>
+<ol>
+<li>基础：修改 <code>decompose</code> 中的任务列表，增加或减少任务数，观察循环次数变化</li>
+<li>进阶：在 <code>execute_next</code> 中加一个 <code>max_iterations</code> 计数器，超过 3 次就强制结束（防止无限循环）</li>
+<li>挑战：把硬编码任务改成 LLM 拆解（参考上面的 <code>llm.invoke</code> 用法），让 BabyAGI 真正智能化</li>
+</ol></div><div class="cell markdown-cell"><h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AutoGPT（拆解任务）</td>
+<td><code>think</code>节点：生成/重新生成任务列表</td>
+<td>每次执行完都重新规划（可增删改）</td>
+</tr>
+<tr>
+<td>AutoGPT（执行任务）</td>
+<td><code>act</code>节点：取第一个任务执行</td>
+<td>执行一个 → 回到 think 重新规划</td>
+</tr>
+<tr>
+<td>AutoGPT（观察决策）</td>
+<td><code>route</code>条件边：回 think 或结束</td>
+<td>还有任务→回 think 重新生成</td>
+</tr>
+<tr>
+<td>BabyAGI（状态定义）</td>
+<td><code>class BabyAGIState(TypedDict)</code></td>
+<td>3 个字段：目标 + 任务列表 + 结果</td>
+</tr>
+<tr>
+<td>BabyAGI（初始化队列）</td>
+<td><code>decompose</code>节点：初始化任务列表</td>
+<td>任务按优先级排好放入队列</td>
+</tr>
+<tr>
+<td>BabyAGI（循环执行）</td>
+<td><code>execute_next</code>节点：取任务→执行→移除</td>
+<td>每次只做最高优的一个任务</td>
+</tr>
+<tr>
+<td>BabyAGI（动态重排）</td>
+<td><code>reprioritize</code>节点：LLM 重排剩余任务</td>
+<td>根据上一步结果重新评估谁更重要</td>
+</tr>
+<tr>
+<td>条件边控制循环</td>
+<td><code>add_conditional_edges</code></td>
+<td>根据状态决定继续还是结束</td>
+</tr>
+<tr>
+<td>单Agent自主系统</td>
+<td>StateGraph + 循环边</td>
+<td>一个 Agent 完成全部工作</td>
+</tr>
+</tbody>
+</table></div><div class="cell markdown-cell"><hr />
+<h1 id="5-agent">第5章：多 Agent 协作系统（层级主管与协作辩论）</h1>
+<hr /></div><div class="cell markdown-cell"><h2 id="51">5.1 层级主管模式原理</h2>
+<p>主管模式的核心是<strong>分而治之</strong>——一个主管 Agent 负责拆解任务、分发给多个专家 Agent，然后汇总结果。</p>
+<div class="codehilite"><pre><span></span><code>                 ┌───── 主管Agent ─────┐
+                 │  分解任务 | 汇总结果 │
+                 └──┬────────┬────────┬─┘
+                    ↓        ↓        ↓
+                ┌──────┐ ┌──────┐ ┌──────┐
+                │技术  │ │市场  │ │财务  │
+                │Agent │ │Agent │ │Agent │
+                └──────┘ └──────┘ └──────┘
+</code></pre></div>
+
+<p>关键概念：
+- <strong>Fan-out（分发）</strong>：一个节点指向多个节点，任务并行分发
+- <strong>Fan-in（汇聚）</strong>：多个节点指向同一个节点，等待所有完成后汇总</p>
+<blockquote>
+<p>本节的实现采用 <strong>并行 Fan-out/Fan-in</strong> 模式，三个专家同时执行。</p>
+</blockquote></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[77] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】TypedDict：定义状态的字段结构
+# 【注解】Annotated + add_messages：消息追加模式
+from typing import Annotated, TypedDict
+# 【注解】StateGraph / START / END：构建有向图的核心组件
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from IPython.display import display, Markdown
+
+# ---------- 第①步：定义状态 ----------
+class BusinessPlanState(TypedDict):
+    &quot;&quot;&quot;商业计划书状态：包含主管任务 + 各专家分析结果 + 最终计划&quot;&quot;&quot;
+    messages: Annotated[list, add_messages]
+    task: str                       # 初始任务描述
+    market_analysis: str            # 市场专家分析结果
+    tech_feasibility: str           # 技术专家评估结果
+    financial_projection: str       # 财务专家预测结果
+    final_plan: str                 # 主管汇总的最终计划书
+
+# ---------- 第②步：定义节点 ----------
+# 主管节点
+def supervisor_agent(state: BusinessPlanState) -&gt; BusinessPlanState:
+    &quot;&quot;&quot;主管 Agent：接收任务&quot;&quot;&quot;
+    print(&quot; 主管 Agent: 分解任务完成&quot;)
+    return {&quot;task&quot;: state[&quot;task&quot;]}
+
+def supervisor_final(state: BusinessPlanState) -&gt; BusinessPlanState:
+    &quot;&quot;&quot;主管 Agent：汇总各专家结果生成最终计划书&quot;&quot;&quot;
+    plan = f&#x27;&#x27;&#x27;## 商业计划书
+### 市场分析
+{state.get(&#x27;market_analysis&#x27;, &#x27;&#x27;)}
+### 技术可行性
+{state.get(&#x27;tech_feasibility&#x27;, &#x27;&#x27;)}
+### 财务预测
+{state.get(&#x27;financial_projection&#x27;, &#x27;&#x27;)}&#x27;&#x27;&#x27;
+    print(&quot; 主管 Agent: 汇总完成&quot;)
+    return {&quot;final_plan&quot;: plan}
+
+# 专家节点
+def market_agent(state: BusinessPlanState) -&gt; BusinessPlanState:
+    &quot;&quot;&quot;市场专家：分析市场情况&quot;&quot;&quot;
+    print(&quot; Market Agent: 分析市场...&quot;)
+    return {&quot;market_analysis&quot;: &quot;市场规模预计500亿，目标用户25-35岁。&quot;}
+
+def tech_agent(state: BusinessPlanState) -&gt; BusinessPlanState:
+    &quot;&quot;&quot;技术专家：评估技术可行性&quot;&quot;&quot;
+    print(&quot; Tech Agent: 评估技术...&quot;)
+    return {&quot;tech_feasibility&quot;: &quot;技术方案可行，需要6个月开发。&quot;}
+
+def financial_agent(state: BusinessPlanState) -&gt; BusinessPlanState:
+    &quot;&quot;&quot;财务专家：预测财务状况&quot;&quot;&quot;
+    print(&quot; Financial Agent: 预测财务...&quot;)
+    return {&quot;financial_projection&quot;: &quot;初期投入200万，预计18个月回本。&quot;}
+
+# ---------- 第③步：构建图（并行版本） ----------
+builder = StateGraph(BusinessPlanState)
+builder.add_node(&quot;task_receiver&quot;, supervisor_agent)         # 主管接收任务
+builder.add_node(&quot;supervisor_aggregator&quot;, supervisor_final) # 主管汇总专家结果
+builder.add_node(&quot;market_expert&quot;, market_agent)              # 市场专家
+builder.add_node(&quot;tech_expert&quot;, tech_agent)                  # 技术专家
+builder.add_node(&quot;financial_expert&quot;, financial_agent)        # 财务专家
+
+# 【Fan-out】分发到三个专家，三个专家并行执行
+builder.add_edge(START, &quot;task_receiver&quot;)
+builder.add_edge(&quot;task_receiver&quot;, &quot;market_expert&quot;)
+builder.add_edge(&quot;task_receiver&quot;, &quot;tech_expert&quot;)
+builder.add_edge(&quot;task_receiver&quot;, &quot;financial_expert&quot;)
+
+# 【Fan-in】三个专家都完成后，自动触发汇聚节点
+builder.add_edge(&quot;market_expert&quot;, &quot;supervisor_aggregator&quot;)
+builder.add_edge(&quot;tech_expert&quot;, &quot;supervisor_aggregator&quot;)
+builder.add_edge(&quot;financial_expert&quot;, &quot;supervisor_aggregator&quot;)
+
+# 汇聚完成 → 结束
+builder.add_edge(&quot;supervisor_aggregator&quot;, END)
+
+# ---------- 第④步：编译并运行 ----------
+graph = builder.compile()
+
+result = graph.invoke({
+    &quot;task&quot;: &quot;评估开发AI客服的商业可行性&quot;,
+    &quot;market_analysis&quot;: &quot;&quot;, &quot;tech_feasibility&quot;: &quot;&quot;,
+    &quot;financial_projection&quot;: &quot;&quot;, &quot;final_plan&quot;: &quot;&quot;,
+})
+
+
+print(f&quot;-----最终计划书---:\n{result[&#x27;final_plan&#x27;]}&quot;)</code></pre>
+            <div class="output-area"><pre class="output"> 主管 Agent: 分解任务完成
+ Market Agent: 分析市场...
+ Tech Agent: 评估技术...
+ Financial Agent: 预测财务...
+ 主管 Agent: 汇总完成
+-----最终计划书---:
+## 商业计划书
+### 市场分析
+市场规模预计500亿，目标用户25-35岁。
+### 技术可行性
+技术方案可行，需要6个月开发。
+### 财务预测
+初期投入200万，预计18个月回本。
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><p>【注解】这里是<strong>并行 Fan-out/Fan-in 模式</strong>：<code>task_receiver</code> 通过 3 条普通边同时分发到三个专家（Fan-out），三个专家各自写不同的字段（互不冲突），LangGraph 自动等待三个专家全部完成后才触发 <code>supervisor_aggregator</code> 汇总（Fan-in）。整个过程无需条件边。</p>
+<p>【注解】<code>state.get(key, default)</code>：Python 字典的安全取值方法。如果 key 不存在则返回 default 值，不会报 <code>KeyError</code>。适合读取可能尚未初始化的字段。</p>
+<p>【注解】<strong>State 共享的精妙之处</strong>：三个专家写三个不同的字段（<code>market_analysis</code>、<code>tech_feasibility</code>、<code>financial_projection</code>），所以谁先执行、谁后执行完全不影响最终结果。
+即使调换 <code>add_node</code> 的注册顺序，结果也一样。这也是并行 Fan-out 能成立的前提——每个节点只修改自己负责的字段，
+互不覆盖。如果三个专家都写同一个字段，最后一个跑完的就会覆盖前面所有的。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">练习题</h3>
+<p><strong>练习 1（基础）</strong>：增加一个 <code>competitor_agent</code>（竞品分析专家），在 State 中添加对应字段，连接到 Fan-out/Fan-in 中。</p>
+<p><strong>练习 2（进阶）</strong>：将现在的纯并行改为「串行 → 并行」混合模式：
+先串行走 <code>task_receiver</code> → <code>market_expert</code>（市场分析必须先做），
+然后再并行分发 <code>tech_expert</code> 和 <code>financial_expert</code>，最后汇总。</p>
+<p><strong>练习 3（挑战）</strong>：结合 LLM——用 <code>llm.invoke()</code> 让专家生成真实的分析内容，而不是硬编码字符串。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fan-out（扇出）</td>
+<td><code>add_edge(START, "A"), add_edge(START, "B")</code></td>
+<td>一个节点指向多个节点，并行分发</td>
+</tr>
+<tr>
+<td>Fan-in（扇入）</td>
+<td>多个节点 <code>add_edge(..., "汇合点")</code></td>
+<td>多个节点指向同一个汇总节点</td>
+</tr>
+<tr>
+<td>主管模式</td>
+<td><code>supervisor_agent → expert → supervisor_final</code></td>
+<td>一个 Agent 负责调度，多个 Agent 专门执行</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想</strong>：Hierarchical = <strong>分而治之</strong>，主管负责管理，专家负责执行。</p></div><div class="cell markdown-cell"><h2 id="52">5.2 协作辩论模式原理</h2>
+<p>多 Agent 围绕同一个问题给出不同观点，互相质疑，最终达成共识。</p>
+<div class="codehilite"><pre><span></span><code>       ┌→ [正方：支持理由]
+[议题] ┼→ [反方：反对理由] ──→ [裁决] → 共识
+       └→ [中立：客观数据]
+</code></pre></div>
+
+<p>关键特性：
+- <strong>多起点并行</strong>：从 START 出发到多个节点同时执行
+- <strong>汇聚节点</strong>：等待所有分支完成后执行汇总
+- <strong>辩论模式</strong>：多角度分析，裁决者综合判断</p></div><div class="cell markdown-cell"><p>【注解】<code>g.add_edge(START, "pro_agent")</code> 和 <code>g.add_edge(START, "con_agent")</code> 和 <code>g.add_edge(START, "neutral_agent")</code> 三个边都是从 START 出发，这意味着三个 Agent 会<strong>同时并行执行</strong>，互不等待。</p>
+<p>【注解】LangGraph 支持多个节点都连接到同一个目标节点（如 <code>judge</code>），这是 Fan-in 模式——<code>judge</code> 会等待所有前驱节点完成后才执行。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[83] Code Cell</div>
+            <pre class="code-cell"><code class="python">from typing import Annotated, TypedDict
+from langgraph.graph import StateGraph, START, END
+from langgraph.graph.message import add_messages
+from IPython.display import display, Markdown
+
+# ---------- 第①步：定义状态 ----------
+class DebateState(TypedDict):
+    &quot;&quot;&quot;辩论状态：议题 + 正方/反方/中立观点 + 最终共识&quot;&quot;&quot;
+    messages: Annotated[list, add_messages]
+    topic: str           # 辩论议题
+    pro: str             # 正方观点
+    con: str             # 反方观点
+    neutral: str         # 中立数据
+    consensus: str       # 最终裁决结果
+
+# ---------- 第②步：定义节点 ----------
+def pro_agent(state: DebateState) -&gt; dict:
+    &quot;&quot;&quot;正方 Agent：给出支持理由&quot;&quot;&quot;
+    return {&quot;pro&quot;: f&quot;支持「{state[&#x27;topic&#x27;]}」的理由：\n1. 提升效率\n2. 降低成本\n3. 可扩展性强&quot;}
+
+def con_agent(state: DebateState) -&gt; dict:
+    &quot;&quot;&quot;反方 Agent：给出反对理由&quot;&quot;&quot;
+    return {&quot;con&quot;: f&quot;反对「{state[&#x27;topic&#x27;]}」的理由：\n1. 安全风险\n2. 实施复杂\n3. 初期投入高&quot;}
+
+def neutral_agent(state: DebateState) -&gt; dict:
+    &quot;&quot;&quot;中立 Agent：提供客观数据&quot;&quot;&quot;
+    return {&quot;neutral&quot;: f&quot;中立数据：\n1. 行业采用率 +40%\n2. 平均 ROI 18 个月&quot;}
+
+def judge_agent(state: DebateState) -&gt; dict:
+    &quot;&quot;&quot;裁决者：综合正反方观点，输出最终结论&quot;&quot;&quot;
+    consensus = (f&quot;## 辩论共识：{state[&#x27;topic&#x27;]}\n\n&quot;
+                 f&quot;### 正方\n{state[&#x27;pro&#x27;]}\n\n&quot;
+                 f&quot;### 反方\n{state[&#x27;con&#x27;]}\n\n&quot;
+                 f&quot;### 数据\n{state[&#x27;neutral&#x27;]}\n\n&quot;
+                 f&quot;**裁决**：建议分阶段推进&quot;)
+    return {&quot;consensus&quot;: consensus}
+
+# ---------- 第③步：构建图 ----------
+g = StateGraph(DebateState)
+for name, fn in [(&quot;pro_agent&quot;, pro_agent), (&quot;con_agent&quot;, con_agent),
+                 (&quot;neutral_agent&quot;, neutral_agent), (&quot;judge&quot;, judge_agent)]:
+    g.add_node(name, fn)
+# 【注解】从 START 到三个 Agent 并行执行（Fan-out）
+g.add_edge(START, &quot;pro_agent&quot;)
+g.add_edge(START, &quot;con_agent&quot;)
+g.add_edge(START, &quot;neutral_agent&quot;)
+# 【注解】三个 Agent 汇聚到 judge（Fan-in），等全部完成后 judge 才执行
+g.add_edge(&quot;pro_agent&quot;, &quot;judge&quot;)
+g.add_edge(&quot;con_agent&quot;, &quot;judge&quot;)
+g.add_edge(&quot;neutral_agent&quot;, &quot;judge&quot;)
+g.add_edge(&quot;judge&quot;, END)
+
+# ---------- 第④步：编译并运行 ----------
+app = g.compile()
+
+result = app.invoke({&quot;topic&quot;: &quot;企业引入 AI 自动化&quot;,
+                     &quot;pro&quot;: &quot;&quot;, &quot;con&quot;: &quot;&quot;, &quot;neutral&quot;: &quot;&quot;, &quot;consensus&quot;: &quot;&quot;})
+display(Markdown(result[&quot;consensus&quot;]))</code></pre>
+            <div class="output-area"><pre class="output">&lt;IPython.core.display.Markdown object&gt;</pre></div>
+        </div>
+        <div class="cell markdown-cell"><p>【注解】<code>judge</code> 节点有三个前驱（pro_agent、con_agent、neutral_agent），LangGraph 会等<strong>三个节点全部执行完毕</strong>后才运行 judge。这就是 Fan-in（扇入）的自动等待机制。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">练习题</h3>
+<p><strong>练习 1（基础）</strong>：增加 <code>moderator</code>（主持人）节点，辩论前先明确议题。</p>
+<p><strong>练习 2（进阶）</strong>：改为两轮辩论——第一轮各自发表，第二轮根据对方观点反驳后裁决。</p>
+<p><strong>练习 3（挑战）</strong>：用 <code>llm.invoke()</code> 生成真实的辩论内容。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>多起点并行（Fan-out）</td>
+<td><code>add_edge(START, "A"), add_edge(START, "B")</code></td>
+<td>从 START 出发到多个节点同时执行</td>
+</tr>
+<tr>
+<td>汇聚等待（Fan-in）</td>
+<td>多个节点 <code>add_edge(..., "汇合点")</code></td>
+<td>等待所有分支完成后才执行汇总</td>
+</tr>
+<tr>
+<td>辩论模式</td>
+<td>多个观点 Agent + 一个裁决者</td>
+<td>多角度分析，不同立场碰撞产生更全面的结论</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想</strong>：Collaborative = <strong>集思广益</strong>，不同立场碰撞产生更全面的结论。</p></div><div class="cell markdown-cell"><hr />
+<h1 id="6mcp-agent">第6章：MCP 协议与 Agent 通信</h1>
+<hr /></div><div class="cell markdown-cell"><h2 id="61-mcp">6.1 MCP 是什么？</h2>
+<p>MCP = Model Context Protocol（模型上下文协议），由 Anthropic 提出的 Agent 间通信标准。</p>
+<p><strong>类比</strong>：就像 USB-C 统一了充电接口，MCP 统一了 Agent 与外部工具的通信接口。</p></div><div class="cell markdown-cell"><p>【注解】MCP 的核心价值：不管底层使用什么传输方式（本地进程、HTTP、WebSocket），上层代码的调用方式（ClientSession）完全一致。这样开发 Agent 工具时不需要关心通信细节。</p></div><div class="cell markdown-cell"><h2 id="62">6.2 工作模式对比</h2>
+<p>MCP 采用 <strong>C/S（客户端/服务端）架构</strong>：
+- <strong>服务端（Server）</strong> — 定义工具，等待客户端调用（<code>server.py</code>）
+- <strong>客户端（Client）</strong> — 主动发起请求，调用服务端的工具</p>
+<p>三种传输模式的区别仅在于<strong>通信方式</strong>不同，上层 API（<code>ClientSession</code>）完全一致：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>传输方式</th>
+<th>服务端启动</th>
+<th>客户端在哪</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>stdio</strong></td>
+<td>子进程 stdin/stdout</td>
+<td><strong>由客户端自动拉起</strong>，无需手动启动</td>
+<td><code>mcp_stdio_client.py</code>（终端运行）</td>
+<td>本地开发，最常用</td>
+</tr>
+<tr>
+<td><strong>sse</strong></td>
+<td>HTTP SSE（单向推送）</td>
+<td>改 <code>server.py</code> 中 <code>transport="sse"</code> 再运行</td>
+<td>笔记本 6.4.1 代码单元格</td>
+<td>跨网络，远程部署</td>
+</tr>
+<tr>
+<td><strong>streamable-http</strong></td>
+<td>HTTP 双工流</td>
+<td>改 <code>server.py</code> 中 <code>transport="stream"</code> 再运行</td>
+<td>笔记本 6.4.2 代码单元格</td>
+<td>实时双向交互</td>
+</tr>
+</tbody>
+</table>
+<p>【注解】stdio 模式在 <strong>Windows 的 Jupyter Notebook 中不可用</strong>（子进程 stdin/stdout 交互不支持），
+因此 stdio 客户端单独写在 <code>mcp_stdio_client.py</code> 文件中，
+需要在<strong>终端</strong>执行 <code>python mcp_stdio_client.py</code> 来运行。</p></div><div class="cell markdown-cell"><h2 id="63-mcp-server">6.3 MCP Server 开发（参考代码）</h2>
+<p>服务端 <code>server.py</code> 是整个 MCP 的<strong>基石</strong>——它定义工具（<code>query_user</code>、<code>query_order</code>），供客户端调用。
+默认以 stdio 模式运行（由客户端自动拉起）；如果想体验 SSE 或 Streamable HTTP，
+打开 <code>server.py</code> 把 <code>transport</code> 变量改成对应模式，再在终端执行 <code>python server.py</code> 即可。</p>
+<p>以下代码已在 <code>server.py</code> 中，仅作展示，无需运行：</p></div><div class="cell markdown-cell"><p>【注解】<code>@mcp.tool()</code> 是 FastMCP 的装饰器，作用是把一个普通 Python 函数注册为 MCP 工具。Agent 可以通过 MCP 协议发现并调用这些工具。</p>
+<p>【注解】<code>FastMCP</code> 是 <code>mcp</code> 库提供的高阶封装，简化了 MCP Server 的编写。底层自动处理 JSON-RPC 协议细节。</p></div><div class="cell markdown-cell"><h2 id="64-mcp-client">6.4 MCP Client 调用</h2>
+<p>客户端负责<strong>主动发起请求</strong>：发现服务端有哪些工具 → 调用工具 → 获取结果。</p>
+<table>
+<thead>
+<tr>
+<th>文件/单元格</th>
+<th>扮演的角色</th>
+<th>服务端如何启动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6.4.1 代码单元格</td>
+<td>SSE 客户端</td>
+<td>改 <code>server.py</code> 为 <code>transport="sse"</code> 再运行</td>
+</tr>
+<tr>
+<td>6.4.2 代码单元格</td>
+<td>Streamable HTTP 客户端</td>
+<td>改 <code>server.py</code> 为 <code>transport="stream"</code> 再运行</td>
+</tr>
+<tr>
+<td><code>mcp_stdio_client.py</code></td>
+<td>stdio 客户端</td>
+<td><strong>自动拉起</strong> <code>server.py</code> 为子进程</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>⚡ 切换模式很简单</strong>：打开 <code>server.py</code>，找到 <code>transport = "stdio"</code> 这行，
+把 <code>"stdio"</code> 改成 <code>"sse"</code> 或 <code>"stream"</code>，保存，然后在终端执行 <code>python server.py</code>。
+调回 stdio 也一样，改回 <code>"stdio"</code> 即可。</p>
+</blockquote>
+<p>运行客户端时请注意：
+- stdio：<strong>直接</strong>运行 <code>python mcp_stdio_client.py</code>，客户端自动拉起服务端
+- SSE / Streamable HTTP：<strong>先</strong>按上面方式启动 Server，<strong>再</strong>运行下方客户端代码</p></div><div class="cell markdown-cell"><p>【注解】SSE（Server-Sent Events）：一种 HTTP 协议的单向推送机制。服务器可以通过 SSE 持续向客户端推送数据，适合需要实时更新的场景。</p>
+<p>【注解】<code>ClientSession(reader, writer)</code>：MCP 的协议层会话对象，与传输方式无关。传输层提供 reader/writer 流，会话层处理 JSON-RPC 消息。</p></div><div class="cell markdown-cell"><h3 id="641-sse">6.4.1 模式一：SSE 客户端</h3>
+<p>前提：打开 <code>server.py</code>，把 <code>transport="sse"</code>，然后在终端执行 <code>python server.py</code></p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[97] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】asyncio：Python 异步 IO 库，MCP 客户端需要异步运行
+# 【注解】json：Python 内置的 JSON 处理库
+import asyncio, json
+# 【注解】ClientSession：MCP 协议层的会话对象，封装了 JSON-RPC 通信
+from mcp import ClientSession
+# 【注解】sse_client：MCP 的 SSE 传输层客户端，建立 SSE 连接
+from mcp.client.sse import sse_client
+
+# ---------- 第①步：导入依赖 ----------
+# 位于文件顶部，已导入完成
+
+# ---------- 第②步：定义调用函数 ----------
+
+async def call_tool(client_fn, arg, query, tool_name, params):
+    &quot;&quot;&quot;通用 MCP 工具调用函数&quot;&quot;&quot;
+    print(f&quot;[请求] {query}&quot;)
+    print(f&quot;[调用] {tool_name}({json.dumps(params)})&quot;)
+    async with client_fn(arg) as (reader, writer):
+        # 【注解】三步调用：initialize → list_tools → call_tool
+        async with ClientSession(reader, writer) as session:
+            await session.initialize()
+            tools = await session.list_tools()
+            print(f&quot;[发现] {len(tools.tools)} 个工具&quot;)
+            result = await session.call_tool(tool_name, params)
+            print(f&quot;[返回] {result.content[0].text}&quot;)
+
+# ---------- 第③步：建立连接（传输层）----------
+print(&quot;=&quot; * 60)
+print(&quot;  模式一：SSE 客户端&quot;)
+# ---------- 第③步：建立连接（传输层）----------
+print(&quot;=&quot; * 60)
+
+
+# ---------- 第④步：初始化会话并调用工具 ----------
+await call_tool(
+    sse_client,
+    &quot;http://localhost:8001/sse&quot;,
+    &quot;查订单状态&quot;,
+    &quot;query_order&quot;,
+    {&quot;order_id&quot;: 1001}
+)</code></pre>
+            <div class="output-area"><pre class="output">============================================================
+  模式一：SSE 客户端
+============================================================
+[请求] 查订单状态
+[调用] query_order({&quot;order_id&quot;: 1001})
+[发现] 2 个工具
+[返回] {&quot;user_id&quot;: 1, &quot;amount&quot;: 299, &quot;status&quot;: &quot;已完成&quot;}
+</pre></div>
+        </div>
+        <div class="cell markdown-cell"><h3 id="642-streamable-http">6.4.2 模式二：Streamable HTTP 客户端</h3>
+<p>与 SSE 模式的区别仅在于传输层函数不同，上层 <code>ClientSession</code> API 完全一致。</p>
+<p>前提：打开 <code>server.py</code>，把 <code>transport="stream"</code>，然后在终端执行 <code>python server.py</code></p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[99] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】streamable_http_client：MCP 的 HTTP 双工流传输层客户端
+from mcp.client.streamable_http import streamable_http_client
+
+# ---------- 第①步：导入依赖 ----------
+# 位于文件顶部，已导入完成
+
+# ---------- 第③步：建立连接（传输层）----------
+print(&quot;=&quot; * 60)
+print(&quot;  模式二: Streamable HTTP 客户端&quot;)
+print(&quot;=&quot; * 60)
+
+# ---------- 第④步：初始化会话并调用工具 ----------
+async with streamable_http_client(&quot;http://localhost:8002/mcp&quot;) as streams:
+    reader, writer, _ = streams
+    async with ClientSession(reader, writer) as session:
+        await session.initialize()
+        tools = await session.list_tools()
+        print(f&quot;[发现] {len(tools.tools)} 个工具&quot;)
+        result = await session.call_tool(&quot;query_user&quot;, {&quot;user_id&quot;: 1})
+        print(f&quot;[返回] {result.content[0].text}&quot;)</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><h3 id="643-stdio">6.4.3 模式三：stdio 模式</h3>
+<p>stdio 模式通过子进程的 stdin/stdout 通信，由 <code>stdio_client</code> <strong>自动拉起</strong>服务端子进程，无需手动启动。</p>
+<p><strong>为什么 stdio 客户端要单独放在一个 <code>.py</code> 文件中？</strong><br />
+因为 Windows 上的 Jupyter Notebook：
+1. 无法通过子进程 stdin/stdout 与 MCP 服务端交互<br />
+2. 自带事件循环（asyncio event loop），与 <code>asyncio.run()</code> 冲突<br />
+所以 stdio 客户端必须作为独立 <code>.py</code> 文件，在<strong>终端</strong>中执行：</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>mcp_stdio_client.py
+</code></pre></div></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[101] Code Cell</div>
+            <pre class="code-cell"><code class="python"># ===== ⚠️ 以下代码不能在 Jupyter Notebook 中运行（Windows 限制）=====
+# 请在终端执行：python mcp_stdio_client.py
+# ================================================================
+
+import asyncio, json
+from mcp import ClientSession, StdioServerParameters
+from mcp.client.stdio import stdio_client
+
+async def call_tool(client_fn, arg, query, tool, params):
+    print(f&quot;[请求] {query}&quot;)
+    print(f&quot;[调用] {tool}({json.dumps(params)})&quot;)
+    # stdio_client 自动拉起服务端子进程
+    async with client_fn(arg) as (r, w):
+        async with ClientSession(r, w) as s:
+            await s.initialize()
+            tools = await s.list_tools()
+            print(f&quot;[发现] {len(tools.tools)} 个工具&quot;)
+            res = await s.call_tool(tool, params)
+            print(f&quot;[返回] {res.content[0].text}&quot;)
+
+params = StdioServerParameters(command=&quot;python&quot;, args=[&quot;server.py&quot;])
+asyncio.run(call_tool(stdio_client, params,
+                      &quot;查用户信息&quot;, &quot;query_user&quot;, {&quot;user_id&quot;: 1}))</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><p>【注解】<code>StdioServerParameters(command="python", args=["server.py"])</code> 告诉 <code>stdio_client</code> 要拉起什么进程。它会自动启动 <code>python server.py</code> 子进程，通过 stdin/stdout 通信，无需手动在终端启动服务端。</p>
+<p>【注解】三种传输模式的上层 API (<code>ClientSession</code>) 完全一致，区别仅在于 <code>sse_client</code> / <code>streamable_http_client</code> / <code>stdio_client</code> 这三个传输层函数不同。</p>
+<p>【注解】<code>asyncio.run()</code> 是 Python 异步代码的入口。MCP 客户端基于异步 (<code>async/await</code>)，需要在 <code>async</code> 函数中调用，然后用 <code>asyncio.run()</code> 启动。</p></div><div class="cell markdown-cell"><h2 id="65-mcp-langchain">6.5 MCP + LangChain 集成（扩展了解）</h2>
+<p>MCP 工具可以通过 <code>langchain-mcp-adapters</code> 直接接入 LangChain Agent 的工具列表。</p></div>
+        <div class="cell code-wrapper">
+            <div class="cell-header">[104] Code Cell</div>
+            <pre class="code-cell"><code class="python"># 【注解】以下代码展示 MCP + LangChain 的集成方式
+# 需要 langchain-mcp-adapters 包支持
+
+# from langchain_mcp_adapters.client import MultiServerMCPClient
+
+# async with MultiServerMCPClient({
+#     # 【注解】stdio 模式：指定命令行启动 MCP Server
+#     &quot;weather&quot;: {&quot;command&quot;: &quot;python&quot;, &quot;args&quot;: [&quot;weather_server.py&quot;]},
+# }) as client:
+#     tools = client.get_tools()
+#     # tools 可直接传给任何 LangChain Agent
+#     # agent = create_react_agent(llm, tools)</code></pre>
+            
+        </div>
+        <div class="cell markdown-cell"><hr />
+<h3 id="_1">练习题</h3>
+<p><strong>练习 1（基础）</strong>：修改客户端调用 <code>query_user</code> 查询 user_id=2。</p>
+<p><strong>练习 2（进阶）</strong>：在 <code>server.py</code> 中新增 <code>add_user(name, role)</code> 写入工具。</p>
+<p><strong>练习 3（挑战）</strong>：先 <code>list_tools()</code> 打印所有工具及描述，再由用户选择调用哪个。</p></div><div class="cell markdown-cell"><hr />
+<h3 id="_1">小结</h3>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>代码</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCP 协议</td>
+<td><code>ClientSession(reader, writer)</code></td>
+<td>LLM 与外部工具的标准化通信协议</td>
+</tr>
+<tr>
+<td>ClientSession</td>
+<td><code>session.initialize()</code></td>
+<td>协议层统一 API，无论传输模式都相同</td>
+</tr>
+<tr>
+<td>三步调用</td>
+<td><code>initialize() → list_tools() → call_tool()</code></td>
+<td>MCP 客户端固定的调用流程</td>
+</tr>
+<tr>
+<td>传输层隔离</td>
+<td><code>sse_client</code> / <code>streamable_http_client</code></td>
+<td>传输方式不同，但上层 API 一致</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心思想</strong>：MCP = <strong>统一协议 + 灵活传输</strong>，上层 API 完全一致，底层可以换不同的传输方式。</p></div><div class="cell markdown-cell"><hr />
+<h1 id="_1">模块总结</h1>
+<h2 id="langgraph">LangGraph 核心概念</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话理解</th>
+<th>核心思想</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>State（状态）</strong></td>
+<td>数据包，在节点之间传递</td>
+<td>每个节点只修改自己关心的字段，没改的自动保留</td>
+</tr>
+<tr>
+<td><strong>Node（节点）</strong></td>
+<td>处理函数，每个做一件事</td>
+<td>一个函数只干一件事，返回要更新的字段</td>
+</tr>
+<tr>
+<td><strong>Edge（边）</strong></td>
+<td>固定路线：A 做完直接去 B</td>
+<td>适合有明确先后顺序的处理流程</td>
+</tr>
+<tr>
+<td><strong>Conditional Edge（条件边）</strong></td>
+<td>岔路：根据当前状态决定下一步去哪</td>
+<td>可以形成<strong>循环</strong>（反复执行）或<strong>分流</strong>（走向不同节点）</td>
+</tr>
+<tr>
+<td><strong>Fan-out / Fan-in（扇出/扇入）</strong></td>
+<td>一个节点分发给多个 / 多个汇聚到一个</td>
+<td>扇出并行执行，扇入等待全部完成再汇总</td>
+</tr>
+<tr>
+<td><strong>Human-in-the-Loop（人工干预）</strong></td>
+<td>机器做事，人做决策</td>
+<td>需要人确认的地方暂停，收到指令再继续</td>
+</tr>
+</tbody>
+</table>
+<h2 id="agent">多 Agent 模式</h2>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>适用场景</th>
+<th>实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sequential（流水线）</strong></td>
+<td>有明确先后顺序的任务</td>
+<td>节点首尾相连，一个接一个执行</td>
+</tr>
+<tr>
+<td><strong>Hierarchical（主管）</strong></td>
+<td>需要任务分解 + 专家分工</td>
+<td>主管拆任务→专家执行→主管汇总</td>
+</tr>
+<tr>
+<td><strong>Collaborative（辩论）</strong></td>
+<td>需要多角度评审决策</td>
+<td>多 Agent 并行给观点，裁决者综合判断</td>
+</tr>
+<tr>
+<td><strong>AutoGPT</strong></td>
+<td>完全自主的单 Agent 循环</td>
+<td>Think→Act→Observe，自己规划-执行-检查</td>
+</tr>
+<tr>
+<td><strong>BabyAGI</strong></td>
+<td>任务驱动的多步执行（拆解+优先级+结果驱动）</td>
+<td>LLM 拆目标→排优先级→执行→根据结果生成新任务→循环</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mcp">MCP 核心概念</h2>
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>一句话理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>C/S 架构</strong></td>
+<td>Server 定义工具（等人调用），Client 主动发起请求</td>
+</tr>
+<tr>
+<td><strong>传输与协议分离</strong></td>
+<td>传输层（stdio/SSE/HTTP）可变，协议层 API 完全一致</td>
+</tr>
+<tr>
+<td><strong>stdio 模式</strong></td>
+<td>本地子进程通信，客户端自动拉起服务端，最常用</td>
+</tr>
+<tr>
+<td><strong>SSE / Streamable HTTP</strong></td>
+<td>网络模式依赖 HTTP，需要手动启动服务端</td>
+</tr>
+<tr>
+<td><strong>三步调用</strong></td>
+<td>初始化连接 → 发现工具 → 调用工具</td>
+</tr>
+</tbody>
+</table></div>
+    </div>
+</body>
+</html>
