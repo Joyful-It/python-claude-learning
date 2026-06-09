@@ -81,7 +81,7 @@ trainer = Trainer(
     args=training_args,                    # 训练参数
     train_dataset=train_dataset,           # 训练集
     eval_dataset=test_dataset,             # 验证集
-    processing_class=tokenizer,            # 新版 API 替代 tokenizer=
+    processing_class=tokenizer,            # 新版 API，替代旧 tokenizer= 参数
     data_collator=data_collator,           # 动态填充
     compute_metrics=compute_metrics,       # 评估函数
 )

@@ -1,6 +1,6 @@
 # Python 学习进度追踪表
 
-> **最后更新日期**：2026-06-01
+> **最后更新日期**：2026-06-08
 
 ---
 
@@ -13,7 +13,7 @@
 | 学习中考点（1%-79%） | 7 |
 | 未开始考点（0%） | 35 |
 | **整体进度** | **20%** |
-| **学习天数** | **33天** |
+| **学习天数** | **38天** |
 
 ---
 
@@ -77,8 +77,8 @@
 | 模块 | 权重 | 考点数 | 已掌握 | 学习中 | 未开始 | 进度 |
 |------|------|-------|-------|-------|-------|------|
 | A. Python 工程化基础 | 20% | 9 | 0 | 5 | 4 | 35% |
-| B. 大模型推理工程与RAG开发 | 18% | 6 | 0 | 0 | 6 | 0% |
-| C. Agent智能体开发 | 16% | 5 | 0 | 0 | 5 | 0% |
+| B. 大模型推理工程与RAG开发 | 18% | 6 | 0 | 2 | 4 | 20% |
+| C. Agent智能体开发 | 16% | 5 | 0 | 1 | 4 | 28% |
 | D. 大模型微调实战 | 15% | 5 | 0 | 0 | 5 | 0% |
 | E. 高性能推理部署与LLMOps | 14% | 5 | 0 | 0 | 5 | 0% |
 | F. 机器学习/深度学习基础 | 10% | 22 | 0 | 1 | 21 | 45% |
@@ -121,6 +121,43 @@
 | 变量作用域 | 45% | 2026-06-01 | 局部变量隔离理解，global打破隔离，global一般不推荐用 |
 
 **A.1 综合掌握度：49%**
+
+---
+
+### C.16 Function Calling / Agent 开发（LangChain）
+| 子考点 | 掌握度 | 更新日期 | 备注 |
+|-------|-------|---------|------|
+| LangChain 三大核心模块 | 75% | 2026-06-03 | Model(invoke/stream/batch)+Tools(@tool)+Agent(create_agent)，经消息流复习后加深 |
+| ReAct 循环机制 | 70% | 2026-06-03 | 消息流四步=ReAct底层实现，T→A→O→T = ①HumanMsg→②AIMsg.tool_calls→③ToolMsg→④AIMsg |
+| @tool 装饰器 | 65% | 2026-06-02 | 文档注释给模型看，#注释模型读不到 |
+| Agent vs 直接调 API | 60% | 2026-06-03 | Agent=自主决策调工具(Middleware不可见)，API=只生成文本 |
+| Middleware 中间件 | 70% | 2026-06-04 | 洋葱模型+6钩子+10内置，实战踩坑6个全修复（参数依赖/过滤/thread_id） |
+| Agent 完整搭建 | 65% | 2026-06-04 | 独立完成差旅Agent（2tool+3middleware+memory+流式交互），导入→工具→模型→中间件→记忆→Agent→交互 |
+| 消息流转 | 75% | 2026-06-04 | content=""=操作工具不说话，四步口诀"问→空壳调→工具返→最终答" |
+| Supervisor 多Agent | 50% | 2026-06-03 | 本质=拆开注意力不分散，Supervisor只分派不干活，可嵌套 |
+| LangGraph StateGraph | 70% | 2026-06-08 | State(数据说明书)/Node(干活)/Edge(流程)三要素，compile→invoke |
+| LangGraph ToolNode | 75% | 2026-06-08 | Tool=普通函数不知State，ToolNode=帮Agent执行工具，手动llm.invoke不需ToolNode |
+| LLM vs Tool 区分 | 80% | 2026-06-08 | LLM=大脑(思考生成)，Tool=手脚(执行动作)，金句自创 |
+
+**C.16 综合掌握度：28%**
+
+---
+
+### B.14 RAG 概念（检索增强生成）
+| 子考点 | 掌握度 | 更新日期 | 备注 |
+|-------|-------|---------|------|
+| RAG 核心概念 | 80% | 2026-06-05 | R=检索/A=增强/G=生成，六站管道完整理解 |
+| RAG vs 微调 | 35% | 2026-06-02 | 改知识用RAG，改能力用微调 |
+| Harness vs RAG | 25% | 2026-06-02 | RAG ⊂ Harness，Harness 是全链路工程体系 |
+| Document 对象 | 80% | 2026-06-05 | page_content(内容)+metadata(身份证) 双件套 |
+| 文本分块 RecursiveCharSplit | 75% | 2026-06-05 | 递归分隔符层级(段落→行→句→词→字符)，chunk_size+chunk_overlap |
+| Embedding 三路线 | 65% | 2026-06-05 | ①云端API(智谱) ②Ollama本地(bge-m3) ③HF直载(bge-small)；Chroma≠Embedding |
+| 向量库 Chroma | 60% | 2026-06-05 | 轻量级本地向量库，cos相似度检索，和Transformer自注意力同原理 |
+| 基础 RAG 检索链 | 70% | 2026-06-05 | retrieve→拼Prompt→LLM生成 三步，防幻觉关键在Prompt |
+| Agentic RAG | 60% | 2026-06-05 | Agent自主判断查不查，retriever包装为@tool |
+| 混合检索/重排序 | 30% | 2026-06-05 | 向量+BM25混合，Cross-Encoder精排，概念速览未实操 |
+
+**B.14 综合掌握度：35%**
 
 ---
 
@@ -290,6 +327,7 @@
 | GELU vs ReLU | 45% | 2026-05-26 | ReLU一刀切负数全杀，GELU平滑概率留余地，原论文ReLU但BERT后改GELU |
 | 学习率预热 Warmup | 45% | 2026-05-26 | lr本质=步伐，预热=开局低速爬坡防崩，lr过大≠梯度爆炸 |
 | IMDB 情感分析项目 | 70% | 2026-06-01 | 骨架六步完成+三处改进(fp16/F1指标/tokenizer保存)+compute_metrics结构理解+注释版完整 |
+| HuggingFace Trainer API | 55% | 2026-06-02 | processing_class(新版)替代tokenizer(已弃用)，查GitHub #37734确认，多模态演进所致 |
 | 大模型显存评估 | 55% | 2026-06-01 | 推理公式(B×字节×1.2)、FP16/INT8/INT4精度对比口诀、训练≈推理×4、LoRA/QLoRA显存对比、fp16=训练提速/INT8=推理瘦身不能混用 |
 | LoRA 低秩微调 | 65% | 2026-05-27 | ΔW=B×A、省256倍、乘≠训(前向读/反向不改)、A/B初始化(A随机B零)、矩阵维度由输入列决定 |
 | C盘清理+环境管理 | 70% | 2026-05-30 | conda/pip/venv区分、软链接mklink、多环境隔离、Python313统一到Conda D盘 |
@@ -360,11 +398,23 @@
 | **缺失** | sklearn 导入路径需查表，不能独立写出 | 中 | 2026-05-10 | 已掌握命名规律，需巩固 |
 | **缺失** | GridSearchCV 自动调参还没学 | 中 | 2026-05-09 | 待补充 |
 | **缺失** | matplotlib 语法不熟 | 低 | 2026-05-09 | 待练习 |
+| **缺失** | Recall/Precision 分母混淆（TP/TN vs TP/FN）| 高 | 2026-06-04 | 🔴 第二次暴露 |
+| **缺失** | fit_transform vs transform 数据泄露 | 高 | 2026-06-06 | 🆕 首次暴露 |
+| **缺失** | Chroma ≠ Embedding 混淆 | 中 | 2026-06-05 | 🔴 持续第二天 |
+| **缺失** | Python 三种访问级别 | 低 | 2026-06-06 | 🆕 首次暴露 |
+| **缺失** | 广播 vs 向量化 | 低 | 2026-06-06 | 🆕 首次暴露 |
+| **缺失** | Agent 死循环机制 + ModelCallLimit | 低 | 2026-06-06 | 🆕 首次暴露 |
+| **缺失** | Gini vs Entropy 区别 | 低 | 2026-06-06 | 🆕 首次暴露 |
+| **缺失** | LangGraph 条件边（Conditional Edge）| 中 | 2026-06-08 | 🆕 下一步 |
+| **缺失** | ToolNode 与手动 llm.invoke 的选择 | 低 | 2026-06-08 | 🆕 概念已通但未实操 |
 
 **已解决的漏洞：**
 - ~~self 概念理解不够牢固~~ → ✅ 已改善（60%）
 - ~~drop_duplicates/dropna 区分不清~~ → ✅ 已复习
 - ~~json.dumps/loads 区分不清~~ → ✅ 已复习
+- ~~State/TypedDict/类型注解混淆~~ → ✅ 贯通（85%，学员独立拆解「数据格式说明书」类比）
+- ~~state变量 vs State类型 区分~~ → ✅ 贯通（name:str 类比）
+- ~~Tool vs ToolNode vs Node 混淆~~ → ✅ 贯通（学员画出完整链路图）
 
 ---
 
@@ -652,4 +702,9 @@
 | 2026-05-28 | [session-notes](../sessions/2026-05-28/session-notes.md) | 残差连接 + LayerNorm + Transformer 全流程 | +1保底梯度不消失、先残差后Norm、Encoder-Decoder全景、自注意力vs交叉注意力 |
 | 2026-05-30 | [session-notes](../sessions/2026-05-30/session-notes.md) | C盘清理 + 环境整治 + IMDB骨架六步实操 | 软链接搬家释放23G、Conda统一环境、IMDB六步独立写出+每步理解 |
 | 2026-06-01 | [session-notes](../sessions/2026-06-01/session-notes.md) | IMDB项目收尾——代码改进+精度概念深挖 | fp16/INT8精度对比、tokenizer配套保存原理、compute_metrics结构、训练五步口诀"前损后步清" |
+| 2026-06-03 | [session-notes](../sessions/2026-06-03/session-notes.md) | nn.Linear微认知穿透 + LangChain进阶（中间件/消息流转/Supervisor）+ 题库系统搭建 | nn.Linear行列方向85%、Middleware 60%、消息流70%、Supervisor 50%、Agent 10%→18% |
+| 2026-06-04 | [session-notes](../sessions/2026-06-04/session-notes.md) | 智能差旅Agent实战 + 晨间9题 + 薄弱点速固 | Middleware 60%→70%、Agent搭建40%→65%、PIIMiddleware 5种类型、stream过滤、thread_id |
+| 2026-06-05 | [session-notes](../sessions/2026-06-05/session-notes.md) | RAG完整教程(59页1-8章精讲+9-12速览) + 晨间9题 | RAG六站管道70%、Document80%、分块75%、Embedding三路线65%、Agentic RAG60%、B模块5%→35% |
+| 2026-06-06 | [session-notes](../sessions/2026-06-06/session-notes.md) | 题库架构v2.0（双层晨考20题）+ ChatPDF项目启动 + 晨考错题沉淀 | 题库架构80%、enumerate85%、BPTT梯度消失75%、Gini60%、注入10题首发 |
+| 2026-06-08 | [session-notes](../sessions/2026-06-08/session-notes.md) | LangGraph核心概念拆解（State/Node/Tool/ToolNode/LLM）+ 三个demo实战调试 | State/TypedDict 85%、Node本质80%、Tool vs ToolNode 75%、LLM vs Tool 80%、六概念独立拆解 |
 
