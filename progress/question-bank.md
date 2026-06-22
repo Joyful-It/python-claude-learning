@@ -1,6 +1,6 @@
 # 晨间复习题库
 
-> **最后更新**：2026-06-08
+> **最后更新**：2026-06-09
 > 
 > 四路汇入：① sessions/ ② Knowledge_base/ ③ share_know/ ④ tracker + code
 > 
@@ -31,25 +31,25 @@ Step 6  常规区 < 10题时，从 🟡低分区或 knowledge-index.md 精选补
 
 | 指标 | 数值 |
 |------|------|
-| 总题数 | 81 |
-| 🟢 常规区 | 71 |
+| 总题数 | 96 |
+| 🟢 常规区 | 86 |
 | 🟡 低频区 | 7 |
 | ⚫ 退役区 | 0 |
-| 🔬 微认知阻塞点 | 10 |
-| ⭐ 核心加固 | 18 |
+| 🔬 微认知阻塞点 | 11 |
+| ⭐ 核心加固 | 20 |
 | 💉 外部注入 | 10 |
 
 | 模块 | 题数 | 说明 |
 |------|------|------|
 | A. Python 基础 | 9 | 变量作用域/返回值/面向对象/四种参数/访问级别 |
-| F. ML/DL 基础 | 21 | 训练循环/PyTorch/Transformer/LoRA/GRPO/Gini/广播 |
+| F. ML/DL 基础 | 27 | 训练循环/PyTorch/Transformer/LoRA/GRPO/Gini/广播/CLIP/R1/ML流程 |
 | B. RAG + HuggingFace | 21 | RAG概念/HF生态/显存/IMDB/RAG六站管道/Agentic RAG/Chunk/Embedding/Token/Pipeline |
-| C. Agent + LangChain | 21 | Model/Tools/Agent/ReAct/消息流转/Middleware/Supervisor/死循环/LangGraph |
+| C. Agent + LangChain | 31 | Model/Tools/Agent/ReAct/消息流转/Middleware/Supervisor/死循环/LangGraph/Tool设计/MCP |
 | D. 微调实战 | 4 | LoRA/QLoRA/DPO/GRPO |
 | H. Git + 工具链 | 3 | Git操作/Conda/环境管理 |
 | I. 前端基础 | 2 | HTML/CSS/JS架构 |
 | 💉 外部注入 | 10 | knowledge-index 5 + questions-gpt 5（晨考随机注入）|
-| share_know 课外 | 1 | 蒸馏/温度/开发模式/CLIP |
+| share_know 课外 | 7 | 蒸馏/温度/开发模式/CLIP/LoRA/DeepSeek-R1/ML流程 |
 
 ---
 
@@ -152,6 +152,32 @@ Step 6  常规区 < 10题时，从 🟡低分区或 knowledge-index.md 精选补
 | B015 | 基础 RAG 检索链的代码三步是什么？ | retriever.invoke(q)检索→拼接context→llm.invoke(prompt+context)生成；防幻觉靠Prompt里写"不知道就说不知道" | 🟢 | 0 | — | session-06-05 | ⭐核心 |
 | B016 | Agentic RAG 和基础 RAG 的本质区别是什么？ | 基础RAG=每次必查(条件反射)；Agentic RAG=Agent自主判断要不要查(自主决策)；retriever包装为@tool | 🟢 | 0 | — | session-06-05 | 🆕昨日 |
 
+### B-3. RAG 项目进阶路线（2026-06-09 新增 · share_know）
+
+| ID | 题目 | 答案要点 | 区域 | 连对 | 最后提问 | 来源 | 标签 |
+|----|------|---------|------|------|---------|------|------|
+| B017 | 简历里最值得写的 3 个大模型应用项目是什么？覆盖了哪些技术栈？ | ①ChatPDF企业知识库RAG ②Agentic RAG(LangGraph) ③Multi-Agent智能客服(Supervisor)；覆盖RAG/Agent/Memory/Tool Calling/Multi-Agent | 🟢 | 0 | — | sk-rag项目 | 🆕昨日 |
+| B018 | ChatPDF 项目面试能讲哪 5 个核心问题？ | ①为什么切块 ②Chunk Size怎么选 ③为什么用Embedding ④为什么余弦相似度 ⑤如何避免幻觉 | 🟢 | 0 | — | sk-rag项目 | ⭐核心 |
+
+---
+
+### F-5. CLIP / 零样本学习（2026-06-09 新增 · share_know）
+
+| ID | 题目 | 答案要点 | 区域 | 连对 | 最后提问 | 来源 | 标签 |
+|----|------|---------|------|------|---------|------|------|
+| F035 | 什么叫零样本学习（Zero-Shot）？CLIP 如何实现？ | 没见过该类别的训练样本也能识别；CLIP=双塔架构(图像编码器+文本编码器)→对比学习→图文对齐→用文本描述替代固定标签 | 🟢 | 0 | — | sk-OpenAI CLIP | 🆕昨日 |
+| F036 | CLIP 训练 Loss（InfoNCE）的核心思想是什么？ | 双向对比学习：拉近匹配图文对(Pull)，推开不匹配的(Push)；同时计算图像→文本和文本→图像两个方向的损失 | 🟢 | 0 | — | sk-OpenAI CLIP | 🆕昨日 |
+| F037 | CLIP 为什么 L2 归一化后点积=余弦相似度？ | 归一化后向量长度为1，a·b=|a||b|cosθ=cosθ，点积直接等于余弦相似度 | 🟢 | 0 | — | sk-OpenAI CLIP | 🆕昨日 |
+
+### F-6. LoRA + DeepSeek-R1（2026-06-09 新增 · share_know）
+
+| ID | 题目 | 答案要点 | 区域 | 连对 | 最后提问 | 来源 | 标签 |
+|----|------|---------|------|------|---------|------|------|
+| F038 | LoRA 为什么叫"低秩"？rank(ΔW)上限是多少？ | ΔW=B×A，B(4096×r)×A(r×4096)，乘积矩阵秩不超过r；r=8时秩最多8，远小于4096→低秩 | 🟢 | 0 | — | sk-LoRA低秩微调 | 🆕昨日 |
+| F039 | LoRA 的 A 和 B 怎么初始化？为什么这样初始化？ | A随机初始化，B全零初始化；B=0→BA=0→初始等价于原模型，不破坏预训练能力，从零开始学习修正 | 🟢 | 0 | — | sk-LoRA低秩微调 | ⭐核心 |
+| F040 | DeepSeek-R1 四阶段训练分别是什么？每阶段核心目的？ | ①冷启动SFT→可读性 ②推理RL(GRPO)→推理能力 ③拒绝采样SFT→通用能力平衡 ④全场景RL→最终打磨；核心创新=GRPO不用Critic | 🟢 | 0 | — | sk-DeepSeek-R1 | 🆕昨日 |
+| F041 | GRPO 的 Advantage 怎么算？为什么不需要 Critic 模型？ | Advantage=自己奖励−同组16条平均奖励；组内互评即基线，无需额外价值模型，省显存省训练 | 🟢 | 0 | — | sk-DeepSeek-R1 | 🆕昨日 |
+
 ---
 
 ### C. Agent 智能体开发
@@ -194,6 +220,56 @@ Step 6  常规区 < 10题时，从 🟡低分区或 knowledge-index.md 精选补
 | C019 | ToolNode 是什么？什么时候不需要它？ | ToolNode=帮Agent执行工具的中间层；手动`llm.invoke()`的Node不需要ToolNode | 🟢 | 0 | — | session-06-08 | ⭐核心 |
 | C020 | `MessagesState` 和 `HumanMessage` 的区别？ | MessagesState=聊天框(状态容器)；HumanMessage=用户发的一句话(一条消息) | 🟢 | 0 | — | session-06-08 | 🆕昨日 |
 
+### C-5. Agent 工具函数设计（2026-06-09 新增 · share_know）
+
+| ID | 题目 | 答案要点 | 区域 | 连对 | 最后提问 | 来源 | 标签 |
+|----|------|---------|------|------|---------|------|------|
+| C021 | LLM 的三大固有缺陷是什么？工具函数分别怎么弥补？ | ①知识截止→搜索工具 ②计算弱→计算器/代码解释器 ③无法交互→API调用/文件读写 | 🟢 | 0 | — | sk-Agent工具函数 | 🆕昨日 |
+| C022 | Agent 工具函数和普通 Python 函数的本质区别是什么？ | 调用者是LLM非人类；第一优先级是可被LLM理解；返回值必须是字符串；永远不抛异常 | 🟢 | 0 | — | sk-Agent工具函数 | ⭐核心 |
+| C023 | Agent 工具函数三要素是什么？ | ①结构化参数定义(Pydantic) ②自然语言描述(能做什么/何时用/不能做什么) ③健壮实现(不抛异常) | 🟢 | 0 | — | sk-Agent工具函数 | 🆕昨日 |
+| C024 | 工具函数"描述是灵魂"，好的描述和坏的描述有什么区别？ | 好：明确何时用+何时不用+"不要自己计算"；坏：只说"这是一个XX工具" | 🟢 | 0 | — | sk-Agent工具函数 | 🔬微认知 |
+| C025 | 10 类核心 Agent 工具分别是什么？ | 计算器/代码解释器/网页搜索/文件读写/CSV处理/API调用/知识库检索(RAG)/记忆管理/时间工具 | 🟢 | 0 | — | sk-Agent工具函数 | 🆕昨日 |
+
+### C-6. LangGraph 进阶 + MCP（2026-06-09 新增 · Knowledge_base 模块三）
+
+| ID | 题目 | 答案要点 | 区域 | 连对 | 最后提问 | 来源 | 标签 |
+|----|------|---------|------|------|---------|------|------|
+| C026 | LangChain 和 LangGraph 的核心区别？（用电脑类比） | LangChain=品牌成品电脑(固定管线)；LangGraph=DIY组装电脑(自由编排节点顺序)；核心公式：LangGraph=节点+边+状态 | 🟢 | 0 | — | kb-模块三LangGraph | ⭐核心 |
+| C027 | LangGraph 条件边(Conditional Edge) 的作用是什么？路由函数返回什么？ | 根据当前State判断下一步去哪(岔路口)；路由函数读State返回节点名str(如"tools"或"__end__") | 🟢 | 0 | — | kb-模块三LangGraph | 🆕昨日 |
+| C028 | `call_model` 节点 + `tool_node` + 条件边 如何形成 ReAct 循环？ | agent→条件边→(需要工具→tools→agent)形成循环、(不需要→END)；每次循环LLM重新判断 | 🟢 | 0 | — | kb-模块三LangGraph | 🆕昨日 |
+| C029 | MCP（Model Context Protocol）是什么？解决什么问题？ | 大模型上下文协议；统一LLM与外部工具/数据源的连接标准；类似"USB-C统一接口"，一次对接所有MCP Server | 🟢 | 0 | — | kb-模块三LangGraph | 🆕昨日 |
+| C030 | LangGraph 四步固定步骤是什么？ | ①定义State(TypedDict) ②定义Node(函数) ③构建图(add_node+add_edge) ④编译运行(compile+invoke) | 🟢 | 0 | — | kb-模块三LangGraph | ⭐核心 |
+| C031 | AutoGPT 的核心循环顺序是？ | 观察(读state)→拆解(LLM生成任务列表)→执行(act取首任务)；think先看当前state再让LLM出牌，口诀"先看后想再动手" | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C032 | AutoGPT 和 BabyAGI 的核心区别是什么？ | AutoGPT每次回到think由LLM重新生成任务列表；BabyAGI只对已有任务重排顺序(reprioritize) | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C033 | AutoGPT 中 route 判断有剩余任务时返回什么？ | 返回 "think"（字符串），经path_map映射回think节点。口诀"route指向下一站，不是回头看" | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C034 | BabyAGI 的"灵魂"是哪个环节？ | reprioritize：用LLM根据上一步执行结果动态重排剩余任务优先级，而非按初始顺序死执行 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C035 | BabyAGI 执行完一个任务后下一步做什么？ | 先由LLM重排剩余任务的优先级，再继续执行下一个任务 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C036 | AutoGPT act 节点执行完任务后对任务列表做了什么？ | 移除已执行的任务(tasks[1:])，并记录执行结果到result字段 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C037 | AutoGPT 和 BabyAGI 的循环结构，以下正确的有？[多选] | ABC：A.think→act→think循环 B.execute_next→reprioritize→execute_next循环 C.AutoGPT每次可增删改任务列表 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C038 | AutoGPT think 节点可能做哪些事？[多选] | ABD：A.根据目标初次拆解任务 B.根据执行结果调整剩余任务 D.必要时新增或删除任务；C(执行任务)是act节点的工作 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C039 | BabyAGI reprioritize 排序规则是写死在代码里的？[判断] | 错。每次由LLM根据执行结果动态重排，非硬编码规则 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C040 | AutoGPT think 每次从零重新生成任务列表？[判断] | 错。初次从零生成，再次根据上次执行结果(result)动态调整，可能增删改重排 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C041 | AutoGPT/BabyAGI 循环终止条件都是任务队列为空？[判断] | 对。两者都通过route判断tasks是否为空，为空→END | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C042 | AutoGPT act 节点移除的是任务列表第几个任务？ | 第1个（tasks[0]），取tasks[1:]作为剩余任务列表 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C043 | think 节点"初次拆解"和"再次拆解"行为有什么不同？ | 初次：result为空→LLM从零拆解目标生成初始任务列表；再次：result有上次执行内容→LLM根据结果动态调整(增删改重排)而非推倒重来 | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C044 | BabyAGI 为什么用LLM动态重排而非按初始顺序执行？ | 初始顺序基于不完整信息拍脑袋排的；每步执行后获得新信息(某路不通/某事变紧急)，需LLM用最新信息重新校准优先级。口诀"计划是死的，执行结果是活的，每走一步重新看牌" | 🟢 | 1 | 06-11 | session-06-11 | 🆕昨日 |
+| C045 | MessagesState 中 messages 为什么必须是列表？覆盖和追加模式怎么区分？ | 聊天记录是多条消息按顺序存起来→list天然有序；`messages: list`=覆盖(黑板擦旧写新)；`Annotated[list, add_messages]`=追加(日记本写新页)；MessagesState默认追加模式 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C046 | `Annotated[list, add_messages]` 中 `add_messages` 是什么？不写会怎样？ | add_messages是LangGraph内置规约器(Reducer)，将新消息追加到已有列表末尾而非替换；不写=普通list=覆盖模式，新消息冲掉旧消息，多轮对话历史丢失 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C047 | 节点 return 时为什么要把单条消息包成 `[res]` 而不是直接返回 `res`？ | messages字段始终是列表类型，return时新消息也必须装在列表中；`{"messages": res}`报错，`{"messages": [res]}`正确。类比：快递站只收整箱，单个包裹也得装箱 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C048 | LangGraph 中 Fan-out 和 Fan-in 分别指什么？代码怎么写？ | Fan-out=一个节点指向多个节点(并行分发)：`add_edge(A,B)+add_edge(A,C)`；Fan-in=多个节点指向同一个节点(汇聚等待)：`add_edge(B,D)+add_edge(C,D)`，D等B和C都完成才执行 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C049 | 层级主管(Hierarchical)模式的核心流程是什么？ | 主管拆任务→Fan-out并行分发给多个专家→各专家独立执行→Fan-in汇聚到主管→主管汇总输出。口诀"分而治之：主管管分配+汇总，专家管执行" | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C050 | 协作辩论(Collaborative)模式和层级主管模式的核心区别？ | 主管=一人分派多人干活(分工)；辩论=多人从不同立场给观点(集思广益)。辩论结构：正方+反方+中立三方并行→裁决者综合判断。主管是"分工"，辩论是"碰撞" | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C051 | 条件边如何实现循环？route 函数返回什么？ | route返回前面节点的名字(如"take_exam")，图就跳回去重新执行那个节点。这是普通边做不到的——条件边=循环+分流两能力合一 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C052 | MCP 的 C/S 架构中，Server 和 Client 分别负责什么？ | Server=定义工具(等人调用)，用`@mcp.tool()`注册函数；Client=主动发起请求，发现工具→调用工具→获取结果。类比：Server是餐厅后厨(备菜等单)，Client是服务员(接单催菜) | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C053 | MCP 三种传输模式（stdio/SSE/Streamable HTTP）的区别？ | stdio=本地子进程通信(客户端自动拉起服务端，最常用)；SSE=HTTP单向推送(需手动启动Server)；Streamable HTTP=HTTP双工流(实时双向)。上层API(ClientSession)完全一致，只改transport参数切换 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C054 | MCP 调用工具的完整三步流程是什么？ | ①初始化连接(建立ClientSession) ②发现工具(list_tools获取Server注册的工具列表) ③调用工具(call_tool传入工具名+参数获取结果) | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C055 | FastMCP 是什么？`@mcp.tool()` 装饰器的作用？ | FastMCP是mcp库提供的高阶封装，简化MCP Server编写，底层自动处理JSON-RPC协议细节；`@mcp.tool()`把普通Python函数注册为MCP工具，Agent可通过MCP协议发现并调用 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C056 | interrupt() / MemorySaver / thread_id 三者的关系是什么？ | interrupt()=暂停点(挂起等唤醒)；MemorySaver=检查点(保存暂停时的状态+位置，必须配)；thread_id=会话ID(区分不同对话互不干扰)。三位一体：MemorySaver存状态+thread_id区分会话+interrupt暂停点=可恢复的工作流 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C057 | LangGraph 多 Agent 三种模式（流水线/主管/辩论）各适用于什么场景？ | Sequential=有明确先后顺序(流水线)；Hierarchical=需任务分解+专家分工(主管分配)；Collaborative=需多角度评审决策(辩论碰撞)。选型口诀"顺序明确走流水，分工协作找主管，观点碰撞上辩论" | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C058 | Human-in-the-Loop 的核心原则是什么？什么时候该加 interrupt？ | 机器能决定的事让它做，需要人决策的地方必须interrupt。典型场景：AI生成代码→等你点Apply；AI要执行危险命令→等你授权。原则：可控的自动化，非完全自动 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C059 | MCP 的核心价值是什么？"传输与协议分离"是什么意思？ | 不管底层用什么传输方式(stdio/SSE/HTTP)，上层调用代码(ClientSession)完全一致。类比USB-C统一充电接口——换传输方式只需改一行transport参数，业务代码不动 | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+| C060 | MessagesState 可以用自己定义的类替代吗？本质是什么？ | 可以。MessagesState本质就是TypedDict，只定义了一个字段`messages: Annotated[list, add_messages]`；完全可以自己写一个同样结构的类替代它，LangGraph不强制用MessagesState | 🟢 | 0 | — | kb-模块三LangGraph与MCP | 🆕昨日 |
+
 ---
 
 ### H. Git 与工具链
@@ -222,6 +298,9 @@ Step 6  常规区 < 10题时，从 🟡低分区或 knowledge-index.md 精选补
 | S001 | 主流软件开发模式有哪些？瀑布模型和敏捷开发的核心区别？ | 瀑布=需求→设计→开发→测试→上线(线性串行)；敏捷=迭代增量+持续反馈(Scrum/看板) | 🟡 | 3 | 06-03 | share-know-主流开发模式 | 📖远期 |
 | S002 | 大模型蒸馏的核心思想？温度 T 为什么能传递暗知识？ | 老师输出概率→学生模仿；T>1拉平分布，让学生看到"第二候选"的相似度信息 | 🟢 | 0 | — | share-know-蒸馏 | 📖远期 |
 | S003 | 大模型温度参数 `temperature` 的作用？T=0 和 T=1 有什么区别？ | 控制随机程度；T→0=确定性输出(贪心)，T=1=原始分布，T>1=更随机更发散 | 🟢 | 0 | — | share-know-温度 | 📖远期 |
+| S004 | 传统 ML 和深度学习在流程上最大的区别是什么？ | ML=人工特征工程最耗时(从日期提取"是否周末")；DL=弱化人工特征，让网络自己学特征，海量数据驱动 | 🟢 | 0 | — | sk-机器学习深度学习流程 | 🆕昨日 |
+| S005 | CNN 的核心流程是什么？池化层(Pooling)的作用？ | 卷积(提取局部特征)→激活(ReLU)→池化(降维+防过拟合)→展平→全连接→输出；池化=保留最重要特征+减少计算量 | 🟢 | 0 | — | sk-机器学习深度学习流程 | 🆕昨日 |
+| S006 | LSTM 的三个门分别做什么？和 RNN 的根本区别在哪？ | 遗忘门(丢弃旧信息)+输入门(添加新信息)+输出门(输出当前隐藏状态)；多了Cell State长期记忆通道，解决RNN梯度消失 | 🟢 | 0 | — | sk-机器学习深度学习流程 | ⭐核心 |
 
 ---
 
@@ -284,3 +363,10 @@ Step 6  常规区 < 10题时，从 🟡低分区或 knowledge-index.md 精选补
 | 2026-06-06 | CLUADE.md | — | 题库架构v2.0：双层晨考（Bank 8-10 + 随机注入各5），注入不限模块，错题入session |
 | 2026-06-08 | 新增 | C016-C020 | LangGraph五题：State本质/TypedDict说明书/Node规则/Tool≠LLM/ToolNode/MessagesState |
 | 2026-06-08 | 标记微认知 | C016 | State=数据格式说明书 vs 数据本身，学员原话类比贯通 |
+| 2026-06-09 | 新增 | C021-C030 | Agent工具函数(5题) + LangGraph进阶/MCP(5题)，来源：share_know+Knowledge_base模块三 |
+| 2026-06-09 | 新增 | B017-B018 | RAG项目路线(2题)，来源：share_know/rag项目.md |
+| 2026-06-09 | 新增 | F035-F041 | CLIP零样本(3题) + LoRA/R1(4题)，来源：share_know |
+| 2026-06-09 | 新增 | S004-S006 | ML→DL→Transformer流程(3题)，来源：share_know |
+| 2026-06-09 | 标记微认知 | C024 | 工具描述是灵魂 — 好描述vs坏描述的根本差异 |
+| 2026-06-11 | 新增 | C031-C044 | AutoGPT/BabyAGI 课件测验14题入库（选择题/多选/判断/填空/简答全覆盖） |
+| 2026-06-11 | 新增 | C045-C060 | 模块三HTML课件提取16题：MessagesState机制/Fan-out-Fan-in/多Agent模式/MCP传输与协议 |

@@ -73,18 +73,38 @@ print(f"✅ 分块完成: {len(docs)} 页 → {len(chunks)} 个文本块")
 # bge-small-zh-v1.5 = BGE 中文轻量版，仅 95MB，CPU 可跑
 #   首次运行自动下载到本地缓存，之后不再下载
 
-embeddign = HuggingFaceEmbeddings(
+embedding = HuggingFaceEmbeddings(
     model_name="BAAI/bge-small-zh-v1.5",
     model_kwargs={"device":"cpu"}
 )
-
+# ─── 第4步：存入向量数据库 ───────────────────────────────
+# Chroma = 轻量级本地向量库
+#   from_documents() 做了两件事：
+#     ① 调 embedding 把每个 chunk 变成向量
+#     ② 把向量 + 原文一起存到磁盘
+# persist_directory = 存盘路径，下次直接加载，不用重新 Embedding
+# Chroma ≠ Embedding 模型！口诀: "Chrom 存，BGE 算"
 vector_score = Chroma.from_documents(
     documents=chunks,
-    embedding=embeddign,
+    embedding=embedding,
     persist_directory="./chroma_chatpdf_db"
 )
 print(f"向量库以构建：{len(chunks)}条向量")
-
+# ─── 第5步：创建检索器 ───────────────────────────────────
+# as_retriever() = 把向量库包装成"问一句→返回相关文档"的接口
+# k=3 = 每次检索返回最相关的 3 个文本块
+# search_type="similarity" = 默认余弦相似度检索（和 Transformer 自注意力 Q@K^T 同操作）
+retriever = vector_score.as_retriever(
+    search_type="similarty",
+    search_kwargs={"k":3}
+)
+# ─── 第6步：初始化 LLM ──────────────────────────────────
+llm=init_chat_model(
+    api_key="",
+    model="deepseek-v4-flash",
+    model_provider="deepseek",
+    temperture=0
+)
 
 
 

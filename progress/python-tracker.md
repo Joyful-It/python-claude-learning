@@ -1,6 +1,6 @@
 # Python 学习进度追踪表
 
-> **最后更新日期**：2026-06-08
+> **最后更新日期**：2026-06-17
 
 ---
 
@@ -8,12 +8,13 @@
 
 | 指标 | 数值 |
 |-----|------|
-| 总考点数 | 46 (+3 前端) |
-| 已掌握考点（≥80%） | 0 |
-| 学习中考点（1%-79%） | 7 |
-| 未开始考点（0%） | 35 |
-| **整体进度** | **20%** |
-| **学习天数** | **38天** |
+| 总考点数 | 52 (+3 前端) |
+| 已掌握考点（≥80%） | 8 |
+| 学习中考点（1%-79%） | 18 |
+| 未开始考点（0%） | 19 |
+| **整体进度** | **32%** |
+| **学习天数** | **44天** |
+| **里程碑** | **知识树+30天计划建成** |
 
 ---
 
@@ -76,12 +77,12 @@
 
 | 模块 | 权重 | 考点数 | 已掌握 | 学习中 | 未开始 | 进度 |
 |------|------|-------|-------|-------|-------|------|
-| A. Python 工程化基础 | 20% | 9 | 0 | 5 | 4 | 35% |
-| B. 大模型推理工程与RAG开发 | 18% | 6 | 0 | 2 | 4 | 20% |
-| C. Agent智能体开发 | 16% | 5 | 0 | 1 | 4 | 28% |
-| D. 大模型微调实战 | 15% | 5 | 0 | 0 | 5 | 0% |
-| E. 高性能推理部署与LLMOps | 14% | 5 | 0 | 0 | 5 | 0% |
-| F. 机器学习/深度学习基础 | 10% | 22 | 0 | 1 | 21 | 45% |
+| A. Python 工程化基础 | 20% | 9 | 0 | 5 | 4 | 38% |
+| B. 大模型推理工程与RAG开发 | 18% | 6 | 0 | 3 | 3 | 32% |
+| C. Agent智能体开发 | 16% | 5 | 0 | 4 | 1 | 52% |
+| D. 大模型微调实战 | 15% | 5 | 0 | 1 | 4 | 8% |
+| E. 高性能推理部署与LLMOps | 14% | 5 | 0 | 1 | 4 | 8% |
+| F. 机器学习/深度学习基础 | 10% | 22 | 0 | 5 | 17 | 52% |
 | G. 工具链与辅助开发 | 7% | 3 | 0 | 1 | 2 | 25% |
 | H. 编程规范与工程实践 | 0% | 2 | 0 | 1 | 1 | 50% |
 | I. 前端开发基础 | 0% | 3 | 0 | 2 | 1 | 30% |
@@ -114,13 +115,15 @@
 | 重写（Override） | 45% | 2026-03-31 | 子类可覆盖父类方法 |
 | super() | 50% | 2026-03-31 | 调用父类方法 |
 | 封装（私有属性） | 50% | 2026-03-31 | 理解__xxx私有属性，改名机制 |
+| 字符串处理 strip/split/join | 80% | 2026-06-10 | 学员独立拆解"三strip流水线"（整体→拆分→过滤→清理），split/join互为反操作 |
+| Python 三种括号体系 | 75% | 2026-06-10 | 学员自制速查表：()=执行/[]=容器/{}=映射，外圆内方口诀 |
 | get/set 方法 | 55% | 2026-03-31 | 能独立写get_age/set_age |
 | 多态 | 40% | 2026-03-31 | 有点模糊，需巩固 |
 | __str__ 方法 | 60% | 2026-05-12 | 复习后完全理解：print 时自动触发，自定义输出 |
 | 函数返回值（return） | 50% | 2026-06-01 | print(显示) vs return(交付)区分清楚，默认返回None，return是函数终止点 |
 | 变量作用域 | 45% | 2026-06-01 | 局部变量隔离理解，global打破隔离，global一般不推荐用 |
 
-**A.1 综合掌握度：49%**
+**A.1 综合掌握度：52%**（06-15 重算：函数参数/面向对象/字符串处理已稳固，class_weight巩固）
 
 ---
 
@@ -138,8 +141,20 @@
 | LangGraph StateGraph | 70% | 2026-06-08 | State(数据说明书)/Node(干活)/Edge(流程)三要素，compile→invoke |
 | LangGraph ToolNode | 75% | 2026-06-08 | Tool=普通函数不知State，ToolNode=帮Agent执行工具，手动llm.invoke不需ToolNode |
 | LLM vs Tool 区分 | 80% | 2026-06-08 | LLM=大脑(思考生成)，Tool=手脚(执行动作)，金句自创 |
+| Human-in-the-Loop (HITL) | 85% | 2026-06-09 | interrupt(暂停抛数据)+MemorySaver(记忆保存)+Command(resume)(送回继续)，七步全流程自拆解 |
+| MemorySaver 与 thread_id | 80% | 2026-06-09 | MemorySaver=多槽位记忆库，thread_id=任务编号，保证暂停后找回状态 |
+| 条件边 (Conditional Edge) | 75% | 2026-06-09 | route 返回 str 决定下一站，add_conditional_edges(source, route, path_map) |
+| AutoGPT Think-Act 循环 | 75% | 2026-06-10 | Think(LLM拆解)→Act(执行首条)→Route(判断)→循环/结束，8bug全修通 |
+| Python import 路径机制 | 70% | 2026-06-10 | sys.path + __file__绝对路径 vs '..'相对工作目录 |
+| Node/Route 返回规则 | 85% | 2026-06-10 | Node→dict(更新State)，Route→str(下一站节点名)，手误3次后刻在手上 |
+| AutoGPT vs BabyAGI | 75% | 2026-06-11 | AutoGPT每次重新生成任务列表，BabyAGI只重排优先级(reprioritize) |
+| MCP 协议三种传输模式 | 65% | 2026-06-11 | stdio/SSE/Streamable HTTP；传输与协议分离；FastMCP高阶封装 |
+| 多Agent三种模式 | 60% | 2026-06-11 | Sequential(流水线)/Hierarchical(主管)/Collaborative(辩论)，区别+适用场景 |
+| Fan-out / Fan-in | 65% | 2026-06-12 | Fan-out=一个节点指向多个(并行分发)；Fan-in=多个汇聚等待全部完成 |
+| Tool vs Agent 核心区分 | 80% | 2026-06-12 | Tool=菜刀(可调模型但不决策)，Agent=厨师(有决策权)，多Agent=分部门 |
+| 多Agent vs 单Agent+多工具 | 70% | 2026-06-12 | 选择空间缩小(大海捞针→两次小范围筛选)、Prompt精简、上层兜底纠错 |
 
-**C.16 综合掌握度：28%**
+**C.16 综合掌握度：70%**（06-15 重算：HITL/MemorySaver/NodeRoute已≥80%，AutoGPT/MCP/多Agent/Fan-out概念均已覆盖）
 
 ---
 
@@ -147,7 +162,8 @@
 | 子考点 | 掌握度 | 更新日期 | 备注 |
 |-------|-------|---------|------|
 | RAG 核心概念 | 80% | 2026-06-05 | R=检索/A=增强/G=生成，六站管道完整理解 |
-| RAG vs 微调 | 35% | 2026-06-02 | 改知识用RAG，改能力用微调 |
+| RAG vs 微调 | 65% | 2026-06-14 | RAG翻书(外挂秒级更新)、微调背书(训练权重)，区别清晰 |
+| RAG 完整流程 | 80% | 2026-06-14 | PDF→加载→切块→向量化→存库；提问→问题向量化→检索→拼Prompt→LLM生成 |
 | Harness vs RAG | 25% | 2026-06-02 | RAG ⊂ Harness，Harness 是全链路工程体系 |
 | Document 对象 | 80% | 2026-06-05 | page_content(内容)+metadata(身份证) 双件套 |
 | 文本分块 RecursiveCharSplit | 75% | 2026-06-05 | 递归分隔符层级(段落→行→句→词→字符)，chunk_size+chunk_overlap |
@@ -157,7 +173,7 @@
 | Agentic RAG | 60% | 2026-06-05 | Agent自主判断查不查，retriever包装为@tool |
 | 混合检索/重排序 | 30% | 2026-06-05 | 向量+BM25混合，Cross-Encoder精排，概念速览未实操 |
 
-**B.14 综合掌握度：35%**
+**B.14 综合掌握度：42%**（RAG流程已稳固，vs微调区分清晰）
 
 ---
 
@@ -312,8 +328,12 @@
 | 泰坦尼克号完整流程 | 60% | 2026-05-24 | 十步清单可背出，进阶版(分组填Age/Has_Cabin/衍生特征/正确标准化顺序)，逐行注释版 |
 | PyTorch import 规范 | 45% | 2026-05-24 | 三件套必写(torch/nn/Dataset+DataLoader)，sklearn可手写替代 |
 | torch.nn 边界 | 40% | 2026-05-24 | nn只有基础积木(Linear/Conv/LSTM)，完整模型在外部库(torchvision/transformers/ultralytics) |
-| Transformer 自注意力 | 50% | 2026-05-25 | QKV五步流程、缩放原因(√d_k)、多头并行子空间 |
-| Transformer 架构组件 | 45% | 2026-05-25 | 编码/解码掩码、位置编码、FFN(先升后降)、残差+LN、Pre-LN vs Post-LN |
+| Transformer 自注意力 | 70% | 2026-06-09 | QKV三投影手写实现 (4,512)→(4,64)，形状变换卡已通，下一步attn_scores=Q@K^T/√dk |
+| softmax 三步骤 + √dₖ | 85% | 2026-06-12 | 手算全链打通：eˣ→求和→÷，dₖ大→点积飙升→softmax变独热→梯度消失，除√dₖ拉回 |
+| Transformer Attention 六步 | 75% | 2026-06-12 | QKV投影→Q@Kᵀ→÷√dₖ→softmax→×V→输出，Q@Kᵀ矩阵含义已通 |
+| Tensor ↔ NumPy 共享内存 | 55% | 2026-06-12 | torch.from_numpy()默认共享，改一个变两个，.clone()分家 |
+| KV Cache | 40% | 2026-06-12 | 自回归时不重算历史K/V，O(n²)→O(n)；Pre-LN vs Post-LN顺序 |
+| Transformer 架构组件 | 50% | 2026-06-09 | 手搓启动——编码/解码掩码、位置编码、FFN(先升后降)、残差+LN、Pre-LN vs Post-LN，QKV命名纠正(W_K/W_V) |
 | Transformer vs RNN | 50% | 2026-05-25 | 并行/长程直连/扩展快 三优势，RNN流式/线性 互补 |
 | 梯度概念全家桶 | 55% | 2026-05-25 | 梯度定义/正负/消失(连乘→0)/爆炸(连乘→∞)/累积(loss/acc) |
 | GPU与大模型 | 40% | 2026-05-25 | 显存/算力/带宽，训练=推理×4，量化/梯度累积/模型并行 |
@@ -324,6 +344,7 @@
 | 词嵌入演进 | 45% | 2026-05-26 | 静态(Word2Vec)→动态(BERT)，一词多义靠上下文 |
 | 注意力本质 | 50% | 2026-05-26 | Q查K取V，动态信息筛选，解决长程遗忘+信息瓶颈 |
 | 知识蒸馏 | 40% | 2026-05-26 | 老师-学生框架、软标签vs硬标签、温度T、双损失(KL+CE) |
+| Scaling Law 与涌现 | 60% | 2026-06-10 | 涌现派(Google2022阈值跳升)vs质疑派(评测方式造成假象)；GPT-2→3→4三代跃迁；Scale=必要非充分 |
 | GELU vs ReLU | 45% | 2026-05-26 | ReLU一刀切负数全杀，GELU平滑概率留余地，原论文ReLU但BERT后改GELU |
 | 学习率预热 Warmup | 45% | 2026-05-26 | lr本质=步伐，预热=开局低速爬坡防崩，lr过大≠梯度爆炸 |
 | IMDB 情感分析项目 | 70% | 2026-06-01 | 骨架六步完成+三处改进(fp16/F1指标/tokenizer保存)+compute_metrics结构理解+注释版完整 |
@@ -374,7 +395,7 @@
 | 分类指标（Accuracy/Recall/Precision/F1） | 60% | 2026-05-12 | 能用自己的话解释四指标，知道 Recall 和 Precision 不能同时高 |
 | class_weight 不平衡处理 | 50% | 2026-05-12 | 理解原理（少数类权重更高），试了 balanced |
 
-**F 模块综合掌握度：35%**（新增 θ/w 统一、贝叶斯推导链、五派分类、Ridge/BayesianRidge对比、五步框架）
+**F 模块综合掌握度：42%**（新增 softmax/Transformer六步/Tensor共享内存/KV Cache）
 
 ---
 
@@ -405,8 +426,18 @@
 | **缺失** | 广播 vs 向量化 | 低 | 2026-06-06 | 🆕 首次暴露 |
 | **缺失** | Agent 死循环机制 + ModelCallLimit | 低 | 2026-06-06 | 🆕 首次暴露 |
 | **缺失** | Gini vs Entropy 区别 | 低 | 2026-06-06 | 🆕 首次暴露 |
-| **缺失** | LangGraph 条件边（Conditional Edge）| 中 | 2026-06-08 | 🆕 下一步 |
-| **缺失** | ToolNode 与手动 llm.invoke 的选择 | 低 | 2026-06-08 | 🆕 概念已通但未实操 |
+| **缺失** | Command(resume) vs 直接更新 State 的区分 | 低 | 2026-06-09 | 🆕 关键——resume是送回interrupt暂停点而非直接改state |
+| **缺失** | 多内容审批（interrupt 带复杂数据结构）| 低 | 2026-06-09 | 🆕 概念已通但未实操 |
+| **缺失** | class_weight='balanced' 全忘 | 中 | 2026-06-12 | ✅ 06-14 晚间巩固已纠正 |
+| **缺失** | OOP 三大特性（封装/继承/多态）全忘 | 中 | 2026-06-12 | ✅ 06-14 晚间巩固已纠正 |
+| **缺失** | 训练循环五步缺loss步+顺序偏差 | 高 | 2026-06-12 | 🔴 口诀"前损后步清"记不牢 |
+| **缺失** | HF 五大组件只记2个 | 中 | 2026-06-12 | 🆕 缺Evaluate/Accelerate/Hub |
+| **缺失** | 多态两种形式（重写+向上转型） | 低 | 2026-06-12 | 🆕 只记得方法重写 |
+| **缺失** | Tensor ↔ NumPy 共享内存不知道 | 中 | 2026-06-12 | 🆕 首次接触，torch.from_numpy()无复制 |
+| **缺失** | KV Cache 概念遗忘 | 低 | 2026-06-12 | 🆕 生成优化核心技术 |
+| **缺失** | CrossEntropyLoss 内置三件套细节 | 中 | 2026-06-14 | 🔴 知道不加激活但说不出内部softmax+log+NLLLoss |
+| **缺失** | Matplotlib 四种基本图 | 低 | 2026-06-14 | 🆕 课件15未学 |
+| **缺失** | 自定义网络 __init__+forward | 中 | 2026-06-14 | 🆕 PyTorch基础知识未覆盖 |
 
 **已解决的漏洞：**
 - ~~self 概念理解不够牢固~~ → ✅ 已改善（60%）
@@ -415,6 +446,8 @@
 - ~~State/TypedDict/类型注解混淆~~ → ✅ 贯通（85%，学员独立拆解「数据格式说明书」类比）
 - ~~state变量 vs State类型 区分~~ → ✅ 贯通（name:str 类比）
 - ~~Tool vs ToolNode vs Node 混淆~~ → ✅ 贯通（学员画出完整链路图）
+- ~~LangGraph 条件边~~ → ✅ 贯通（75%，route返回str+add_conditional_edges三参数）
+- ~~ToolNode 与手动 llm.invoke 的选择~~ → ✅ 概念已通（ToolNode=自动，手动=灵活）
 
 ---
 
@@ -707,4 +740,10 @@
 | 2026-06-05 | [session-notes](../sessions/2026-06-05/session-notes.md) | RAG完整教程(59页1-8章精讲+9-12速览) + 晨间9题 | RAG六站管道70%、Document80%、分块75%、Embedding三路线65%、Agentic RAG60%、B模块5%→35% |
 | 2026-06-06 | [session-notes](../sessions/2026-06-06/session-notes.md) | 题库架构v2.0（双层晨考20题）+ ChatPDF项目启动 + 晨考错题沉淀 | 题库架构80%、enumerate85%、BPTT梯度消失75%、Gini60%、注入10题首发 |
 | 2026-06-08 | [session-notes](../sessions/2026-06-08/session-notes.md) | LangGraph核心概念拆解（State/Node/Tool/ToolNode/LLM）+ 三个demo实战调试 | State/TypedDict 85%、Node本质80%、Tool vs ToolNode 75%、LLM vs Tool 80%、六概念独立拆解 |
+| 2026-06-09 | [session-notes](../sessions/2026-06-09/session-notes.md) | Human-in-the-Loop 全流程拆解（interrupt/Command/MemorySaver）+ demo3_2_hum_loop 调试 | HITL 85%、MemorySaver/thread_id 80%、条件边 75%、学员独立输出七步面试级总结 |
+| 2026-06-10 | [session-notes](../sessions/2026-06-10/session-notes.md) | AutoGPT Think-Act 循环从零调试（8bug全修：import路径/括号/State类型/return规则/path_map）| 条件边 80%、AutoGPT循环 75%、Node/Route规则 85%、import 70% |
+| 2026-06-11 | [session-notes](../sessions/2026-06-11/session-notes.md) | 题库轻量索引建设 + AutoGPT/BabyAGI测验14题 + 模块三HTML提取16题入库 | C模块30→60题，四文件分工系统，晨考上下文省88% |
+| 2026-06-12 | [session-notes](../sessions/2026-06-12/session-notes.md) | softmax手算全链 + Transformer公式六步 + Tool/Agent/多Agent辨析 + 晨考19题 | softmax 85%、Attention六步75%、Agent决策权区分80%、晨考47%暴露OOP/训练循环遗忘 |
+| 2026-06-14 | [session-notes](../sessions/2026-06-14/session-notes.md) | 06-11回顾 + 晚间5题巩固 + 晨考二轮18题（72%） | 间隔复习验证有效(47%→72%)、HF五组件/训练循环/OOP全焊住、面试注入100% |
+| 2026-06-17 | [session-notes](../sessions/2026-06-17/session-notes.md) | 知识树建树完成 + 30天面试冲刺计划设计 | 六条主线~470题归类、三层训练体系(A晨考+B主线+C项目)、knowledge-tree-light轻量索引 |
 

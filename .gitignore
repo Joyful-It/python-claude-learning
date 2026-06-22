@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# 环境变量（含API Key）
+.env
+.env.local
+
+# IDE / 本地配置
+.claude/
+.vscode/
+.idea/
+
+# 向量库（本地生成）
+chroma_chatpdf_db/
+*.db
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.log
+*.tmp

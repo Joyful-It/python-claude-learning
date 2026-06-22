@@ -62,10 +62,14 @@
 **⚠️ 新会话强制启动流程（压缩后重开/全新会话均须执行）：**
 
 首条消息后，必须先依次读取以下文件，再执行晨间复习提问：
-1. `progress/question-bank.md` — 获取个人实战题库与抽题算法
+1. `progress/question-index.md` — **轻量索引**（~50行），含所有题目的ID/标签/区域/连对/最后提问，用于抽题算法选号
 2. `progress/python-tracker.md` — 获取最新学习进度、薄弱点、常犯错误
+3. 根据 index 选出题号后，去 `progress/question-bank.md` **只读被选中的题目正文+答案**（不读全文）
+4. 注入层：从 `progress/knowledge-index.md` 和 `progress/questions-gpt.md` 各随机抽5题（去重）
 
-未读取上述两文件前，禁止凭记忆出题。
+未读取上述文件前，禁止凭记忆出题。
+
+**上下文优化**：question-bank.md 全文~341行，question-index.md 仅~50行。先读索引→按需取题，节省约85%上下文。
 
 ---
 
@@ -126,9 +130,36 @@
 - 确保任何时刻常规区 ≥ 10 题，不足时从低频区或原料库补充
 
 **晨考执行**：
-- 只读 `question-bank.md` 一份文件，两层题目混合抽取
+- **选号阶段（只读轻量索引）**：
+  ① `question-index.md`（~50行）→ 五维度算法选 Bank 题号
+  ② `knowledge-index-light.md`（~150行）→ 完全随机抽 5 题
+  ③ `questions-gpt-light.md`（~100行）→ 完全随机抽 5 题
+  共计 ~300行（相比原文 ~2600行省 ~88%）
+- **取题阶段（按需 grep）**：按选出的 ID 去 `question-bank.md` / `knowledge-index.md` / `questions-gpt.md` 只取被选中题目的正文+答案
 - Bank 题按五维度算法，注入题完全随机，同日早上一口气答完
-- **答错记录**：晨考结束后，将所有答错的知识点写入当日 `sessions/YYYY-MM-DD/session-notes.md` 的「踩坑与纠正」板块，标注"晨考薄弱"，方便集中回顾
+- **答错记录**：晨考结束后，将所有答错的知识点写入当日 `sessions/YYYY-MM-DD/session-notes.md` 的「踩坑与纠正」板块，标注"晨考薄弱"
+- **知识点沉淀**：晨考中所有题目的核心知识点（不论对错）均写入当日 session-notes 的「晨考知识点」板块——答对的记"已稳固"，答错的记"错在哪+正确是什么+为什么混淆"，新接触的注入题记核心理解
+
+**学员手动入库指南**：
+
+学员日常产生的新题只需告诉 Claude，Claude 自动归类存入：
+
+| 题目来源 | 存入位置 | 说明 |
+|---------|---------|------|
+| 上课/写代码/踩坑中遇到的考点 | `question-bank.md` + 同步更新 `question-index.md` 索引行 | 核心题库，进入🟢🟡⚫生命周期 |
+| 课件/课外资料里看到的好题（未实际接触） | `knowledge-index.md`（题干+答案）+ `knowledge-index-light.md`（加一行ID） | 注入池A，课堂接触后可晋升到bank |
+| 面试题/行业标准里收集的题 | `questions-gpt.md`（题干+答案）+ `questions-gpt-light.md`（加一行ID） | 注入池B，同上 |
+
+**大原则**：
+- **知识点** → 存 `sessions/`（session-notes.md）
+- **考题** → 存题库（question-bank / knowledge-index / questions-gpt，按来源分）
+- 学员说"这个存一下"或描述一道题 → Claude 自动判断来源，归入对应文件
+
+**口诀**：
+> 自己踩过的坑 → bank（核心题库）
+> 课件里的存货 → knowledge-index（备胎池A）
+> 面试里的标杆 → questions-gpt（备胎池B）
+> 理解性的总结 → session-notes（不放题库）
 
 ### 核心行为准则
 **应做：**
