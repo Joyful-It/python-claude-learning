@@ -626,6 +626,47 @@ knowledge-index 中的考点晋升至 `question-bank.md` 需满足：
 > ③ **推理恢复**：对应输入激活值÷s，保证(权重×s)×(激活÷s)=权重×激活，数学完全等价，无损。
 > ④ **直觉**："保重点、放次要"——把量化误差从重要通道转移到次要通道。
 
+### K191 推理两阶段 Prefill vs Decode 区别？
+
+> | | Prefill | Decode |
+> |------|---------|--------|
+> | 做什么 | 一次性算全部Token的QKV，建KV Cache | 逐Token生成，只算新Token的Q |
+> | GPU看什么 | 计算密集→**算力**(Tensor Core) | 带宽密集→**显存带宽** |
+> **类比**：Prefill=读题通盘思考，Decode=逐字写答案
+
+### K192 KV Cache 跟哪些因素有关？
+
+> **相关**：层数、隐藏维度、上下文长度。公式：KV Cache = 2×Layers×SeqLen×HiddenSize×Bytes
+> **不相关**：模型参数量。KV Cache只存K/V，不存权重。
+> **长上下文吃显存**：SeqLen翻倍→KV Cache翻倍
+
+### K193 GQA（分组查询注意力）一句话原理？
+
+> 多个Query Head共享同一组Key和Value。MHA=32Q+32K+32V，GQA=32Q+8K+8V。
+> KV Cache减少4倍→推理更快显存更省。Llama3/Qwen3.5/DeepSeek/Gemma都在用
+
+### K194 PagedAttention 核心思想？
+
+> KV Cache**分页管理**——切成Page，页表记录每个请求用哪些Page。
+> **类比**：KV Cache版虚拟内存。解决连续存储碎片多利用率低的问题，支持高并发
+
+### K195 ZeRO-1/2/3 三级区别？
+
+> | 级别 | 拆分内容 | 记忆口诀 |
+> |------|---------|---------|
+> | ZeRO-1 | Optimizer State | P完整 G完整 O拆分 |
+> | ZeRO-2 | Optimizer + Gradient | P完整 G拆分 O拆分 |
+> | ZeRO-3 | Optimizer + Gradient + Parameter | P拆分 G拆分 O拆分（最强）|
+
+### K196 训练卡 vs 推理卡？显卡三大指标？
+
+> | | 推理卡(4090) | 训练卡(A100/H100) |
+> |------|------|------|
+> | 特点 | 算力强/价格低/显存小 | 显存大/带宽高/NVLink |
+> | 适合 | 部署/Agent/LoRA | 全参训练/高并发 |
+> **三大指标口诀**：容量→能跑多大模型 / 算力→训练多快(Prefill) / 带宽→生成多快(Decode)
+
+
 | 日期 | 操作 | 说明 |
 |------|------|------|
 | 2026-06-03 | 创建 | 提取 Knowledge_base 32篇~140考点 + share_know 6篇18考点 |
