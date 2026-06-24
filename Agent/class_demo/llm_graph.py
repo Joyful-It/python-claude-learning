@@ -3,8 +3,6 @@ from langchain_core.tools import tool
 from langgraph.prebuilt import ToolNode
 from langgraph.graph import MessagesState,StateGraph,START,END
 from langchain_core.messages import HumanMessage
-
-
 @tool
 def search(query: str) -> str:
     '''查询天气的工具函数'''
@@ -16,10 +14,6 @@ def search(query: str) -> str:
 # 把工具打包成节点：search函数 → tools列表 → ToolNode节点
 tools = [search]                       # 工具列表
 model = llm.bind_tools(tools)          # 把工具绑定给LLM，告诉LLM可以调用它
-
-
-
-
 # step1 定义state
 # MessagesState
 
@@ -30,8 +24,6 @@ tooL_node = ToolNode(tools) # 定义工具节点
 def call_model(MessagesState):
     res = model.invoke(MessagesState['messages'])
     return  {"messages":[res]}   # list
-
-
 # step 2 继续 定义条件边:传入 state ,返回节点名称
 def should_contine(MessagesState):
     last_message = MessagesState['messages'][-1]
@@ -41,9 +33,6 @@ def should_contine(MessagesState):
     else:
         print("----结束----")
         return "__end__"
-
-
-
 # step 3 定意图
 # (1) 初始化
 flow = StateGraph(MessagesState)
