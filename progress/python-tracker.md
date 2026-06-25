@@ -745,5 +745,5 @@
 | 2026-06-11 | [session-notes](../sessions/2026-06-11/session-notes.md) | 题库轻量索引建设 + AutoGPT/BabyAGI测验14题 + 模块三HTML提取16题入库 | C模块30→60题，四文件分工系统，晨考上下文省88% |
 | 2026-06-12 | [session-notes](../sessions/2026-06-12/session-notes.md) | softmax手算全链 + Transformer公式六步 + Tool/Agent/多Agent辨析 + 晨考19题 | softmax 85%、Attention六步75%、Agent决策权区分80%、晨考47%暴露OOP/训练循环遗忘 |
 | 2026-06-14 | [session-notes](../sessions/2026-06-14/session-notes.md) | 06-11回顾 + 晚间5题巩固 + 晨考二轮18题（72%） | 间隔复习验证有效(47%→72%)、HF五组件/训练循环/OOP全焊住、面试注入100% |
-| 2026-06-24 | [session-notes](../sessions/2026-06-24/session-notes.md) | 大模型部署与训练速查——学员独立总结(全) | KV Cache公式/推理两阶段/量化/显存估算/LoRA/显卡选型 + MHA/GQA/PagedAttention/vLLM/DP/TP/ZeRO |
+| 2026-06-25 | [session-notes](../sessions/2026-06-25/session-notes.md) | 四代大模型架构横向对比 + 位置编码扩展 | GPT-2→GLM-5.2→DeepSeek-V4→Qwen3.7演进线、MLA/GQA/MHA、RoPE动态缩放vsYaRN、全域思考+Agent循环 |
 
