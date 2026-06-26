@@ -261,3 +261,149 @@ FFN             稠密+GeLU      层次MoE+SwiGLU   细粒度MoE+SwiGLU  层次M
 ## 核心理解
 
 **学员原稿为share_know文档，Claude补充解读标注📌处。**
+
+---
+
+## 三、Standard MoE → Fine-grained MoE → Hierarchical MoE 演化
+
+> 📌 Claude 速读：MoE 两条演化路线。DeepSeek走的是"把专家拆小+加共享专家"（Fine-grained+Shared Expert），GLM走的是"专家分层，先选组再选人"（Hierarchical）。核心矛盾不同——DeepSeek解决"专家太粗，知识共享不足"，Hierarchical解决"专家太多，路由计算太贵"。
+
+### 标准 MoE 基础
+
+```
+原来: Token → FFN → Output
+MoE:  Token → Router → Expert1/Expert2/.../ExpertN → Output
+例: 64个专家, Top-2, Router决定token去专家17和42
+```
+
+### Fine-grained MoE（DeepSeek 路线）
+
+**核心**：64个大专家 → 256个小专家（甚至512个），总参数不变
+
+```
+传统: 64 × 100M参数的大专家
+细粒度: 256 × 25M参数的小专家
+Router可以更精细地组合: token A→专家12, token B→专家145, token C→专家231
+```
+
+**类比**：从"大部门"变成"专业小组"
+
+### Shared Expert（DeepSeek-V2 关键创新）
+
+```
+Output = Shared Expert + Routed Experts(选中的)
+```
+
+**为什么加共享专家**：语法、基础推理、常见词汇——这些通用知识不该每次重新路由。共享专家固定激活，稳定保存通用知识，路由专家专门负责数学/代码/翻译/法律等特定领域。
+
+### Hierarchical MoE（GLM-5.2 路线）
+
+**核心**：先选组、再选专家——两层路由
+
+```
+Token → Router1 → 选Group(如"数学专家组")
+                  → Router2 → 在组内选Expert(如专家3+专家8)
+```
+
+**类比**：先选学院，再选导师。不是从全校5000导师直接选。
+
+**为什么用**：当专家太多（如1024个），Token与全部专家打分开销巨大。分层后：先选8个组之一→再在128个专家里选Top2，计算量大幅减少。
+
+### 为什么 DeepSeek 不选 Hierarchical
+
+后来发现：**GPU 通信和负载均衡才是真正瓶颈，不是 Router 打分**。所以 DeepSeek 方向变成：更多小专家 + 共享专家 + 高效路由。
+
+### 一句话区分
+
+| 路线 | 解决什么 | 怎么解决 | 代表 |
+|------|---------|---------|------|
+| Fine-grained MoE + Shared Expert | 专家太粗、知识共享不足 | 大专家→很多小专家+共享专家 | DeepSeek-V2/V3 |
+| Hierarchical MoE | 专家太多、路由计算太贵 | 先选组再选专家 | GLM-5.2 |
+
+> 📌 面试一句话："DeepSeek把专家拆细加共享，GLM把专家分层减路由。两条路线解决的是不同阶段的问题。"
+
+---
+
+## 四、位置编码演化：Sin/Cos PE → GPT-2 可学习 → RoPE
+
+> 📌 Claude 速读：位置编码经历了三次跃迁——原始Transformer把sin/cos向量**加到输入**、GPT-2改成**可训练的**位置表但长度固定、RoPE把sin/cos**直接作用在Q/K上**让Attention天然感知相对距离。RoPE本质还是sin/cos一家人，只是用在了更合适的地方。
+
+### 本质区别
+
+```
+原始PE = 把位置信息加到词向量里（Token+Position → 输入Embedding）
+RoPE   = 把位置信息加到Attention计算过程中（旋转Q/K → 内积自带相对位置）
+```
+
+### 原始 Sin/Cos 位置编码
+
+对每个位置 pos 和维度 2i/2i+1：
+```
+PE(pos,2i) = sin(pos / 10000^(2i/d))
+PE(pos,2i+1) = cos(pos / 10000^(2i/d))
+```
+
+然后 `x = token_embedding + PE`。模型知道"猫在第1个位置"而不是"猫这个词本身"。
+
+**为什么同时用 sin 和 cos**：`sin(a+b) = sin a·cos b + cos a·sin b`——相邻位置存在线性关系，模型容易学到"当前位置→下一个位置"的规律。
+
+**为什么不同维度用不同频率**：低维度=短距离信息（变化快），高维度=长距离信息（变化慢）→一块编码同时含近距和远距信息。
+
+### GPT-2 可学习位置编码
+
+```
+position_embedding = nn.Embedding(max_len, hidden_size)  # 直接训练位置表
+x = token_embedding + position_embedding
+```
+
+**为什么后来不流行了**：训练时最大长度1024→位置表只有0~1023。推理长度2048→位置1024没有Embedding→直接废。Sin/Cos则位置10000照样能算，理论无限长。
+
+### RoPE：Sin/Cos 的"升级版"
+
+RoPE 不加到 Embedding 上，而是作用在 Q/K 上：
+
+```
+普通Attention: Attention = Q·K^T
+RoPE:          Attention = (R_m·Q)·(R_n·K)^T
+               R_m = 位置m对应的旋转矩阵
+```
+
+**旋转是什么**：Q的一部分向量在位置上做旋转。位置0→指向右，位置1→旋转一个角度↗，位置2→再转→↑...就像钟表指针。
+
+**为什么这样就有相对位置**（最精妙的地方）：
+```
+(R_m·Q)^T·(R_n·K) 展开后 = Q^T·R_(m-n)·K
+```
+绝对位置m和n消失了，只剩m-n。位置10和11→11-10=1，位置100和101→101-100=1——**距离1的结果完全一致**。模型天然感知相对距离。
+
+**长文本为什么更强**：原始PE训练长度2048→推理8192崩。RoPE位置只是旋转角度，2048/4096/8192/16384都能继续旋转→**外推能力更强**。
+
+### RoPE 本质上还是 Sin/Cos 一家人
+
+```
+Transformer PE: Sin/Cos 构造向量 → 加到输入
+GPT-2 PE:      学习的向量 → 加到输入
+RoPE:          Sin/Cos 构造旋转角度 → 旋转Q和K
+```
+
+RoPE 是把原始 Sin/Cos 思想发挥到了更适合 Attention 的形式，不是彻底抛弃。
+
+### 工程演化线
+
+```
+Transformer(2017): Token + Sin/Cos Absolute PE
+    ↓
+Transformer-XL: Relative Position
+    ↓
+T5: Relative Bias
+    ↓
+GPT-NeoX/LLaMA/Qwen/DeepSeek: RoPE
+    ↓
+Qwen3/Llama4/DeepSeek-V3: RoPE + 长上下文扩展(YaRN/NTK)
+```
+
+> 📌 一句话面试版："原始PE是把位置贴标签在词上让模型自己猜距离，RoPE是把位置直接编码进Q/K的几何关系里让Attention天然感知相对距离——所以长文本外推更强、参数量为0、已基本取代绝对位置编码。"
+
+---
+
+**学员原稿为share_know文档，Claude补充解读标注📌处。**
