@@ -40,7 +40,8 @@
       "Bash(mkdir -p \"c:/Project/python/sessions/2026-05-12/\")",
       "Bash(mkdir -p \"c:/Project/python/sessions/2026-05-13\")",
       "Bash(mkdir -p \"c:/Project/python/sessions/2026-05-14\")",
-      "Bash(python machine-Learning/ml_standard_template.py)"
+      "Bash(python machine-Learning/ml_standard_template.py)",
+      "Bash(git add *)"
     ],
     "additionalDirectories": [
       "c:\\Project\\python\\sessions"
