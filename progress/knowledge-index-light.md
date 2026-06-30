@@ -220,6 +220,10 @@ K199  Fine-grained MoE vs Hierarchical MoE 两条路线区别？                
 K200  RoPE为什么天然感知相对位置？（数学原理）                                 kb-学员总结06-25
 K201  MTP（多Token预测）是什么？为什么能加速推理？                             kb-学员总结06-25
 K202  位置编码演化线？Sin/Cos→可学习→RoPE→RoPE+YaRN？                         kb-学员总结06-25
+K203  LLaMA Factory vs Unsloth 区别？各适合什么场景？                           kb-教师晨考06-26
+K204  DeepSpeed ZeRO 选型策略？单卡放得下时该选什么？                            kb-教师晨考06-26
+K205  train_on_responses_only 作用？为什么微调时要mask掉user部分？               kb-教师晨考06-26
+K206  单卡24GB微调Qwen3.6-27B(BF16≈56GB)，全参/LoRA/QLoRA选哪个？               kb-教师晨考06-26
 ```
 
 ---
@@ -230,6 +234,6 @@ K202  位置编码演化线？Sin/Cos→可学习→RoPE→RoPE+YaRN？         
 |------|------|
 | Knowledge_base/ (课件) | 167 |
 | share_know/ (课外) | 18 |
-| 教师问卷 | 4 |
-| 学员总结+推导 (06-23~25) | 13 |
-| **总计** | **202** |
+| 教师问卷+晨考 | 8 |
+| 学员总结+推导 | 13 |
+| **总计** | **206** |
